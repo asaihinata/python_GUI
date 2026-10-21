@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.icns binary
+*.gif binary
+*.svg binary
+*.svg linguist-language=true
+*.bat eol=crlf
+*.html diff=html
+*.py diff=python
+*.py diff=python
+*.md diff=markdown

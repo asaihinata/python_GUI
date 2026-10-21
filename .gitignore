@@ -1,0 +1,128 @@
+# ドキュメント
+docs
+
+# デモ・テストコード
+tests/
+*tests_*.py
+*/*tests_*.py
+demo/
+demo.py
+demo*.py
+*demo.py
+*deom*.py
+
+# データファイル
+*.json
+*.csv
+
+# Python 本体
+pyproject.toml
+__pycache__/
+*.py
+*.pyc
+*.py[cod]
+*$py.class
+*.pyi
+!src/**/*.py
+!src/**/*.pyi
+!src/**/*.json
+!src/**/*.csv
+
+# パッケージ / ビルド / 配布物
+/*.egg-info
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+wheels/
+*.tar.gz
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+pip-wheel-metadata
+**/pip-wheel-metadata
+
+# 仮想環境
+.venv/
+venv/
+env/
+.python-version
+
+# テスト・カバレッジ
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# 型チェック関連 (mypy / pyright)
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyright/
+pyrightconfig.json
+uv.lock
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Node.js
+node_modules
+
+# VSCode / エディタ設定
+my-project.code-workspace
+# .code-snippets
+.vscode
+
+# Git関連
+.git
+**/.git
+**/git
+.gitmessage
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+
+# 環境変数・機密情報
+.env
+.key
+
+# 生成AI
+
+# Claude Code
+.claude
+CLAUDE.local.md
+.claude/
+.claudeignore
+
+# OpenAI
+.codex/
+
+# Gemini
+GEMINI.md
+.gemini/
+.geminiignore
+
+# フォントファイル
+.fnt
+.fon
+.otc
+.ttf
+.ttc
+.woff
+.woff2
+.eot
+.dfont
+
+# その他
+.dll
+.exe
+.ini
+*.txt
+!requirements.txt
+*.log
+_hide*.*
+_hide*.py
+_hide*
