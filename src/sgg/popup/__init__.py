@@ -14,20 +14,19 @@ class Message(Dialog):
 
 
 class _Popup:
-    __slots__ = ("__select",)
+    __slots__ = ("__select", "__dict__")
+    __dict__ = {
+        "default": None,
+        "detail": None,
+        "icon": None,
+        "message": None,
+        "title": None,
+        "type": None,
+    }
 
     def __init__(self, **kw):
-        _default_dict = {
-            "default": None,
-            "detail": None,
-            "icon": None,
-            "message": None,
-            "title": None,
-            "type": None,
-        }
-        self.__dict__ = {}
-        for key in _default_dict:
-            self.__dict__[key] = kw.pop(key, _default_dict[key])
+        for key in self.__dict__:
+            self.__dict__[key] = kw.pop(key, self.__dict__[key])
         self.__select = Message(**self.__dict__).show()
 
     def __str__(self):
@@ -52,7 +51,14 @@ class Popup(_Popup):
         type=None,
         default=None,
     ):
-        super().__init__(title, message, detail, icon, type, default)
+        super().__init__(
+            title=title,
+            message=message,
+            detail=detail,
+            icon=icon,
+            type=type,
+            default=default,
+        )
 
 
 class PopupInformation(_Popup):
