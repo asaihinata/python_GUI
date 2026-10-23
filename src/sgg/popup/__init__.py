@@ -1,5 +1,5 @@
 from sgg._dialog.dialog import Dialog
-from sgg.models import _setDefaultValues
+from sgg.models import _setDefaultValues1
 
 __all__ = (
     "Popup",
@@ -26,7 +26,7 @@ class _Popup:
     }
 
     def __init__(self, **kw):
-        self.__dict__ = _setDefaultValues(self.__dict__, kw)
+        self.__dict__ = _setDefaultValues1(self.__dict__, kw)
         self.__select = Message(**self.__dict__).show()
 
     def __str__(self):

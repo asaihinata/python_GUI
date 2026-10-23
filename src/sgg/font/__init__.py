@@ -5,7 +5,7 @@ from tkinter.font import Font
 
 from matplotlib.font_manager import FontProperties
 
-from sgg.models import _setDefaultValues
+from sgg.models import _setDefaultValues1
 
 __all__ = ["TKFont"]
 
@@ -30,7 +30,7 @@ class TKFont(Font):
         elif isinstance(font, Font):
             super().__init__(root=root, font=font, name=name)
         else:
-            self.__dict__ = _setDefaultValues(self.__dict__, options)
+            self.__dict__ = _setDefaultValues1(self.__dict__, options)
             if isinstance(font, tuple):
                 default = ("メイリオ", 12, "normal", "roman", False, False)
                 font = font + default[len(font) :]
