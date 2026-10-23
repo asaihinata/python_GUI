@@ -1,23 +1,18 @@
+"""カーソルについて調べるモジュール"""
+
+__all__ = ("Cursor",)
+
+
 class Cursor:
-    """カーソルについて調べるモジュール"""
+    """カーソルについて調べるオブジェクト"""
+
+    __slots__ = ("_cursor",)
 
     def __init__(self, cursor, /):
         self._cursor = cursor if cursor in self._CURSOR_LIST else "arrow"
 
     def __str__(self):
         return str(self._cursor)
-
-    def __iter__(self):
-        return iter(self._CURSOR_LIST)
-
-    def __contains__(self, item):
-        return item in self._CURSOR_LIST
-
-    def __reversed__(self):
-        return reversed(self._CURSOR_LIST)
-
-    def __len__(self):
-        return len(self._CURSOR_LIST)
 
     _CURSOR_LIST = (
         "arrow",
