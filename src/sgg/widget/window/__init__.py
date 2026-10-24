@@ -1,4 +1,4 @@
-from tkinter import Tk
+from tkinter import Frame, Tk
 
 from sgg.models import _setDefaultValues2
 from sgg.widget.button import Button
@@ -8,13 +8,14 @@ __all__ = ("Window",)
 
 
 class Window:
+    __slots__ = ("__dict__", "_root", "_count", "_key_widget_save")
     __dict__ = {
-        "title": "window",
         "layout": None,
+        "title": "window",
     }
-    _key_widget_save = {}
 
     def __init__(self, cnf={}, **kw):
+        self._key_widget_save = {}
         self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
         self._root = Tk()
         self.title = self.__dict__["title"]
@@ -25,20 +26,22 @@ class Window:
         self._count = {"widget": 0}
         if not isinstance(layout, list | tuple):
             raise TypeError("layoutの値が不正です")
-        for i in layout:
+        for c, i in enumerate(layout):
             if not isinstance(i, list | tuple):
                 raise TypeError("layoutの値が不正です")
+            row_frame = Frame(self._root, name=f"layout_row_{c}")
+            row_frame.pack(fill="x")
             for j in i:
                 type_ = j.get("type", None)
                 kw = j.get("kw", {})
                 if type_ == "label":
-                    widget = Label(self._root, **kw)
+                    widget = Label(row_frame, **kw)
                 elif type_ == "Button":
-                    widget = Button(self._root, **kw)
+                    widget = Button(row_frame, **kw)
                 else:
-                    widget = Label(self._root, text="ウィジェットが存在しません")
+                    widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
-                widget.pack()
+                widget.pack(side="left")
 
     def _key_set(self, key, widget):
         if key is None or not isinstance(key, str):
