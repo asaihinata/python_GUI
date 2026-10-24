@@ -1,6 +1,6 @@
 from typing import ClassVar, Literal
 
-from sgg._dialog.dialog import Dialog
+from sgg._dialog import Dialog
 
 __all__ = (
     "Popup",

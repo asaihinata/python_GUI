@@ -1,4 +1,4 @@
-from sgg._dialog.dialog import Dialog
+from sgg._dialog import Dialog
 from sgg.models import _setDefaultValues1
 
 __all__ = (

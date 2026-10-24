@@ -1,6 +1,7 @@
+from os.path import split
 from tkinter import _destroy_temp_root, _get_temp_root
 
-__all__ = ("Dialog",)
+__all__ = ("Dialog", "_Dialog")
 
 
 class Dialog:
@@ -39,3 +40,28 @@ class Dialog:
 
     def _test_callback(self, master):
         pass
+
+
+class _Dialog(Dialog):
+
+    def _fixoptions(self):
+        try:
+            # make sure "filetypes" is a tuple
+            self.options["filetypes"] = tuple(self.options["filetypes"])
+        except KeyError:
+            pass
+
+    def _fixresult(self, widget, result):
+        if result:
+            # keep directory and filename until next time
+            # convert Tcl path objects to strings
+            try:
+                result = result.string
+            except AttributeError:
+                # it already is a string
+                pass
+            path, file = split(result)
+            self.options["initialdir"] = path
+            self.options["initialfile"] = file
+        self.filename = result  # compatibility
+        return result

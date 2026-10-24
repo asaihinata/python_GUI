@@ -2,7 +2,7 @@ from collections.abc import Mapping
 from tkinter import Misc
 from typing import Any, ClassVar
 
-__all__ = ("Dialog",)
+__all__ = ("Dialog", "_Dialog")
 
 class Dialog:
     command: ClassVar[str | None]
@@ -10,3 +10,5 @@ class Dialog:
     options: Mapping[str, Any]
     def __init__(self, master: Misc | None = None, **options: Any) -> None: ...
     def show(self, **options: Any) -> Any: ...
+
+class _Dialog(Dialog): ...
