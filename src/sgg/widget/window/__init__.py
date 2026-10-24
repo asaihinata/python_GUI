@@ -1,6 +1,7 @@
 from tkinter import Tk
 
 from sgg.models import _setDefaultValues2
+from sgg.widget.button import Button
 from sgg.widget.label import Label
 
 __all__ = ("Window",)
@@ -32,6 +33,8 @@ class Window:
                 kw = j.get("kw", {})
                 if type_ == "label":
                     widget = Label(self._root, **kw)
+                elif type_ == "Button":
+                    widget = Button(self._root, **kw)
                 else:
                     widget = Label(self._root, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)

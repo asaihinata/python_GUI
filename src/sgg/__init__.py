@@ -23,6 +23,10 @@ class gui:
     def Label(**kw):
         return {"type": "label", "kw": kw}
 
+    @staticmethod
+    def Button(**kw):
+        return {"type": "Button", "kw": kw}
+
 
 def __dir__():
     return (i for i in globals().keys() if i.startswith("__") or not i.startswith("_"))
