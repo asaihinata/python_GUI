@@ -1,6 +1,7 @@
 from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
                        PopupWarning)
 from sgg.version import __version__, __version_info__
+from sgg.widget import *
 
 __all__ = (
     "__version__",
@@ -11,6 +12,16 @@ __all__ = (
     "PopupError",
     "PopupQuestion",
 )
+
+
+class gui:
+    @classmethod
+    def window(cls, cnf={}, **kw):
+        return Window(cnf, **kw)
+
+    @staticmethod
+    def Label(**kw):
+        return {"type": "label", "kw": kw}
 
 
 def __dir__():

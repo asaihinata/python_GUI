@@ -1,7 +1,5 @@
 """`辞書型(dict)`についての処理を行うモジュール"""
 
-import copy
-
 __all__ = ("_setDefaultValues1", "_setDefaultValues2")
 
 
@@ -12,7 +10,8 @@ def _setDefaultValues1(default, kw):
 
 
 def _setDefaultValues2(default, cnf=None, **kw):
-    result = copy.deepcopy(default)
-    result.update(cnf or {})
-    result.update(kw)
-    return result
+    for i in (cnf or {}, kw):
+        for key, val in i.items():
+            if key in default:
+                default[key] = val
+    return default
