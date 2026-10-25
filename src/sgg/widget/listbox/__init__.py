@@ -1,0 +1,46 @@
+from tkinter import Listbox as tklistbox
+
+from sgg.models import _setDefaultValues2
+
+__all__ = ("Listbox",)
+
+
+class Listbox(tklistbox):
+    __dict__ = {
+        "activestyle": None,
+        "background": None,
+        "bd": 1,
+        "bg": None,
+        "border": 1,
+        "borderwidth": 1,
+        "cursor": "",
+        "disabledforeground": None,
+        "exportselection": 1,
+        "fg": None,
+        "font": None,
+        "foreground": None,
+        "height": 10,
+        "highlightbackground": None,
+        "highlightcolor": None,
+        "highlightthickness": None,
+        "justify": "left",
+        "list": None,
+        "listvariable": None,
+        "name": None,
+        "relief": None,
+        "selectbackground": None,
+        "selectborderwidth": 0,
+        "selectforeground": None,
+        "state": "normal",
+        "takefocus": "",
+        "width": 20,
+        "xscrollcommand": "",
+        "yscrollcommand": "",
+    }
+
+    def __init__(self, master=None, cnf={}, **kw):
+        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
+        list_ = self.__dict__.pop("list")
+        super().__init__(master, self.__dict__)
+        if isinstance(list_, list | tuple | range):
+            self.insert("end", *list_)

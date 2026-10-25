@@ -1,11 +1,11 @@
-from tkinter import LabelFrame as Fml
+from tkinter import LabelFrame as tklabelframe
 
 from sgg.models import _setDefaultValues2
 
 __all__ = ("FrameLabel",)
 
 
-class FrameLabel(Fml):
+class FrameLabel(tklabelframe):
     __dict__ = {
         "background": None,
         "bd": 2,

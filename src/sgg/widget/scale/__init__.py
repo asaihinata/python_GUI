@@ -1,11 +1,11 @@
-from tkinter import Scale as Sca
+from tkinter import Scale as tkscale
 
 from sgg.models import _setDefaultValues2
 
 __all__ = ("Scale",)
 
 
-class Scale(Sca):
+class Scale(tkscale):
     __dict__ = {
         "activebackground": None,
         "background": None,

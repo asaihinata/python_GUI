@@ -1,11 +1,11 @@
-from tkinter import Label as tkLabel
+from tkinter import Label as tklabel
 
 from sgg.models import _setDefaultValues2
 
 __all__ = ("Label",)
 
 
-class Label(tkLabel):
+class Label(tklabel):
     __dict__ = {
         "activebackground": None,
         "activeforeground": None,

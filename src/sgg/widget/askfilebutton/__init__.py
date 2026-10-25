@@ -1,5 +1,5 @@
 from functools import partial
-from tkinter import Button as tkBtn
+from tkinter import Button as tkbutton
 
 from sgg.dialog.openfile import AskOpenFilename
 from sgg.models import _setDefaultValues2
@@ -7,7 +7,7 @@ from sgg.models import _setDefaultValues2
 __all__ = ("AskFileButton",)
 
 
-class AskFileButton(tkBtn):
+class AskFileButton(tkbutton):
     __dict__ = {
         "activebackground": None,
         "activeforeground": None,

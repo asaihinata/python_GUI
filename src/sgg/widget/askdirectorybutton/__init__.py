@@ -1,5 +1,5 @@
 from functools import partial
-from tkinter import Button as tkBtn
+from tkinter import Button as tkbutton
 
 from sgg.dialog.opendirectory import AskDirectoryname
 from sgg.models import _setDefaultValues2
@@ -7,7 +7,7 @@ from sgg.models import _setDefaultValues2
 __all__ = ("AskDirectoryButton",)
 
 
-class AskDirectoryButton(tkBtn):
+class AskDirectoryButton(tkbutton):
     __dict__ = {
         "activebackground": None,
         "activeforeground": None,

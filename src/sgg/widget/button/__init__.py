@@ -1,11 +1,11 @@
-from tkinter import Button as tkBtn
+from tkinter import Button as tkbutton
 
 from sgg.models import _setDefaultValues2
 
 __all__ = ("Button",)
 
 
-class Button(tkBtn):
+class Button(tkbutton):
     __dict__ = {
         "activebackground": None,
         "activeforeground": None,

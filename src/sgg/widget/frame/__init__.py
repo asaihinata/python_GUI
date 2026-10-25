@@ -1,11 +1,11 @@
-from tkinter import Frame as Fm
+from tkinter import Frame as tkframe
 
 from sgg.models import _setDefaultValues2
 
 __all__ = ("Frame",)
 
 
-class Frame(Fm):
+class Frame(tkframe):
     __dict__ = {
         "background": None,
         "bd": 0,
