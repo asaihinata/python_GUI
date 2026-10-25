@@ -1,26 +1,10 @@
 """インストール済みの`sgg`のより詳細なバージョン情報を表示するモジュール"""
 
 from collections import namedtuple
+from re import split
 from typing import final
 
 __all__ = ("__version__", "__version_info__")
-
-
-def __dir__():
-    return [
-        "__all__",
-        "__builtins__",
-        "__dir__",
-        "__doc__",
-        "__file__",
-        "__loader__",
-        "__name__",
-        "__package__",
-        "__path__",
-        "__spec__",
-        "__version__",
-        "__version_info__",
-    ]
 
 
 @final
@@ -28,8 +12,6 @@ class _Version:
     __slots__ = ("_major", "_minor", "_micro")
 
     def __init__(self, var):
-        from re import split
-
         self._major, self._minor, self._micro = tuple(map(int, split(r"[.]", var)))
 
     @property
