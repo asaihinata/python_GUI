@@ -1,12 +1,16 @@
-from tkinter import Frame, Tk
+from tkinter import Frame as Fm
+from tkinter import Tk
 
 from sgg.models import _setDefaultValues2
 from sgg.widget.askcolorbutton import AskColorButton
 from sgg.widget.askdirectorybutton import AskDirectoryButton
 from sgg.widget.askfilebutton import AskFileButton
 from sgg.widget.button import Button
+from sgg.widget.frame import Frame
+from sgg.widget.framelabel import FrameLabel
 from sgg.widget.label import Label
 from sgg.widget.savefilebutton import SaveFileButton
+from sgg.widget.scale import Scale
 
 __all__ = ("Window",)
 
@@ -23,17 +27,16 @@ class Window:
         self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
         self._root = Tk()
         self.title = self.__dict__["title"]
-        self._win_creat()
-
-    def _win_creat(self):
-        layout = self.__dict__["layout"]
         self._count = {"widget": 0}
+        self._win_creat(self._root, self.__dict__["layout"])
+
+    def _win_creat(self, root, layout):
         if not isinstance(layout, list | tuple):
             raise TypeError("layoutの値が不正です")
         for c, i in enumerate(layout):
             if not isinstance(i, list | tuple):
                 raise TypeError("layoutの値が不正です")
-            row_frame = Frame(self._root, name=f"layout_row_{c}")
+            row_frame = Fm(root, name=f"layout_row_{c}")
             row_frame.pack(fill="x")
             for j in i:
                 type_ = j.get("type", None)
@@ -50,6 +53,16 @@ class Window:
                     widget = AskFileButton(row_frame, **kw)
                 elif type_ == "SaveFileButton":
                     widget = SaveFileButton(row_frame, **kw)
+                elif type_ == "Scale":
+                    widget = Scale(row_frame, **kw)
+                elif type_ == "Frame":
+                    layout = kw.pop("layout", None)
+                    widget = Frame(row_frame, **kw)
+                    self._win_creat(widget, layout)
+                elif type_ == "FrameLabel":
+                    layout = kw.pop("layout", None)
+                    widget = FrameLabel(row_frame, **kw)
+                    self._win_creat(widget, layout)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)

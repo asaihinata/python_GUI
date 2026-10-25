@@ -10,7 +10,10 @@ __all__ = (
     "AskDirectoryButton",
     "AskFileButton",
     "Button",
+    "Frame",
+    "FrameLabel",
     "Label",
+    "Scale",
     "Popup",
     "PopupError",
     "PopupInformation",
@@ -48,6 +51,18 @@ class gui:
     @staticmethod
     def SaveFileButton(**kw):
         return {"type": "SaveFileButton", "kw": kw}
+
+    @staticmethod
+    def Scale(**kw):
+        return {"type": "Scale", "kw": kw}
+
+    @staticmethod
+    def Frame(**kw):
+        return {"type": "Frame", "kw": kw}
+
+    @staticmethod
+    def FrameLabel(**kw):
+        return {"type": "FrameLabel", "kw": kw}
 
 
 def __dir__():
