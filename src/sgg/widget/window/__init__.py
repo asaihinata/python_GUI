@@ -1,8 +1,12 @@
 from tkinter import Frame, Tk
 
 from sgg.models import _setDefaultValues2
+from sgg.widget.askcolorbutton import AskColorButton
+from sgg.widget.askdirectorybutton import AskDirectoryButton
+from sgg.widget.askfilebutton import AskFileButton
 from sgg.widget.button import Button
 from sgg.widget.label import Label
+from sgg.widget.savefilebutton import SaveFileButton
 
 __all__ = ("Window",)
 
@@ -38,6 +42,14 @@ class Window:
                     widget = Label(row_frame, **kw)
                 elif type_ == "Button":
                     widget = Button(row_frame, **kw)
+                elif type_ == "AskColorButton":
+                    widget = AskColorButton(row_frame, **kw)
+                elif type_ == "AskDirectoryButton":
+                    widget = AskDirectoryButton(row_frame, **kw)
+                elif type_ == "AskFileButton":
+                    widget = AskFileButton(row_frame, **kw)
+                elif type_ == "SaveFileButton":
+                    widget = SaveFileButton(row_frame, **kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
@@ -52,6 +64,11 @@ class Window:
         else:
             self._count[key] = 0
             self._key_widget_save[key] = widget
+
+    def get_key(self, key):
+        return self._key_widget_save.get(key)
+
+    get = get_key
 
     def run(self, n=0):
         self._root.mainloop(n=n)

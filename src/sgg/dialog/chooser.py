@@ -23,8 +23,7 @@ class Chooser(Dialog):
 
 class AskColor:
     def __new__(cls, color=None, **options):
-        cls = Chooser(**options).show()
         if color:
             options = options.copy()
             options["initialcolor"] = color
-        return cls
+        return Chooser(**options).show()

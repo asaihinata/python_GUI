@@ -6,11 +6,17 @@ from sgg.widget import *
 __all__ = (
     "__version__",
     "__version_info__",
+    "AskColorButton",
+    "AskDirectoryButton",
+    "AskFileButton",
+    "Button",
+    "Label",
     "Popup",
-    "PopupInformation",
-    "PopupWarning",
     "PopupError",
+    "PopupInformation",
     "PopupQuestion",
+    "PopupWarning",
+    "SaveFileButton",
 )
 
 
@@ -26,6 +32,22 @@ class gui:
     @staticmethod
     def Button(**kw):
         return {"type": "Button", "kw": kw}
+
+    @staticmethod
+    def AskColorButton(**kw):
+        return {"type": "AskColorButton", "kw": kw}
+
+    @staticmethod
+    def AskDirectoryButton(**kw):
+        return {"type": "AskDirectoryButton", "kw": kw}
+
+    @staticmethod
+    def AskFileButton(**kw):
+        return {"type": "AskFileButton", "kw": kw}
+
+    @staticmethod
+    def SaveFileButton(**kw):
+        return {"type": "SaveFileButton", "kw": kw}
 
 
 def __dir__():

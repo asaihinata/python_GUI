@@ -1,0 +1,87 @@
+from functools import partial
+from tkinter import Button as tkBtn
+
+from sgg.dialog.openfile import AskOpenFilename
+from sgg.models import _setDefaultValues2
+
+__all__ = ("AskFileButton",)
+
+
+class AskFileButton(tkBtn):
+    __dict__ = {
+        "activebackground": None,
+        "activeforeground": None,
+        "anchor": "center",
+        "background": None,
+        "bd": None,
+        "bg": None,
+        "bitmap": "",
+        "border": None,
+        "borderwidth": None,
+        "compound": "none",
+        "cursor": "",
+        "default": "disabled",
+        "defaultextension": "",
+        "disabledforeground": None,
+        "fg": None,
+        "filetypes": [("all files", "*")],
+        "font": None,
+        "foreground": None,
+        "height": 0,
+        "highlightbackground": None,
+        "highlightcolor": None,
+        "highlightthickness": 1,
+        "image": "",
+        "initialdir": None,
+        "initialfile": None,
+        "justify": "center",
+        "name": None,
+        "overrelief": "",
+        "padx": None,
+        "pady": None,
+        "parent": None,
+        "relief": None,
+        "repeatdelay": None,
+        "repeatinterval": None,
+        "state": "normal",
+        "takefocus": "",
+        "text": "",
+        "textvariable": None,
+        "title": None,
+        "typevariable": None,
+        "underline": -1,
+        "width": 0,
+        "wraplength": 0,
+    }
+
+    def __init__(self, master=None, cnf={}, **kw):
+        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
+        self._path = ""
+        super().__init__(
+            master,
+            self.__dict__,
+            command=partial(
+                self._click_ask,
+                **{
+                    i: self.__dict__.pop(i)
+                    for i in (
+                        "defaultextension",
+                        "filetypes",
+                        "initialdir",
+                        "initialfile",
+                        "parent",
+                        "title",
+                        "typevariable",
+                    )
+                },
+            ),
+        )
+
+    def _click_ask(self, **kw):
+        self._path = AskOpenFilename(**kw)
+
+    def __str__(self):
+        return str(self._path)
+
+    def __fspath__(self):
+        return str(self._path)
