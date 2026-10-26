@@ -6,11 +6,13 @@ from sgg.widget.askcolorbutton import AskColorButton
 from sgg.widget.askdirectorybutton import AskDirectoryButton
 from sgg.widget.askfilebutton import AskFileButton
 from sgg.widget.button import Button
+from sgg.widget.checkbutton import Checkbutton
 from sgg.widget.entry import Entry
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
 from sgg.widget.label import Label
 from sgg.widget.listbox import Listbox
+from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
 from sgg.widget.text import Text
@@ -19,7 +21,6 @@ __all__ = ("Window",)
 
 
 class Window:
-    __slots__ = ("__dict__", "_root", "_count", "_key_widget_save")
     __dict__ = {
         "layout": None,
         "title": "window",
@@ -56,6 +57,10 @@ class Window:
                     widget = AskFileButton(row_frame, **kw)
                 elif type_ == "SaveFileButton":
                     widget = SaveFileButton(row_frame, **kw)
+                elif type_ == "Checkbutton":
+                    widget = Checkbutton(row_frame, **kw)
+                elif type_ == "Radiobutton":
+                    widget = Radiobutton(row_frame, **kw)
                 elif type_ == "Scale":
                     widget = Scale(row_frame, **kw)
                 elif type_ == "Listbox":

@@ -9,6 +9,8 @@ __all__ = (
     "AskColorButton",
     "AskDirectoryButton",
     "AskFileButton",
+    "Checkbutton",
+    "Radiobutton",
     "Button",
     "Entry",
     "Frame",
@@ -56,6 +58,14 @@ class gui:
     @staticmethod
     def SaveFileButton(**kw):
         return {"type": "SaveFileButton", "kw": kw}
+
+    @staticmethod
+    def Checkbutton(**kw):
+        return {"type": "Checkbutton", "kw": kw}
+
+    @staticmethod
+    def Radiobutton(**kw):
+        return {"type": "Radiobutton", "kw": kw}
 
     @staticmethod
     def Scale(**kw):

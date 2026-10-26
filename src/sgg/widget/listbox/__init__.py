@@ -6,37 +6,42 @@ __all__ = ("Listbox",)
 
 
 class Listbox(tklistbox):
-    __dict__ = {
-        "activestyle": None,
-        "background": None,
-        "bd": 1,
-        "bg": None,
-        "border": 1,
-        "borderwidth": 1,
-        "cursor": "",
-        "disabledforeground": None,
-        "exportselection": 1,
-        "fg": None,
-        "font": None,
-        "foreground": None,
-        "height": 10,
-        "highlightbackground": None,
-        "highlightcolor": None,
-        "highlightthickness": None,
-        "justify": "left",
-        "list": None,
-        "listvariable": None,
-        "name": None,
-        "relief": None,
-        "selectbackground": None,
-        "selectborderwidth": 0,
-        "selectforeground": None,
-        "state": "normal",
-        "takefocus": "",
-        "width": 20,
-        "xscrollcommand": "",
-        "yscrollcommand": "",
-    }
+    __dict__ = {}
+
+    def __new__(cls, *args, **kw):
+        cls = super().__new__(cls)
+        cls.__dict__ = {
+            "activestyle": None,
+            "background": None,
+            "bd": 1,
+            "bg": None,
+            "border": 1,
+            "borderwidth": 1,
+            "cursor": "",
+            "disabledforeground": None,
+            "exportselection": 1,
+            "fg": None,
+            "font": None,
+            "foreground": None,
+            "height": 10,
+            "highlightbackground": None,
+            "highlightcolor": None,
+            "highlightthickness": None,
+            "justify": "left",
+            "list": None,
+            "listvariable": None,
+            "name": None,
+            "relief": None,
+            "selectbackground": None,
+            "selectborderwidth": 0,
+            "selectforeground": None,
+            "state": "normal",
+            "takefocus": "",
+            "width": 20,
+            "xscrollcommand": "",
+            "yscrollcommand": "",
+        }
+        return cls
 
     def __init__(self, master=None, cnf={}, **kw):
         self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
