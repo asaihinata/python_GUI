@@ -12,9 +12,11 @@ from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
 from sgg.widget.label import Label
 from sgg.widget.listbox import Listbox
+from sgg.widget.menu import Menu
 from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
+from sgg.widget.spinbox import Spinbox
 from sgg.widget.text import Text
 
 __all__ = ("Window",)
@@ -69,6 +71,10 @@ class Window:
                     widget = Text(row_frame, **kw)
                 elif type_ == "Entry":
                     widget = Entry(row_frame, **kw)
+                elif type_ == "Spinbox":
+                    widget = Spinbox(row_frame, **kw)
+                elif type_ == "Menu":
+                    widget = Menu(row_frame, **kw)
                 elif type_ == "Frame":
                     layout = kw.pop("layout", None)
                     widget = Frame(row_frame, **kw)
@@ -80,7 +86,10 @@ class Window:
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
-                widget.pack(side="left")
+                if type_ == "Menu":
+                    self._root.config(menu=widget)
+                else:
+                    widget.pack(side="left")
 
     def _key_set(self, key, widget):
         if key is None or not isinstance(key, str):
@@ -117,3 +126,6 @@ class Window:
 
     def minsize(self, width=None, height=None):
         return self._root.minsize(width, height)
+
+    def quit(self):
+        self._root.quit()

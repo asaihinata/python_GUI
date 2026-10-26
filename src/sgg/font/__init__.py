@@ -7,7 +7,7 @@ from matplotlib.font_manager import FontProperties
 
 from sgg.models import _setDefaultValues1
 
-__all__ = ["TKFont"]
+__all__ = ("TKFont",)
 
 
 class TKFont(Font):

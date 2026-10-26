@@ -1,3 +1,4 @@
+from sgg.font import TKFont
 from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
                        PopupWarning)
 from sgg.version import __version__, __version_info__
@@ -9,24 +10,27 @@ __all__ = (
     "AskColorButton",
     "AskDirectoryButton",
     "AskFileButton",
-    "Checkbutton",
-    "Radiobutton",
     "Button",
+    "Checkbutton",
     "Entry",
     "Frame",
     "FrameLabel",
+    "gui",
     "Label",
-    "SaveFileButton",
-    "Scale",
-    "Text",
     "Listbox",
-    "Window",
+    "Menu",
     "Popup",
     "PopupError",
     "PopupInformation",
     "PopupQuestion",
     "PopupWarning",
-    "gui",
+    "Radiobutton",
+    "SaveFileButton",
+    "Scale",
+    "Spinbox",
+    "Text",
+    "TKFont",
+    "Window",
 )
 
 
@@ -82,6 +86,14 @@ class gui:
     @staticmethod
     def Entry(**kw):
         return {"type": "Entry", "kw": kw}
+
+    @staticmethod
+    def Spinbox(**kw):
+        return {"type": "Spinbox", "kw": kw}
+
+    @staticmethod
+    def Menu(**kw):
+        return {"type": "Menu", "kw": kw}
 
     @staticmethod
     def Frame(**kw):

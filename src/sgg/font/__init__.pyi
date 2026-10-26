@@ -7,10 +7,11 @@ from typing import Literal, overload
 
 from matplotlib.font_manager import FontProperties
 
-__all__ = ["TKFont"]
+__all__ = ("TKFont",)
 
 type _FontDescription = (
     Font
+    | TKFont
     | tuple[str, int, Literal["normal", "bold"], Literal["roman", "italic"], bool, bool]
     | tuple[str, int, Literal["normal", "bold"], Literal["roman", "italic"], bool]
     | tuple[str, int, Literal["normal", "bold"], Literal["roman", "italic"]]
