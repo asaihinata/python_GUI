@@ -1,5 +1,5 @@
-from tkinter import Frame as Fm
-from tkinter import Tk
+from tkinter import Frame as tkframe
+from tkinter import Tk, Wm
 
 from sgg.models import _setDefaultValues2
 from sgg.widget.askcolorbutton import AskColorButton
@@ -22,27 +22,31 @@ from sgg.widget.text import Text
 __all__ = ("Window",)
 
 
-class Window:
+class Window(Wm):
     __dict__ = {
+        "alpha": 1.0,
         "layout": None,
-        "title": "window",
+        "title": "window"
     }
 
     def __init__(self, cnf={}, **kw):
         self._key_widget_save = {}
         self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
         self._root = Tk()
-        self.title = self.__dict__["title"]
         self._count = {"widget": 0}
+        self.title = self.__dict__["title"]
+        self.alpha = self.__dict__["alpha"]
         self._win_creat(self._root, self.__dict__["layout"])
 
     def _win_creat(self, root, layout):
-        if not isinstance(layout, list | tuple):
+        if layout is None:
+            return
+        elif not isinstance(layout, list | tuple):
             raise TypeError("layoutの値が不正です")
         for c, i in enumerate(layout):
             if not isinstance(i, list | tuple):
                 raise TypeError("layoutの値が不正です")
-            row_frame = Fm(root, name=f"layout_row_{c}")
+            row_frame = tkframe(root, name=f"layout_row_{c}")
             row_frame.pack(fill="x")
             for j in i:
                 type_ = j.get("type", None)
@@ -110,6 +114,10 @@ class Window:
         self._root.mainloop(n=n)
 
     @property
+    def root(self):
+        return self._root
+
+    @property
     def title(self):
         return self.__dict__["title"]
 
@@ -118,14 +126,23 @@ class Window:
         self.__dict__["title"] = title
         self._root.title(title)
 
-    def resizable(self, width=None, height=None):
-        return self._root.resizable(width, height)
+    @property
+    def alpha(self):
+        return self.__dict__["alpha"]
 
-    def maxsize(self, width=None, height=None):
-        return self._root.maxsize(width, height)
+    @alpha.setter
+    def alpha(self, alpha):
+        if not isinstance(alpha, int | float | bool):
+            raise TypeError("alphaの型が不正です")
+        elif isinstance(alpha, bool):
+            alpha = int(alpha)
+        if not 0 <= alpha <= 1:
+            raise ValueError("alphaの値が不正です")
+        self.__dict__["alpha"] = alpha
+        self._root.attributes("-alpha", alpha)
 
-    def minsize(self, width=None, height=None):
-        return self._root.minsize(width, height)
+    def cget(self, key):
+        return self.root.cget(key)
 
-    def quit(self):
-        self._root.quit()
+    def keys(self):
+        return self.root.keys()
