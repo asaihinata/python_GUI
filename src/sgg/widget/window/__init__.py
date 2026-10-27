@@ -23,7 +23,7 @@ __all__ = ("Window",)
 
 
 class Window(Wm):
-    __dict__ = {
+    _default_dict = {
         "alpha": 1.0,
         "layout": None,
         "title": "window"
@@ -31,12 +31,12 @@ class Window(Wm):
 
     def __init__(self, cnf={}, **kw):
         self._key_widget_save = {}
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._root = Tk()
         self._count = {"widget": 0}
-        self.title = self.__dict__["title"]
-        self.alpha = self.__dict__["alpha"]
-        self._win_creat(self._root, self.__dict__["layout"])
+        self.title = self._default_dict["title"]
+        self.alpha = self._default_dict["alpha"]
+        self._win_creat(self._root, self._default_dict["layout"])
 
     def _win_creat(self, root, layout):
         if layout is None:
@@ -119,16 +119,16 @@ class Window(Wm):
 
     @property
     def title(self):
-        return self.__dict__["title"]
+        return self._default_dict["title"]
 
     @title.setter
     def title(self, title):
-        self.__dict__["title"] = title
+        self._default_dict["title"] = title
         self._root.title(title)
 
     @property
     def alpha(self):
-        return self.__dict__["alpha"]
+        return self._default_dict["alpha"]
 
     @alpha.setter
     def alpha(self, alpha):
@@ -138,7 +138,7 @@ class Window(Wm):
             alpha = int(alpha)
         if not 0 <= alpha <= 1:
             raise ValueError("alphaの値が不正です")
-        self.__dict__["alpha"] = alpha
+        self._default_dict["alpha"] = alpha
         self._root.attributes("-alpha", alpha)
 
     def cget(self, key):

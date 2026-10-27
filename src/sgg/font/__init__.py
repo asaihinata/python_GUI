@@ -13,7 +13,7 @@ __all__ = ("TKFont",)
 class TKFont(Font):
     """フォントを設定するオブジェクト"""
 
-    __dict__ = {
+    _default_dict = {
         "family": "メイリオ",
         "size": 12,
         "weight": "normal",
@@ -30,15 +30,15 @@ class TKFont(Font):
         elif isinstance(font, Font):
             super().__init__(root=root, font=font, name=name)
         else:
-            self.__dict__ = _setDefaultValues1(self.__dict__, options)
+            self._default_dict = _setDefaultValues1(self._default_dict, options)
             if isinstance(font, tuple):
                 default = ("メイリオ", 12, "normal", "roman", False, False)
                 font = font + default[len(font) :]
-                for i, key in enumerate(self.__dict__):
-                    self.__dict__[key] = font[i]
-                super().__init__(root=root, name=name, **self.__dict__)
+                for i, key in enumerate(self._default_dict):
+                    self._default_dict[key] = font[i]
+                super().__init__(root=root, name=name, **self._default_dict)
             else:
-                super().__init__(root=root, name=name, **self.__dict__)
+                super().__init__(root=root, name=name, **self._default_dict)
 
     def _set_font(self, root, font, name):
         super().__init__(

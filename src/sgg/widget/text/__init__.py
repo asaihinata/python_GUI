@@ -6,11 +6,11 @@ __all__ = ("Text",)
 
 
 class Text(tktext):
-    __dict__ = {}
+    _default_dict = {}
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
-        cls.__dict__ = {
+        cls._default_dict = {
             "autoseparators": True,
             "background": None,
             "bd": None,
@@ -62,8 +62,8 @@ class Text(tktext):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
-        text = self.__dict__.pop("text", "")
-        super().__init__(master, self.__dict__)
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        text = self._default_dict.pop("text", "")
+        super().__init__(master, self._default_dict)
         if isinstance(text, str):
             self.insert("1.0", text)

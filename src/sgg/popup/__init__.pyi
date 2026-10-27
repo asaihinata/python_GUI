@@ -14,7 +14,6 @@ class Message(Dialog):
     command: ClassVar[str]
 
 class Popup:
-    __slots__: tuple[Literal["__select"]]
     def __init__(
         self,
         title: str | None = None,
@@ -31,7 +30,6 @@ class Popup:
     def select(self) -> str: ...
 
 class PopupInformation:
-    __slots__: tuple[Literal["__select"]]
     def __init__(
         self,
         title: str | None = "Information",
@@ -45,7 +43,6 @@ class PopupInformation:
     def select(self) -> Literal["ok"]: ...
 
 class PopupError:
-    __slots__: tuple[Literal["__select"]]
     def __init__(
         self,
         title: str | None = "Error",
@@ -59,7 +56,6 @@ class PopupError:
     def select(self) -> Literal["ok"]: ...
 
 class PopupWarning:
-    __slots__: tuple[Literal["__select"]]
     def __init__(
         self,
         title: str | None = "Warning",
@@ -73,7 +69,6 @@ class PopupWarning:
     def select(self) -> Literal["ok"]: ...
 
 class PopupQuestion:
-    __slots__: tuple[Literal["__select"]]
     def __init__(
         self,
         title: str | None = "Question",

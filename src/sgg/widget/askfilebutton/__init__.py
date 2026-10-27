@@ -8,11 +8,11 @@ __all__ = ("AskFileButton",)
 
 
 class AskFileButton(tkbutton):
-    __dict__ = {}
+    _default_dict = {}
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
-        cls.__dict__ = {
+        cls._default_dict = {
             "activebackground": None,
             "activeforeground": None,
             "anchor": "center",
@@ -60,15 +60,15 @@ class AskFileButton(tkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._path = ""
         super().__init__(
             master,
-            self.__dict__,
+            self._default_dict,
             command=partial(
                 self._click_ask,
                 **{
-                    i: self.__dict__.pop(i)
+                    i: self._default_dict.pop(i)
                     for i in (
                         "defaultextension",
                         "filetypes",

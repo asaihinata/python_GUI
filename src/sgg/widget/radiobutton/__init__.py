@@ -8,11 +8,11 @@ __all__ = ("Radiobutton",)
 
 class Radiobutton(tkradiobutton):
     _group_setting = {}
-    __dict__ = {}
+    _default_dict = {}
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
-        cls.__dict__ = {
+        cls._default_dict = {
             "activebackground": None,
             "activeforeground": None,
             "anchor": "center",
@@ -57,8 +57,8 @@ class Radiobutton(tkradiobutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
-        self._group = self.__dict__.pop("group", "default")
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._group = self._default_dict.pop("group", "default")
         if not isinstance(self._group, str):
             self._group = "default"
         if self._group in self._group_setting:
@@ -66,4 +66,4 @@ class Radiobutton(tkradiobutton):
         else:
             var = BooleanVar(value=True, name=self._group)
             self._group_setting[self._group] = var
-        super().__init__(master, self.__dict__, variable=var, value=self)
+        super().__init__(master, self._default_dict, variable=var, value=self)

@@ -6,11 +6,11 @@ __all__ = ("Listbox",)
 
 
 class Listbox(tklistbox):
-    __dict__ = {}
+    _default_dict = {}
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
-        cls.__dict__ = {
+        cls._default_dict = {
             "activestyle": None,
             "background": None,
             "bd": 1,
@@ -44,8 +44,8 @@ class Listbox(tklistbox):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
-        list_ = self.__dict__.pop("list")
-        super().__init__(master, self.__dict__)
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        list_ = self._default_dict.pop("list")
+        super().__init__(master, self._default_dict)
         if isinstance(list_, list | tuple | range):
             self.insert("end", *list_)

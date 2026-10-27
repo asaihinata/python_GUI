@@ -15,8 +15,7 @@ class Message(Dialog):
 
 
 class _Popup:
-    __slots__ = ("__select", "__dict__")
-    __dict__ = {
+    _default_dict = {
         "default": None,
         "detail": None,
         "icon": None,
@@ -26,18 +25,18 @@ class _Popup:
     }
 
     def __init__(self, **kw):
-        self.__dict__ = _setDefaultValues1(self.__dict__, kw)
-        self.__select = Message(**self.__dict__).show()
+        self._default_dict = _setDefaultValues1(self._default_dict, kw)
+        self._select = Message(**self._default_dict).show()
 
     def __str__(self):
-        return str(self.__select)
+        return str(self._select)
 
     def __dir__(self):
-        return ["__dir__", "__init__", "__slots__", "__str__", "select"]
+        return ["__dir__", "__init__", "__str__", "select"]
 
     @property
     def select(self):
-        return self.__select
+        return self._select
 
 
 class Popup(_Popup):
@@ -113,7 +112,7 @@ class PopupQuestion(_Popup):
         )
 
     def __dir__(self):
-        return ["__bool__", "__dir__", "__init__", "__slots__", "__str__", "select"]
+        return ["__bool__", "__dir__", "__init__", "__str__", "select"]
 
     def __bool__(self):
         return True if self.select == "yes" else False

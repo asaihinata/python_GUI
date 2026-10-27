@@ -6,11 +6,11 @@ __all__ = ("Frame",)
 
 
 class Frame(tkframe):
-    __dict__ = {}
+    _default_dict = {}
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
-        cls.__dict__ = {
+        cls._default_dict = {
             "background": None,
             "bd": 0,
             "bg": None,
@@ -35,5 +35,5 @@ class Frame(tkframe):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
-        super().__init__(master, self.__dict__)
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        super().__init__(master, self._default_dict)

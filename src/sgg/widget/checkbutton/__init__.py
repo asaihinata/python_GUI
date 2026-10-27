@@ -7,11 +7,11 @@ __all__ = ("Checkbutton",)
 
 class Checkbutton(tkcheckbutton):
     _group_setting = {}
-    __dict__ = {}
+    _default_dict = {}
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
-        cls.__dict__ = {
+        cls._default_dict = {
             "activebackground": None,
             "activeforeground": None,
             "anchor": "center",
@@ -61,10 +61,10 @@ class Checkbutton(tkcheckbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self.__dict__ = _setDefaultValues2(self.__dict__, cnf, **kw)
-        check = self.__dict__.pop("check", False)
-        self._group = self.__dict__.pop("group", "default")
-        super().__init__(master, self.__dict__)
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        check = self._default_dict.pop("check", False)
+        self._group = self._default_dict.pop("group", "default")
+        super().__init__(master, self._default_dict)
         if check:
             self.select()
         if not isinstance(self._group, str):
