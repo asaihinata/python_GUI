@@ -13,7 +13,9 @@ from .radiobutton import Radiobutton
 from .savefilebutton import SaveFileButton
 from .scale import Scale
 from .spinbox import Spinbox
+from .tbutton import TButton
 from .text import Text
+from .tlabel import TLabel
 from .window import Window
 
 __all__ = (
@@ -33,5 +35,7 @@ __all__ = (
     "Scale",
     "Spinbox",
     "Text",
+    "TLabel",
+    "TButton",
     "Window",
 )

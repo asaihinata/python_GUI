@@ -29,6 +29,8 @@ __all__ = (
     "Scale",
     "Spinbox",
     "Text",
+    "TLabel",
+    "TButton",
     "TKFont",
     "Window",
 )
@@ -102,6 +104,14 @@ class gui:
     @staticmethod
     def FrameLabel(**kw):
         return {"type": "FrameLabel", "kw": kw}
+
+    @staticmethod
+    def TLabel(**kw):
+        return {"type": "TLabel", "kw": kw}
+
+    @staticmethod
+    def TButton(**kw):
+        return {"type": "TButton", "kw": kw}
 
 
 def __dir__():

@@ -17,17 +17,15 @@ from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
 from sgg.widget.spinbox import Spinbox
+from sgg.widget.tbutton import TButton
 from sgg.widget.text import Text
+from sgg.widget.tlabel import TLabel
 
 __all__ = ("Window",)
 
 
 class Window(Wm):
-    _default_dict = {
-        "alpha": 1.0,
-        "layout": None,
-        "title": "window"
-    }
+    _default_dict = {"alpha": 1.0, "layout": None, "title": "window"}
 
     def __init__(self, cnf={}, **kw):
         self._key_widget_save = {}
@@ -87,6 +85,10 @@ class Window(Wm):
                     layout = kw.pop("layout", None)
                     widget = FrameLabel(row_frame, **kw)
                     self._win_creat(widget, layout)
+                elif type_ == "TLabel":
+                    widget = TLabel(row_frame, **kw)
+                elif type_ == "TButton":
+                    widget = TButton(row_frame, **kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
