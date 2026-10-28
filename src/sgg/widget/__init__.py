@@ -13,6 +13,9 @@ from .radiobutton import Radiobutton
 from .savefilebutton import SaveFileButton
 from .scale import Scale
 from .spinbox import Spinbox
+from .taskcolorbutton import TAskColorButton
+from .taskdirectorybutton import TAskDirectoryButton
+from .taskfilebutton import TAskFileButton
 from .tbutton import TButton
 from .tcheckbutton import TCheckbutton
 from .tentry import TEntry
@@ -20,8 +23,10 @@ from .text import Text
 from .tframe import TFrame
 from .tframelabel import TFrameLabel
 from .tlabel import TLabel
+from .tnotebook import TNotebook
 from .tprogressbar import TProgressbar
 from .tradiobutton import TRadiobutton
+from .tsavefilebutton import TSaveFileButton
 from .tscale import TScale
 from .tspinbox import TSpinbox
 from .window import Window

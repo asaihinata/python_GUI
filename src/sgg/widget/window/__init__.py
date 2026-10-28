@@ -17,6 +17,9 @@ from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
 from sgg.widget.spinbox import Spinbox
+from sgg.widget.taskcolorbutton import TAskColorButton
+from sgg.widget.taskdirectorybutton import TAskDirectoryButton
+from sgg.widget.taskfilebutton import TAskFileButton
 from sgg.widget.tbutton import TButton
 from sgg.widget.tcheckbutton import TCheckbutton
 from sgg.widget.tentry import TEntry
@@ -24,8 +27,10 @@ from sgg.widget.text import Text
 from sgg.widget.tframe import TFrame
 from sgg.widget.tframelabel import TFrameLabel
 from sgg.widget.tlabel import TLabel
+from sgg.widget.tnotebook import TNotebook
 from sgg.widget.tprogressbar import TProgressbar
 from sgg.widget.tradiobutton import TRadiobutton
+from sgg.widget.tsavefilebutton import TSaveFileButton
 from sgg.widget.tscale import TScale
 from sgg.widget.tspinbox import TSpinbox
 
@@ -97,6 +102,14 @@ class Window(Wm):
                     widget = TLabel(row_frame, **kw)
                 elif type_ == "TButton":
                     widget = TButton(row_frame, **kw)
+                elif type_ == "TAskColorButton":
+                    widget = TAskColorButton(row_frame, **kw)
+                elif type_ == "TAskDirectoryButton":
+                    widget = TAskDirectoryButton(row_frame, **kw)
+                elif type_ == "TAskFileButton":
+                    widget = TAskFileButton(row_frame, **kw)
+                elif type_ == "TSaveFileButton":
+                    widget = TSaveFileButton(row_frame, **kw)
                 elif type_ == "TCheckbutton":
                     widget = TCheckbutton(row_frame, **kw)
                 elif type_ == "TRadiobutton":
@@ -117,6 +130,15 @@ class Window(Wm):
                     layout = kw.pop("layout", None)
                     widget = TFrameLabel(row_frame, **kw)
                     self._win_creat(widget, layout)
+                elif type_ == "TNotebook":
+                    tabs = kw.pop("tab", None)
+                    widget = TNotebook(row_frame, **kw)
+                    for tab in tabs:
+                        if not isinstance(tab, dict):
+                            raise TypeError
+                        frame = Frame(widget)
+                        widget.add(frame, text=tab.get("tabname", ""))
+                        self._win_creat(frame, tab.get("layout", None))
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)

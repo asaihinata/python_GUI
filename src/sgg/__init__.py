@@ -83,6 +83,22 @@ class gui:
         return {"type": "TButton", "kw": kw}
 
     @staticmethod
+    def TAskColorButton(**kw):
+        return {"type": "TAskColorButton", "kw": kw}
+
+    @staticmethod
+    def TAskDirectoryButton(**kw):
+        return {"type": "TAskDirectoryButton", "kw": kw}
+
+    @staticmethod
+    def TAskFileButton(**kw):
+        return {"type": "TAskFileButton", "kw": kw}
+
+    @staticmethod
+    def TSaveFileButton(**kw):
+        return {"type": "TSaveFileButton", "kw": kw}
+
+    @staticmethod
     def TCheckbutton(**kw):
         return {"type": "TCheckbutton", "kw": kw}
 
@@ -113,6 +129,10 @@ class gui:
     @staticmethod
     def TFrameLabel(**kw):
         return {"type": "TFrameLabel", "kw": kw}
+
+    @staticmethod
+    def TNotebook(**kw):
+        return {"type": "TNotebook", "kw": kw}
 
 
 def __dir__():

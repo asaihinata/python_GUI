@@ -87,8 +87,5 @@ class SaveFileButton(tkbutton):
     def _click_ask(self, **kw):
         self._path = AskSaveAsFilename(**kw)
 
-    def __str__(self):
-        return str(self._path)
-
     def __fspath__(self):
         return str(self._path)
