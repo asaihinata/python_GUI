@@ -10,6 +10,7 @@ from sgg.widget.checkbutton import Checkbutton
 from sgg.widget.entry import Entry
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
+from sgg.widget.image import Image
 from sgg.widget.label import Label
 from sgg.widget.listbox import Listbox
 from sgg.widget.menu import Menu
@@ -26,6 +27,7 @@ from sgg.widget.tentry import TEntry
 from sgg.widget.text import Text
 from sgg.widget.tframe import TFrame
 from sgg.widget.tframelabel import TFrameLabel
+from sgg.widget.timage import TImage
 from sgg.widget.tlabel import TLabel
 from sgg.widget.tnotebook import TNotebook
 from sgg.widget.tprogressbar import TProgressbar
@@ -64,6 +66,8 @@ class Window(Wm):
                 kw = j.get("kw", {})
                 if type_ == "label":
                     widget = Label(row_frame, **kw)
+                elif type_ == "Image":
+                    widget = Image(row_frame, **kw)
                 elif type_ == "Button":
                     widget = Button(row_frame, **kw)
                 elif type_ == "AskColorButton":
@@ -100,6 +104,8 @@ class Window(Wm):
                     self._win_creat(widget, layout)
                 elif type_ == "TLabel":
                     widget = TLabel(row_frame, **kw)
+                elif type_ == "TImage":
+                    widget = TImage(row_frame, **kw)
                 elif type_ == "TButton":
                     widget = TButton(row_frame, **kw)
                 elif type_ == "TAskColorButton":

@@ -15,6 +15,10 @@ class gui:
         return {"type": "label", "kw": kw}
 
     @staticmethod
+    def Image(**kw):
+        return {"type": "Image", "kw": kw}
+
+    @staticmethod
     def Button(**kw):
         return {"type": "Button", "kw": kw}
 
@@ -77,6 +81,10 @@ class gui:
     @staticmethod
     def TLabel(**kw):
         return {"type": "TLabel", "kw": kw}
+
+    @staticmethod
+    def TImage(**kw):
+        return {"type": "TImage", "kw": kw}
 
     @staticmethod
     def TButton(**kw):

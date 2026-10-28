@@ -6,6 +6,7 @@ from .checkbutton import Checkbutton
 from .entry import Entry
 from .frame import Frame
 from .framelabel import FrameLabel
+from .image import Image
 from .label import Label
 from .listbox import Listbox
 from .menu import Menu
@@ -22,6 +23,7 @@ from .tentry import TEntry
 from .text import Text
 from .tframe import TFrame
 from .tframelabel import TFrameLabel
+from .timage import TImage
 from .tlabel import TLabel
 from .tnotebook import TNotebook
 from .tprogressbar import TProgressbar
