@@ -4,41 +4,6 @@ from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
 from sgg.version import __version__, __version_info__
 from sgg.widget import *
 
-__all__ = (
-    "__version__",
-    "__version_info__",
-    "AskColorButton",
-    "AskDirectoryButton",
-    "AskFileButton",
-    "Button",
-    "Checkbutton",
-    "Entry",
-    "Frame",
-    "FrameLabel",
-    "gui",
-    "Label",
-    "Listbox",
-    "Menu",
-    "Popup",
-    "PopupError",
-    "PopupInformation",
-    "PopupQuestion",
-    "PopupWarning",
-    "Radiobutton",
-    "SaveFileButton",
-    "Scale",
-    "Spinbox",
-    "TButton",
-    "TCheckbutton",
-    "TEntry",
-    "Text",
-    "TKFont",
-    "TLabel",
-    "TRadiobutton",
-    "TSpinbox",
-    "Window",
-)
-
 
 class gui:
     @classmethod
@@ -132,6 +97,14 @@ class gui:
     @staticmethod
     def TEntry(**kw):
         return {"type": "TEntry", "kw": kw}
+
+    @staticmethod
+    def TScale(**kw):
+        return {"type": "TScale", "kw": kw}
+
+    @staticmethod
+    def TProgressbar(**kw):
+        return {"type": "TProgressbar", "kw": kw}
 
     @staticmethod
     def TFrame(**kw):

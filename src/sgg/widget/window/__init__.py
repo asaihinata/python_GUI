@@ -24,7 +24,9 @@ from sgg.widget.text import Text
 from sgg.widget.tframe import TFrame
 from sgg.widget.tframelabel import TFrameLabel
 from sgg.widget.tlabel import TLabel
+from sgg.widget.tprogressbar import TProgressbar
 from sgg.widget.tradiobutton import TRadiobutton
+from sgg.widget.tscale import TScale
 from sgg.widget.tspinbox import TSpinbox
 
 __all__ = ("Window",)
@@ -103,6 +105,10 @@ class Window(Wm):
                     widget = TEntry(row_frame, **kw)
                 elif type_ == "TSpinbox":
                     widget = TSpinbox(row_frame, **kw)
+                elif type_ == "TScale":
+                    widget = TScale(row_frame, **kw)
+                elif type_ == "TProgressbar":
+                    widget = TProgressbar(row_frame, **kw)
                 elif type_ == "TFrame":
                     layout = kw.pop("layout", None)
                     widget = TFrame(row_frame, **kw)

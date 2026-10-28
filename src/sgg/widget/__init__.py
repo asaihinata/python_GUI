@@ -20,34 +20,8 @@ from .text import Text
 from .tframe import TFrame
 from .tframelabel import TFrameLabel
 from .tlabel import TLabel
+from .tprogressbar import TProgressbar
 from .tradiobutton import TRadiobutton
+from .tscale import TScale
 from .tspinbox import TSpinbox
 from .window import Window
-
-__all__ = (
-    "AskColorButton",
-    "AskDirectoryButton",
-    "AskFileButton",
-    "Button",
-    "Checkbutton",
-    "Entry",
-    "Frame",
-    "FrameLabel",
-    "Label",
-    "Listbox",
-    "Menu",
-    "Radiobutton",
-    "SaveFileButton",
-    "Scale",
-    "Spinbox",
-    "TButton",
-    "TCheckbutton",
-    "TEntry",
-    "Text",
-    "TFrame",
-    "TFrameLabel",
-    "TLabel",
-    "TRadiobutton",
-    "TSpinbox",
-    "Window",
-)
