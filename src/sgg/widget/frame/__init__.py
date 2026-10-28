@@ -16,7 +16,6 @@ class Frame(tkframe):
             "bg": None,
             "border": 0,
             "borderwidth": 0,
-            "class_": "Frame",
             "colormap": "",
             "container": False,
             "cursor": "",
@@ -36,4 +35,4 @@ class Frame(tkframe):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, self._default_dict)
+        super().__init__(master, self._default_dict, class_="Frame")

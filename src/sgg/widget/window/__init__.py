@@ -18,8 +18,14 @@ from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
 from sgg.widget.spinbox import Spinbox
 from sgg.widget.tbutton import TButton
+from sgg.widget.tcheckbutton import TCheckbutton
+from sgg.widget.tentry import TEntry
 from sgg.widget.text import Text
+from sgg.widget.tframe import TFrame
+from sgg.widget.tframelabel import TFrameLabel
 from sgg.widget.tlabel import TLabel
+from sgg.widget.tradiobutton import TRadiobutton
+from sgg.widget.tspinbox import TSpinbox
 
 __all__ = ("Window",)
 
@@ -89,6 +95,22 @@ class Window(Wm):
                     widget = TLabel(row_frame, **kw)
                 elif type_ == "TButton":
                     widget = TButton(row_frame, **kw)
+                elif type_ == "TCheckbutton":
+                    widget = TCheckbutton(row_frame, **kw)
+                elif type_ == "TRadiobutton":
+                    widget = TRadiobutton(row_frame, **kw)
+                elif type_ == "TEntry":
+                    widget = TEntry(row_frame, **kw)
+                elif type_ == "TSpinbox":
+                    widget = TSpinbox(row_frame, **kw)
+                elif type_ == "TFrame":
+                    layout = kw.pop("layout", None)
+                    widget = TFrame(row_frame, **kw)
+                    self._win_creat(widget, layout)
+                elif type_ == "TFrameLabel":
+                    layout = kw.pop("layout", None)
+                    widget = TFrameLabel(row_frame, **kw)
+                    self._win_creat(widget, layout)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
@@ -111,6 +133,9 @@ class Window(Wm):
         return self._key_widget_save.get(key)
 
     get = get_key
+
+    def widget_key_namelist(self):
+        return self._key_widget_save
 
     def run(self, n=0):
         self._root.mainloop(n=n)

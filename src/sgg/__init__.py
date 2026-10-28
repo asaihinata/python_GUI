@@ -28,10 +28,14 @@ __all__ = (
     "SaveFileButton",
     "Scale",
     "Spinbox",
-    "Text",
-    "TLabel",
     "TButton",
+    "TCheckbutton",
+    "TEntry",
+    "Text",
     "TKFont",
+    "TLabel",
+    "TRadiobutton",
+    "TSpinbox",
     "Window",
 )
 
@@ -112,6 +116,30 @@ class gui:
     @staticmethod
     def TButton(**kw):
         return {"type": "TButton", "kw": kw}
+
+    @staticmethod
+    def TCheckbutton(**kw):
+        return {"type": "TCheckbutton", "kw": kw}
+
+    @staticmethod
+    def TRadiobutton(**kw):
+        return {"type": "TRadiobutton", "kw": kw}
+
+    @staticmethod
+    def TSpinbox(**kw):
+        return {"type": "TSpinbox", "kw": kw}
+
+    @staticmethod
+    def TEntry(**kw):
+        return {"type": "TEntry", "kw": kw}
+
+    @staticmethod
+    def TFrame(**kw):
+        return {"type": "TFrame", "kw": kw}
+
+    @staticmethod
+    def TFrameLabel(**kw):
+        return {"type": "TFrameLabel", "kw": kw}
 
 
 def __dir__():

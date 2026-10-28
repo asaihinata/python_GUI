@@ -14,8 +14,14 @@ from .savefilebutton import SaveFileButton
 from .scale import Scale
 from .spinbox import Spinbox
 from .tbutton import TButton
+from .tcheckbutton import TCheckbutton
+from .tentry import TEntry
 from .text import Text
+from .tframe import TFrame
+from .tframelabel import TFrameLabel
 from .tlabel import TLabel
+from .tradiobutton import TRadiobutton
+from .tspinbox import TSpinbox
 from .window import Window
 
 __all__ = (
@@ -34,8 +40,14 @@ __all__ = (
     "SaveFileButton",
     "Scale",
     "Spinbox",
-    "Text",
-    "TLabel",
     "TButton",
+    "TCheckbutton",
+    "TEntry",
+    "Text",
+    "TFrame",
+    "TFrameLabel",
+    "TLabel",
+    "TRadiobutton",
+    "TSpinbox",
     "Window",
 )

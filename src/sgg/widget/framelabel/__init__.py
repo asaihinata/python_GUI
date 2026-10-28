@@ -16,7 +16,6 @@ class FrameLabel(tklabelframe):
             "bg": None,
             "border": 2,
             "borderwidth": 2,
-            "class_": "Labelframe",
             "colormap": "",
             "container": False,
             "cursor": "",
@@ -42,4 +41,4 @@ class FrameLabel(tklabelframe):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, self._default_dict)
+        super().__init__(master, self._default_dict, class_="Labelframe")

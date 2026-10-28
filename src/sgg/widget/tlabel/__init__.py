@@ -15,7 +15,6 @@ class TLabel(ttklabel):
             "background": "",
             "border": None,
             "borderwidth": None,
-            "class_": "",
             "compound": "",
             "cursor": "",
             "font": None,
@@ -37,4 +36,4 @@ class TLabel(ttklabel):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, **self._default_dict)
+        super().__init__(master, class_="TLabel", style="TLabel", **self._default_dict)

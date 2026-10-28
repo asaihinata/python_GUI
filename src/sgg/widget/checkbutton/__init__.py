@@ -28,7 +28,7 @@ class Checkbutton(tkcheckbutton):
             "cursor": "",
             "disabledforeground": None,
             "fg": None,
-            "font": "TkDefaultFont",
+            "font": None,
             "foreground": None,
             "height": 0,
             "highlightbackground": None,

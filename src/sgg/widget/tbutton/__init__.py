@@ -11,7 +11,6 @@ class TButton(ttkbutton):
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
         cls._default_dict = {
-            "class_": "",
             "command": "",
             "compound": "",
             "cursor": "",
@@ -30,4 +29,6 @@ class TButton(ttkbutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, **self._default_dict)
+        super().__init__(
+            master, class_="TButton", style="TButton", **self._default_dict
+        )
