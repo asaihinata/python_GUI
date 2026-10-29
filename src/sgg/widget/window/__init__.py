@@ -203,7 +203,39 @@ class Window(Wm):
         self._root.attributes("-alpha", alpha)
 
     def cget(self, key):
-        return self.root.cget(key)
+        return self._root.cget(key)
 
     def keys(self):
-        return self.root.keys()
+        return self._root.keys()
+
+    def configure(self, cnf=None, **kw):
+        if cnf is None and not kw:
+            return self._root.configure()
+        self._root.configure(cnf, **kw)
+        cnf = {
+            i: self._root.cget(i)
+            for i in self._root.keys()
+            if i
+            in (
+                "background",
+                "bd",
+                "bg",
+                "border",
+                "borderwidth",
+                "cursor",
+                "height",
+                "highlightbackground",
+                "highlightcolor",
+                "highlightthickness",
+                "padx",
+                "pady",
+                "relief",
+                "takefocus",
+                "width",
+            )
+        }
+        for child in self._root.winfo_children():
+            if isinstance(child, tkframe):
+                child.config(cnf)
+
+    config = configure
