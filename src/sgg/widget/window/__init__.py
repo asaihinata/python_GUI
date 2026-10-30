@@ -1,6 +1,7 @@
 from tkinter import Frame as tkframe
 from tkinter import Tk, Wm
 
+from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
 from sgg.widget.askcolorbutton import AskColorButton
 from sgg.widget.askdirectorybutton import AskDirectoryButton
@@ -14,6 +15,7 @@ from sgg.widget.image import Image
 from sgg.widget.label import Label
 from sgg.widget.listbox import Listbox
 from sgg.widget.menu import Menu
+from sgg.widget.plot import Plot
 from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
@@ -145,11 +147,15 @@ class Window(Wm):
                         frame = Frame(widget)
                         widget.add(frame, text=tab.get("tabname", ""))
                         self._win_creat(frame, tab.get("layout", None))
+                elif type_ == "Plot":
+                    widget = Plot(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
                 if type_ == "Menu":
                     self._root.config(menu=widget)
+                elif isinstance(widget, _Top_Graph):
+                    widget.widget(row_frame).pack(side="left")
                 else:
                     widget.pack(side="left")
 

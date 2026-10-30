@@ -10,6 +10,7 @@ from .image import Image
 from .label import Label
 from .listbox import Listbox
 from .menu import Menu
+from .plot import Plot
 from .radiobutton import Radiobutton
 from .savefilebutton import SaveFileButton
 from .scale import Scale
