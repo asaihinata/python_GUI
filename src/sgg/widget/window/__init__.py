@@ -152,7 +152,7 @@ class Window(Wm):
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
-                if type_ == "Menu":
+                if isinstance(widget, Menu):
                     self._root.config(menu=widget)
                 elif isinstance(widget, _Top_Graph):
                     widget.widget(row_frame).pack(side="left")
