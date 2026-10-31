@@ -1,5 +1,4 @@
 from sgg._graph.base.twodimensional import TwoDimensional
-
 from sgg.models import _setDefaultValues2
 
 __all__ = ("Scatter",)

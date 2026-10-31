@@ -150,6 +150,13 @@ class gui:
     def Scatter(**kw):
         return {"type": "Scatter", "kw": kw}
 
+    @staticmethod
+    def Bar(**kw):
+        return {"type": "Bar", "kw": kw}
+
+    @staticmethod
+    def Barh(**kw):
+        return {"type": "Barh", "kw": kw}
 
 def __dir__():
     return (i for i in globals().keys() if i.startswith("__") or not i.startswith("_"))

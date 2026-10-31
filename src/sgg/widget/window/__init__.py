@@ -6,6 +6,8 @@ from sgg.models import _setDefaultValues2
 from sgg.widget.askcolorbutton import AskColorButton
 from sgg.widget.askdirectorybutton import AskDirectoryButton
 from sgg.widget.askfilebutton import AskFileButton
+from sgg.widget.bar import Bar
+from sgg.widget.barh import Barh
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
 from sgg.widget.entry import Entry
@@ -152,6 +154,10 @@ class Window(Wm):
                     widget = Plot(**kw)
                 elif type_ == "Scatter":
                     widget = Scatter(**kw)
+                elif type_ == "Bar":
+                    widget = Bar(**kw)
+                elif type_ == "Barh":
+                    widget = Barh(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
