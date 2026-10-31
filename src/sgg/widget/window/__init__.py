@@ -19,6 +19,7 @@ from sgg.widget.plot import Plot
 from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
+from sgg.widget.scatter import Scatter
 from sgg.widget.spinbox import Spinbox
 from sgg.widget.taskcolorbutton import TAskColorButton
 from sgg.widget.taskdirectorybutton import TAskDirectoryButton
@@ -149,6 +150,8 @@ class Window(Wm):
                         self._win_creat(frame, tab.get("layout", None))
                 elif type_ == "Plot":
                     widget = Plot(**kw)
+                elif type_ == "Scatter":
+                    widget = Scatter(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)

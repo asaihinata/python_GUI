@@ -14,6 +14,7 @@ from .plot import Plot
 from .radiobutton import Radiobutton
 from .savefilebutton import SaveFileButton
 from .scale import Scale
+from .scatter import Scatter
 from .spinbox import Spinbox
 from .taskcolorbutton import TAskColorButton
 from .taskdirectorybutton import TAskDirectoryButton

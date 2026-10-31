@@ -14,10 +14,12 @@ class TwoDimensional(_Top_Graph):
         cls = super().__new__(cls)
         cls._default_dict = {
             "dpi": 100,
-            "facecolor": None,
             "edgecolor": None,
+            "facecolor": None,
             "linewidth": 0.0,
             "title": None,
+            "xlabel": None,
+            "ylabel": None,
         }
         return cls
 
@@ -31,6 +33,8 @@ class TwoDimensional(_Top_Graph):
         )
         self._ax = self.fig.add_subplot(111)
         self._ax.set_title(self._default_dict["title"])
+        self._ax.set_xlabel(self._default_dict["xlabel"])
+        self._ax.set_ylabel(self._default_dict["ylabel"])
 
     @property
     def ax(self) -> Axes:
