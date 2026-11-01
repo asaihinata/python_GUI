@@ -6,6 +6,7 @@ from .barh import Barh
 from .button import Button
 from .checkbutton import Checkbutton
 from .entry import Entry
+from .fill_between import Fill_Between
 from .frame import Frame
 from .framelabel import FrameLabel
 from .image import Image
@@ -18,6 +19,9 @@ from .savefilebutton import SaveFileButton
 from .scale import Scale
 from .scatter import Scatter
 from .spinbox import Spinbox
+from .stackplot import StackPlot
+from .stairs import Stairs
+from .stem import Stem
 from .taskcolorbutton import TAskColorButton
 from .taskdirectorybutton import TAskDirectoryButton
 from .taskfilebutton import TAskFileButton

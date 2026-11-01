@@ -13,6 +13,7 @@ from sgg.widget.barh import Barh
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
 from sgg.widget.entry import Entry
+from sgg.widget.fill_between import Fill_Between
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
 from sgg.widget.image import Image
@@ -25,6 +26,9 @@ from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
 from sgg.widget.scatter import Scatter
 from sgg.widget.spinbox import Spinbox
+from sgg.widget.stackplot import StackPlot
+from sgg.widget.stairs import Stairs
+from sgg.widget.stem import Stem
 from sgg.widget.taskcolorbutton import TAskColorButton
 from sgg.widget.taskdirectorybutton import TAskDirectoryButton
 from sgg.widget.taskfilebutton import TAskFileButton
@@ -217,12 +221,20 @@ class Window(Wm):
                         self._win_creat(frame, tab.get("layout", None))
                 elif type_ == "Plot":
                     widget = Plot(**kw)
-                elif type_ == "Scatter":
-                    widget = Scatter(**kw)
                 elif type_ == "Bar":
                     widget = Bar(**kw)
                 elif type_ == "Barh":
                     widget = Barh(**kw)
+                elif type_ == "Scatter":
+                    widget = Scatter(**kw)
+                elif type_ == "Stem":
+                    widget = Stem(**kw)
+                elif type_ == "StackPlot":
+                    widget = StackPlot(**kw)
+                elif type_ == "Stairs":
+                    widget = Stairs(**kw)
+                elif type_ == "Fill_Between":
+                    widget = Fill_Between(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)

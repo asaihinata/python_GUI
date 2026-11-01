@@ -147,16 +147,32 @@ class gui:
         return {"type": "Plot", "kw": kw}
 
     @staticmethod
-    def Scatter(**kw):
-        return {"type": "Scatter", "kw": kw}
-
-    @staticmethod
     def Bar(**kw):
         return {"type": "Bar", "kw": kw}
 
     @staticmethod
     def Barh(**kw):
         return {"type": "Barh", "kw": kw}
+
+    @staticmethod
+    def Scatter(**kw):
+        return {"type": "Scatter", "kw": kw}
+
+    @staticmethod
+    def Stem(**kw):
+        return {"type": "Stem", "kw": kw}
+
+    @staticmethod
+    def StackPlot(**kw):
+        return {"type": "StackPlot", "kw": kw}
+
+    @staticmethod
+    def Stairs(**kw):
+        return {"type": "Stairs", "kw": kw}
+
+    @staticmethod
+    def Fill_Between(**kw):
+        return {"type": "Fill_Between", "kw": kw}
 
 
 def __dir__():
