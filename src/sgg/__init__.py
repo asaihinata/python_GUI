@@ -185,6 +185,30 @@ class gui:
     def Errorbar(**kw):
         return {"type": "Errorbar", "kw": kw}
 
+    @staticmethod
+    def Violinplot(**kw):
+        return {"type": "Violinplot", "kw": kw}
+
+    @staticmethod
+    def Eventplot(**kw):
+        return {"type": "Eventplot", "kw": kw}
+
+    @staticmethod
+    def Hist2D(**kw):
+        return {"type": "Hist2D", "kw": kw}
+
+    @staticmethod
+    def Hexbin(**kw):
+        return {"type": "Hexbin", "kw": kw}
+
+    @staticmethod
+    def Pie(**kw):
+        return {"type": "Pie", "kw": kw}
+
+    @staticmethod
+    def Ecdf(**kw):
+        return {"type": "Ecdf", "kw": kw}
+
 
 def __dir__():
     return (i for i in globals().keys() if i.startswith("__") or not i.startswith("_"))

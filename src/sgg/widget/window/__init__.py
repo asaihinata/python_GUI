@@ -13,16 +13,21 @@ from sgg.widget.barh import Barh
 from sgg.widget.boxplot import Boxplot
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
+from sgg.widget.ecdf import Ecdf
 from sgg.widget.entry import Entry
 from sgg.widget.errorbar import Errorbar
+from sgg.widget.eventplot import Eventplot
 from sgg.widget.fill_between import Fill_Between
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
+from sgg.widget.hexbin import Hexbin
 from sgg.widget.hist import Hist
+from sgg.widget.hist2d import Hist2D
 from sgg.widget.image import Image
 from sgg.widget.label import Label
 from sgg.widget.listbox import Listbox
 from sgg.widget.menu import Menu
+from sgg.widget.pie import Pie
 from sgg.widget.plot import Plot
 from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
@@ -49,6 +54,7 @@ from sgg.widget.tradiobutton import TRadiobutton
 from sgg.widget.tsavefilebutton import TSaveFileButton
 from sgg.widget.tscale import TScale
 from sgg.widget.tspinbox import TSpinbox
+from sgg.widget.violinplot import Violinplot
 
 __all__ = ("Window",)
 
@@ -244,6 +250,18 @@ class Window(Wm):
                     widget = Boxplot(**kw)
                 elif type_ == "Errorbar":
                     widget = Errorbar(**kw)
+                elif type_ == "Violinplot":
+                    widget = Violinplot(**kw)
+                elif type_ == "Eventplot":
+                    widget = Eventplot(**kw)
+                elif type_ == "Hist2D":
+                    widget = Hist2D(**kw)
+                elif type_ == "Hexbin":
+                    widget = Hexbin(**kw)
+                elif type_ == "Pie":
+                    widget = Pie(**kw)
+                elif type_ == "Ecdf":
+                    widget = Ecdf(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
