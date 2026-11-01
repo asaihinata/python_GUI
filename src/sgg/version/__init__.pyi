@@ -2,7 +2,12 @@
 
 from typing import Final, NamedTuple
 
-__all__ = ("__version__", "__version_info__")
+__all__ = (
+    "__matplotlib_version_info__",
+    "__numpy_version_info__",
+    "__version__",
+    "__version_info__",
+)
 
 class VersionInfo(NamedTuple):
     major: int
@@ -11,3 +16,5 @@ class VersionInfo(NamedTuple):
 
 __version__: Final[str]
 __version_info__: Final[VersionInfo]
+__matplotlib_version_info__: Final[VersionInfo]
+__numpy_version_info__: Final[VersionInfo]

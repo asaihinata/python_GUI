@@ -4,7 +4,15 @@ from collections import namedtuple
 from re import split
 from typing import final
 
-__all__ = ("__version__", "__version_info__")
+from matplotlib import __version__ as __matplotlib_version__
+from numpy import __version__ as __np_version__
+
+__all__ = (
+    "__matplotlib_version_info__",
+    "__numpy_version_info__",
+    "__version__",
+    "__version_info__",
+)
 
 
 @final
@@ -35,3 +43,5 @@ def _varsion_info(var):
 VersionInfo = namedtuple("VersionInfo", "major, minor, micro")
 __version__ = "0.0.0"
 __version_info__ = _varsion_info(__version__)
+__matplotlib_version_info__ = _varsion_info(__matplotlib_version__)
+__numpy_version_info__ = _varsion_info(__np_version__)

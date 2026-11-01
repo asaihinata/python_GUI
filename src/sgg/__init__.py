@@ -1,7 +1,6 @@
 from sgg.font import TKFont
-from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
-                       PopupWarning)
-from sgg.version import __version__, __version_info__
+from sgg.popup import *
+from sgg.version import *
 from sgg.widget import *
 
 
