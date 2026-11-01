@@ -1,5 +1,7 @@
+from tkinter import Canvas
 from tkinter import Frame as tkframe
 from tkinter import Tk, Wm
+from tkinter.ttk import Scrollbar
 
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
@@ -45,16 +47,79 @@ __all__ = ("Window",)
 
 
 class Window(Wm):
-    _default_dict = {"alpha": 1.0, "layout": None, "title": "window"}
+    _default_dict = {
+        "alpha": 1.0,
+        "layout": None,
+        "title": "window",
+        "scroll": False,
+        "scroll_x": False,
+        "scroll_y": False,
+    }
 
     def __init__(self, cnf={}, **kw):
         self._key_widget_save = {}
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._root = Tk()
         self._count = {"widget": 0}
+        self._scroll_canvas = None
+        parent = self._root
         self.title = self._default_dict["title"]
         self.alpha = self._default_dict["alpha"]
-        self._win_creat(self._root, self._default_dict["layout"])
+        scroll = self._default_dict["scroll"]
+        if scroll:
+            scroll_x, scroll_y = True, True
+        else:
+            scroll_x = self._default_dict["scroll_x"]
+            scroll_y = self._default_dict["scroll_y"]
+        if scroll_x or scroll_y:
+            parent = self._setup_scroll(scroll_x, scroll_y)
+        self._win_creat(parent, self._default_dict["layout"])
+        if self._scroll_canvas is not None:
+            self._fit_canvas_to_content(parent)
+
+    def _setup_scroll(self, scroll_x, scroll_y):
+        canvas = Canvas(self._root, highlightthickness=0)
+        inner = tkframe(canvas)
+        win_id = canvas.create_window((0, 0), window=inner, anchor="nw")
+        self._scroll_canvas = canvas
+
+        def _update_scroll(e=None):
+            req_w = inner.winfo_reqwidth()
+            req_h = inner.winfo_reqheight()
+            cvs_w = canvas.winfo_width()
+            cvs_h = canvas.winfo_height()
+            if scroll_x:
+                w = max(req_w, cvs_w)
+            else:
+                w = cvs_w if cvs_w > 1 else req_w
+            if scroll_y:
+                h = max(req_h, cvs_h)
+            else:
+                h = cvs_h if cvs_h > 1 else req_h
+            canvas.itemconfigure(win_id, width=w, height=h)
+            canvas.configure(scrollregion=(0, 0, w, h))
+
+        inner.bind("<Configure>", _update_scroll)
+        canvas.bind("<Configure>", _update_scroll)
+        if scroll_y:
+            ybar = Scrollbar(self._root, orient="vertical", command=canvas.yview)
+            canvas.configure(yscrollcommand=ybar.set)
+            ybar.pack(side="right", fill="y")
+        if scroll_x:
+            xbar = Scrollbar(self._root, orient="horizontal", command=canvas.xview)
+            canvas.configure(xscrollcommand=xbar.set)
+            xbar.pack(side="bottom", fill="x")
+        canvas.pack(fill="both", expand=True)
+        return inner
+
+    def _fit_canvas_to_content(self, inner):
+        self._root.update_idletasks()
+        max_w = self._root.winfo_screenwidth() - 100
+        max_h = self._root.winfo_screenheight() - 150
+        self._scroll_canvas.configure(
+            width=min(inner.winfo_reqwidth(), max_w),
+            height=min(inner.winfo_reqheight(), max_h),
+        )
 
     def _win_creat(self, root, layout):
         if layout is None:
