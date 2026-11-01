@@ -1,10 +1,10 @@
 from sgg._graph.base.twodimensional import TwoDimensional
 from sgg.models import _setDefaultValues2
 
-__all__ = ("StackPlot",)
+__all__ = ("Stackplot",)
 
 
-class StackPlot(TwoDimensional):
+class Stackplot(TwoDimensional):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):

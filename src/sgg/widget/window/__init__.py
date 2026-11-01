@@ -10,12 +10,15 @@ from sgg.widget.askdirectorybutton import AskDirectoryButton
 from sgg.widget.askfilebutton import AskFileButton
 from sgg.widget.bar import Bar
 from sgg.widget.barh import Barh
+from sgg.widget.boxplot import Boxplot
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
 from sgg.widget.entry import Entry
+from sgg.widget.errorbar import Errorbar
 from sgg.widget.fill_between import Fill_Between
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
+from sgg.widget.hist import Hist
 from sgg.widget.image import Image
 from sgg.widget.label import Label
 from sgg.widget.listbox import Listbox
@@ -26,7 +29,7 @@ from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale
 from sgg.widget.scatter import Scatter
 from sgg.widget.spinbox import Spinbox
-from sgg.widget.stackplot import StackPlot
+from sgg.widget.stackplot import Stackplot
 from sgg.widget.stairs import Stairs
 from sgg.widget.stem import Stem
 from sgg.widget.taskcolorbutton import TAskColorButton
@@ -229,12 +232,18 @@ class Window(Wm):
                     widget = Scatter(**kw)
                 elif type_ == "Stem":
                     widget = Stem(**kw)
-                elif type_ == "StackPlot":
-                    widget = StackPlot(**kw)
+                elif type_ == "Stackplot":
+                    widget = Stackplot(**kw)
                 elif type_ == "Stairs":
                     widget = Stairs(**kw)
                 elif type_ == "Fill_Between":
                     widget = Fill_Between(**kw)
+                elif type_ == "Hist":
+                    widget = Hist(**kw)
+                elif type_ == "Boxplot":
+                    widget = Boxplot(**kw)
+                elif type_ == "Errorbar":
+                    widget = Errorbar(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)

@@ -3,12 +3,15 @@ from .askdirectorybutton import AskDirectoryButton
 from .askfilebutton import AskFileButton
 from .bar import Bar
 from .barh import Barh
+from .boxplot import Boxplot
 from .button import Button
 from .checkbutton import Checkbutton
 from .entry import Entry
+from .errorbar import Errorbar
 from .fill_between import Fill_Between
 from .frame import Frame
 from .framelabel import FrameLabel
+from .hist import Hist
 from .image import Image
 from .label import Label
 from .listbox import Listbox
@@ -19,7 +22,7 @@ from .savefilebutton import SaveFileButton
 from .scale import Scale
 from .scatter import Scatter
 from .spinbox import Spinbox
-from .stackplot import StackPlot
+from .stackplot import Stackplot
 from .stairs import Stairs
 from .stem import Stem
 from .taskcolorbutton import TAskColorButton

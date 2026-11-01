@@ -163,8 +163,8 @@ class gui:
         return {"type": "Stem", "kw": kw}
 
     @staticmethod
-    def StackPlot(**kw):
-        return {"type": "StackPlot", "kw": kw}
+    def Stackplot(**kw):
+        return {"type": "Stackplot", "kw": kw}
 
     @staticmethod
     def Stairs(**kw):
@@ -173,6 +173,18 @@ class gui:
     @staticmethod
     def Fill_Between(**kw):
         return {"type": "Fill_Between", "kw": kw}
+
+    @staticmethod
+    def Hist(**kw):
+        return {"type": "Hist", "kw": kw}
+
+    @staticmethod
+    def Boxplot(**kw):
+        return {"type": "Boxplot", "kw": kw}
+
+    @staticmethod
+    def Errorbar(**kw):
+        return {"type": "Errorbar", "kw": kw}
 
 
 def __dir__():
