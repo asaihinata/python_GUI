@@ -56,8 +56,6 @@ class Text(tktext):
             "undo": False,
             "width": 40,
             "wrap": "char",
-            "xscrollcommand": "",
-            "yscrollcommand": "",
         }
         return cls
 

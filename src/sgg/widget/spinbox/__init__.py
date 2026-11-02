@@ -1,7 +1,7 @@
 from tkinter import Spinbox as tkspinbox
-from sys import maxsize
 
 from sgg.models import _do_func, _setDefaultValues2
+
 __all__ = ("Spinbox",)
 
 
@@ -61,7 +61,6 @@ class Spinbox(tkspinbox):
             "values": None,
             "width": 20,
             "wrap": False,
-            "xscrollcommand": "",
         }
         return cls
 

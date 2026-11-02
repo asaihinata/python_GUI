@@ -1,3 +1,4 @@
+from tkinter import Variable
 from tkinter.ttk import Label as ttklabel
 
 from sgg.models import _setDefaultValues2
@@ -27,7 +28,6 @@ class TLabel(ttklabel):
             "state": "normal",
             "takefocus": "",
             "text": "",
-            "textvariable": None,
             "underline": -1,
             "width": "",
             "wraplength": None,
@@ -36,4 +36,11 @@ class TLabel(ttklabel):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, class_="TLabel", style="TLabel", **self._default_dict)
+        textvariable = Variable(value=self._default_dict["text"])
+        super().__init__(
+            master,
+            textvariable=textvariable,
+            class_="TLabel",
+            style="TLabel",
+            **self._default_dict,
+        )

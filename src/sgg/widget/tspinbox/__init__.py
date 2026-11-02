@@ -33,7 +33,6 @@ class TSpinbox(ttkspinbox):
             "values": None,
             "width": None,
             "wrap": False,
-            "xscrollcommand": "",
         }
         return cls
 

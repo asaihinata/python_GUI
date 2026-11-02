@@ -26,7 +26,6 @@ class TEntry(ttkentry):
             "validate": "none",
             "validatecommand": "",
             "width": 20,
-            "xscrollcommand": "",
         }
         return cls
 

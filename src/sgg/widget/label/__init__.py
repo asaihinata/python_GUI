@@ -1,4 +1,5 @@
 from tkinter import Label as tklabel
+from tkinter import Variable
 
 from sgg.models import _setDefaultValues2
 
@@ -39,7 +40,6 @@ class Label(tklabel):
             "state": "normal",
             "takefocus": 0,
             "text": "",
-            "textvariable": None,
             "underline": -1,
             "width": 0,
             "wraplength": 0,
@@ -48,4 +48,5 @@ class Label(tklabel):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, self._default_dict)
+        textvariable = Variable(value=self._default_dict["text"])
+        super().__init__(master, self._default_dict, textvariable=textvariable)

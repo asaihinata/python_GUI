@@ -48,7 +48,6 @@ class Entry(tkentry):
             "validatecommand": "",
             "vcmd": "",
             "width": 20,
-            "xscrollcommand": "",
         }
         return cls
 
