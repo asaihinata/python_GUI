@@ -22,7 +22,6 @@ class AskColorButton(tkbutton):
             "bitmap": "",
             "border": None,
             "borderwidth": None,
-            "color": None,
             "compound": "none",
             "cursor": "",
             "default": "disabled",
@@ -35,13 +34,11 @@ class AskColorButton(tkbutton):
             "highlightcolor": None,
             "highlightthickness": 1,
             "image": "",
-            "initialcolor": None,
             "justify": "center",
             "name": None,
             "overrelief": "",
             "padx": None,
             "pady": None,
-            "parent": None,
             "relief": None,
             "repeatdelay": None,
             "repeatinterval": None,
@@ -49,26 +46,32 @@ class AskColorButton(tkbutton):
             "takefocus": "",
             "text": "",
             "textvariable": None,
-            "title": None,
             "underline": -1,
             "width": 0,
             "wraplength": 0,
         }
+        cls._exclusive_dict = {
+            "color": None,
+            "initialcolor": None,
+            "parent": None,
+            "title": None,
+        }
+        cls._default_dict = cls._exclusive_dict|cls._default_dict
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
+        def _click_ask(**kw):
+            color = kw.pop("color")
+            self._color = AskColor(color=color, **kw)
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
+        )
         self._color = (None, None)
         super().__init__(
             master,
             self._default_dict,
-            command=partial(
-                self._click_ask,
-                **{
-                    i: self._default_dict.pop(i)
-                    for i in ("color", "initialcolor", "parent", "title")
-                },
-            ),
+            command=partial(_click_ask,**self._exclusive_dict),
         )
 
     def get_color(self):
@@ -79,7 +82,3 @@ class AskColorButton(tkbutton):
 
     def get_hex(self):
         return self._color[1]
-
-    def _click_ask(self, **kw):
-        color = kw.pop("color")
-        self._color = AskColor(color=color, **kw)

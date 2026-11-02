@@ -25,6 +25,8 @@ class TAskDirectoryButton(ttkbutton):
             "textvariable": None,
             "underline": -1,
             "width": "",
+        }
+        cls._exclusive_dict = {
             "initialdir": None,
             "mustexist": False,
             "parent": None,
@@ -33,25 +35,20 @@ class TAskDirectoryButton(ttkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
+        def _click_ask(**kw):
+            self._path = AskDirectoryname(**kw)
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._path = ""
-        command_ = partial(
-            self._click_ask,
-            **{
-                i: self._default_dict.pop(i)
-                for i in ("initialdir", "mustexist", "parent", "title")
-            },
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
         )
+        self._path = ""
         super().__init__(
             master,
-            command=command_,
+            command=partial(_click_ask,**self._exclusive_dict),
             class_="TButton",
             style="TButton",
             **self._default_dict,
         )
-
-    def _click_ask(self, **kw):
-        self._path = AskDirectoryname(**kw)
 
     def __fspath__(self):
         return str(self._path)

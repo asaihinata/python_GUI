@@ -34,14 +34,11 @@ class AskDirectoryButton(tkbutton):
             "highlightcolor": None,
             "highlightthickness": 1,
             "image": "",
-            "initialdir": None,
             "justify": "center",
-            "mustexist": False,
             "name": None,
             "overrelief": "",
             "padx": None,
             "pady": None,
-            "parent": None,
             "relief": None,
             "repeatdelay": None,
             "repeatinterval": None,
@@ -49,30 +46,32 @@ class AskDirectoryButton(tkbutton):
             "takefocus": "",
             "text": "",
             "textvariable": None,
-            "title": None,
             "underline": -1,
             "width": 0,
             "wraplength": 0,
         }
+        cls._exclusive_dict = {
+            "initialdir": None,
+            "mustexist": False,
+            "parent": None,
+            "title": None,
+        }
+        cls._default_dict = cls._exclusive_dict|cls._default_dict
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
+        def _click_ask(**kw):
+            self._path = AskDirectoryname(**kw)
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
+        )
         self._path = ""
         super().__init__(
             master,
             self._default_dict,
-            command=partial(
-                self._click_ask,
-                **{
-                    i: self._default_dict.pop(i)
-                    for i in ("initialdir", "mustexist", "parent", "title")
-                },
-            ),
+            command=partial(_click_ask,**self._exclusive_dict),
         )
-
-    def _click_ask(self, **kw):
-        self._path = AskDirectoryname(**kw)
 
     def __fspath__(self):
         return str(self._path)

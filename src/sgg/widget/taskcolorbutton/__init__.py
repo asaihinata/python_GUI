@@ -25,6 +25,8 @@ class TAskColorButton(ttkbutton):
             "textvariable": None,
             "underline": -1,
             "width": "",
+        }
+        cls._exclusive_dict = {
             "color": None,
             "initialcolor": None,
             "parent": None,
@@ -33,18 +35,17 @@ class TAskColorButton(ttkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
+        def _click_ask(**kw):
+            color = kw.pop("color")
+            self._color = AskColor(color=color, **kw)
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._color = (None, None)
-        command_ = partial(
-            self._click_ask,
-            **{
-                i: self._default_dict.pop(i)
-                for i in ("color", "initialcolor", "parent", "title")
-            },
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
         )
+        self._color = (None, None)
         super().__init__(
             master,
-            command=command_,
+            command=partial(_click_ask,**self._exclusive_dict),
             class_="TButton",
             style="TButton",
             **self._default_dict,
@@ -58,7 +59,3 @@ class TAskColorButton(ttkbutton):
 
     def get_hex(self):
         return self._color[1]
-
-    def _click_ask(self, **kw):
-        color = kw.pop("color")
-        self._color = AskColor(color=color, **kw)

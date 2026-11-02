@@ -23,13 +23,10 @@ class SaveFileButton(tkbutton):
             "border": None,
             "borderwidth": None,
             "compound": "none",
-            "confirmoverwrite": True,
             "cursor": "",
             "default": "disabled",
-            "defaultextension": "",
             "disabledforeground": None,
             "fg": None,
-            "filetypes": [("all files", "*")],
             "font": None,
             "foreground": None,
             "height": 0,
@@ -37,14 +34,11 @@ class SaveFileButton(tkbutton):
             "highlightcolor": None,
             "highlightthickness": 1,
             "image": "",
-            "initialdir": None,
-            "initialfile": None,
             "justify": "center",
             "name": None,
             "overrelief": "",
             "padx": None,
             "pady": None,
-            "parent": None,
             "relief": None,
             "repeatdelay": None,
             "repeatinterval": None,
@@ -52,40 +46,36 @@ class SaveFileButton(tkbutton):
             "takefocus": "",
             "text": "",
             "textvariable": None,
-            "title": None,
-            "typevariable": None,
             "underline": -1,
             "width": 0,
             "wraplength": 0,
         }
+        cls._exclusive_dict = {
+            "confirmoverwrite": True,
+            "filetypes": [("all files", "*")],
+            "defaultextension": "",
+            "initialdir": None,
+            "initialfile": None,
+            "parent": None,
+            "title": None,
+            "typevariable": None,
+        }
+        cls._default_dict = cls._exclusive_dict|cls._default_dict
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
+        def _click_ask(**kw):
+            self._path = AskSaveAsFilename(**kw)
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
+        )
         self._path = ""
         super().__init__(
             master,
             self._default_dict,
-            command=partial(
-                self._click_ask,
-                **{
-                    i: self._default_dict.pop(i)
-                    for i in (
-                        "confirmoverwrite",
-                        "defaultextension",
-                        "filetypes",
-                        "initialdir",
-                        "initialfile",
-                        "parent",
-                        "title",
-                        "typevariable",
-                    )
-                },
-            ),
+            command=partial(_click_ask,**self._exclusive_dict)
         )
-
-    def _click_ask(self, **kw):
-        self._path = AskSaveAsFilename(**kw)
 
     def __fspath__(self):
         return str(self._path)
