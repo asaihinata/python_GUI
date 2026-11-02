@@ -1,3 +1,4 @@
+from sgg.color import *
 from sgg.font import TKFont
 from sgg.popup import *
 from sgg.version import *
