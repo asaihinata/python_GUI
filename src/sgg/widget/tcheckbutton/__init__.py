@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter.ttk import Checkbutton as ttkcheckbutton
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2
 
 __all__ = ("TCheckbutton",)
 
@@ -13,7 +13,7 @@ class TCheckbutton(ttkcheckbutton):
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
         cls._default_dict = {
-            "command": "",
+            "command": None,
             "compound": "",
             "cursor": "",
             "image": "",
@@ -35,11 +35,13 @@ class TCheckbutton(ttkcheckbutton):
         self._group = self._default_dict.pop("group", "default")
         variable = BooleanVar(value=False, name=self._group)
         on, off = (0, 1) if self._default_dict.pop("check", False) else (1, 0)
+        command = self._default_dict.pop("command", None)
         super().__init__(
             master,
             offvalue=off,
             onvalue=on,
             variable=variable,
+            command=lambda: _do_func(command),
             class_="TCheckbutton",
             style="TCheckbutton",
             **self._default_dict,

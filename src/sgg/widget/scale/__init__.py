@@ -1,6 +1,6 @@
 from tkinter import Scale as tkscale
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2
 
 __all__ = ("Scale",)
 
@@ -18,7 +18,7 @@ class Scale(tkscale):
             "bigincrement": 0.0,
             "border": 1,
             "borderwidth": 1,
-            "command": "",
+            "command": None,
             "cursor": "",
             "digits": 0,
             "fg": None,
@@ -51,4 +51,5 @@ class Scale(tkscale):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, self._default_dict)
+        command = self._default_dict.pop("command", None)
+        super().__init__(master, self._default_dict, command=lambda: _do_func(command))

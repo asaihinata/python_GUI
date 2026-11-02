@@ -1,6 +1,6 @@
 from tkinter import Button as tkbutton
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2
 
 __all__ = ("Button",)
 
@@ -20,7 +20,7 @@ class Button(tkbutton):
             "bitmap": "",
             "border": None,
             "borderwidth": None,
-            "command": "",
+            "command": None,
             "compound": "none",
             "cursor": "",
             "default": "disabled",
@@ -53,4 +53,5 @@ class Button(tkbutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, self._default_dict)
+        command = self._default_dict.pop("command", None)
+        super().__init__(master, self._default_dict, command=lambda: _do_func(command))

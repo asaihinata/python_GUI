@@ -56,13 +56,14 @@ class AskColorButton(tkbutton):
             "parent": None,
             "title": None,
         }
-        cls._default_dict = cls._exclusive_dict|cls._default_dict
+        cls._default_dict = cls._exclusive_dict | cls._default_dict
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
         def _click_ask(**kw):
             color = kw.pop("color")
             self._color = AskColor(color=color, **kw)
+
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
@@ -71,7 +72,7 @@ class AskColorButton(tkbutton):
         super().__init__(
             master,
             self._default_dict,
-            command=partial(_click_ask,**self._exclusive_dict),
+            command=partial(_click_ask, **self._exclusive_dict),
         )
 
     def get_color(self):

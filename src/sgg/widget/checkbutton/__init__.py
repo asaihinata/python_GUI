@@ -1,6 +1,6 @@
 from tkinter import Checkbutton as tkcheckbutton
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2
 
 __all__ = ("Checkbutton",)
 
@@ -23,7 +23,7 @@ class Checkbutton(tkcheckbutton):
             "borderwidth": None,
             "check": False,
             "group": "default",
-            "command": "",
+            "command": None,
             "compound": "none",
             "cursor": "",
             "disabledforeground": None,
@@ -64,7 +64,8 @@ class Checkbutton(tkcheckbutton):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         check = self._default_dict.pop("check", False)
         self._group = self._default_dict.pop("group", "default")
-        super().__init__(master, self._default_dict)
+        command = self._default_dict.pop("command", None)
+        super().__init__(master, self._default_dict, command=lambda: _do_func(command))
         if check:
             self.select()
         if not isinstance(self._group, str):

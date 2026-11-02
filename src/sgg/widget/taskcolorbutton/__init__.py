@@ -38,6 +38,7 @@ class TAskColorButton(ttkbutton):
         def _click_ask(**kw):
             color = kw.pop("color")
             self._color = AskColor(color=color, **kw)
+
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
@@ -45,7 +46,7 @@ class TAskColorButton(ttkbutton):
         self._color = (None, None)
         super().__init__(
             master,
-            command=partial(_click_ask,**self._exclusive_dict),
+            command=partial(_click_ask, **self._exclusive_dict),
             class_="TButton",
             style="TButton",
             **self._default_dict,

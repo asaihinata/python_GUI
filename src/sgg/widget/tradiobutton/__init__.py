@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter.ttk import Radiobutton as ttkradiobutton
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2
 
 __all__ = ("TRadiobutton",)
 
@@ -13,7 +13,7 @@ class TRadiobutton(ttkradiobutton):
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
         cls._default_dict = {
-            "command": "",
+            "command": None,
             "compound": "",
             "cursor": "",
             "image": "",
@@ -39,10 +39,12 @@ class TRadiobutton(ttkradiobutton):
         else:
             var = BooleanVar(value=True, name=self._group)
             self._group_setting[self._group] = var
+        command = self._default_dict.pop("command", None)
         super().__init__(
             master,
             variable=var,
             value=self,
+            command=lambda: _do_func(command),
             class_="TRadiobutton",
             style="TRadiobutton",
             **self._default_dict,

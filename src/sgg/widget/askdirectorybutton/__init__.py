@@ -56,12 +56,13 @@ class AskDirectoryButton(tkbutton):
             "parent": None,
             "title": None,
         }
-        cls._default_dict = cls._exclusive_dict|cls._default_dict
+        cls._default_dict = cls._exclusive_dict | cls._default_dict
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
         def _click_ask(**kw):
             self._path = AskDirectoryname(**kw)
+
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
@@ -70,7 +71,7 @@ class AskDirectoryButton(tkbutton):
         super().__init__(
             master,
             self._default_dict,
-            command=partial(_click_ask,**self._exclusive_dict),
+            command=partial(_click_ask, **self._exclusive_dict),
         )
 
     def __fspath__(self):

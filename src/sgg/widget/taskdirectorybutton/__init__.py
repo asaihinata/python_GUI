@@ -37,6 +37,7 @@ class TAskDirectoryButton(ttkbutton):
     def __init__(self, master=None, cnf={}, **kw):
         def _click_ask(**kw):
             self._path = AskDirectoryname(**kw)
+
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
@@ -44,7 +45,7 @@ class TAskDirectoryButton(ttkbutton):
         self._path = ""
         super().__init__(
             master,
-            command=partial(_click_ask,**self._exclusive_dict),
+            command=partial(_click_ask, **self._exclusive_dict),
             class_="TButton",
             style="TButton",
             **self._default_dict,
