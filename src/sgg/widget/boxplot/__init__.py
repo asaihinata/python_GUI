@@ -1,4 +1,4 @@
-import numpy as np
+from numpy import asanyarray
 
 from sgg._graph.base.twodimensional import TwoDimensional
 from sgg.models import _setDefaultValues2
@@ -53,7 +53,7 @@ class Boxplot(TwoDimensional):
         )
         x = self._exclusive_dict.pop("x", None)
         if x is not None:
-            x = np.asanyarray(x).T
+            x = asanyarray(x).T
         else:
             raise TypeError
         label = self._default_dict.get("label", None)

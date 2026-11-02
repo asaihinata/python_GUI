@@ -1,4 +1,4 @@
-import numpy as np
+from numpy import mean
 
 from sgg._graph.base.twodimensional import TwoDimensional
 from sgg.models import _setDefaultValues2
@@ -27,7 +27,7 @@ class Hexbin(TwoDimensional):
             "marginals": False,
             "mincnt": None,
             "norm": None,
-            "reduce_C_function": np.mean,
+            "reduce_C_function": mean,
             "vmax": None,
             "vmin": None,
             "x": None,
