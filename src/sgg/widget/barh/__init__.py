@@ -12,9 +12,10 @@ class Barh(TwoDimensional):
         cls = super().__new__(cls)
         cls._exclusive_dict = {
             "align": "center",
-            "left": None,
-            "label": None,
+            "data": None,
             "height": 0.8,
+            "label": None,
+            "left": None,
             "x": None,
             "y": None,
         }

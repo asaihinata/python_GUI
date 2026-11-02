@@ -13,47 +13,50 @@ class Violinplot(TwoDimensional):
         cls = super().__new__(cls)
         if __matplotlib_version_info__ >= (3, 11):
             cls._exclusive_dict = {
-                "data": None,
-                "positions": None,
-                "orientation": "vertical",
-                "widths": 0.5,
-                "showmeans": False,
-                "showextrema": True,
-                "showmedians": False,
-                "quantiles": None,
-                "points": 100,
                 "bw_method": None,
-                "side": "both",
+                "data": None,
                 "facecolor": None,
                 "linecolor": None,
+                "orientation": "vertical",
+                "points": 100,
+                "positions": None,
+                "quantiles": None,
+                "showextrema": True,
+                "showmeans": False,
+                "showmedians": False,
+                "side": "both",
+                "values": None,
+                "widths": 0.5,
             }
         elif __matplotlib_version_info__ >= (3, 10):
             cls._exclusive_dict = {
-                "data": None,
-                "positions": None,
-                "orientation": "vertical",
-                "widths": 0.5,
-                "showmeans": False,
-                "showextrema": True,
-                "showmedians": False,
-                "quantiles": None,
-                "points": 100,
                 "bw_method": None,
+                "data": None,
+                "orientation": "vertical",
+                "points": 100,
+                "positions": None,
+                "quantiles": None,
+                "showextrema": True,
+                "showmeans": False,
+                "showmedians": False,
                 "side": "both",
+                "values": None,
+                "widths": 0.5,
             }
         else:
             cls._exclusive_dict = {
+                "bw_method": None,
                 "data": None,
+                "points": 100,
                 "positions": None,
+                "quantiles": None,
+                "showextrema": True,
+                "showmeans": False,
+                "showmedians": False,
+                "side": "both",
+                "values": None,
                 "vert": True,
                 "widths": 0.5,
-                "showmeans": False,
-                "showextrema": True,
-                "showmedians": False,
-                "quantiles": None,
-                "points": 100,
-                "bw_method": None,
-                "side": "both",
             }
         cls._default_dict = cls._exclusive_dict | _top_def_dict
         return cls
@@ -63,6 +66,6 @@ class Violinplot(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        data = self._exclusive_dict.pop("data", None)
+        values = self._exclusive_dict.pop("values", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.violinplot(data, **self._exclusive_dict)
+        self._graph = self._ax.violinplot(values, **self._exclusive_dict)

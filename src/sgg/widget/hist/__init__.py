@@ -16,6 +16,7 @@ class Hist(TwoDimensional):
             "bottom": 0,
             "color": None,
             "cumulative": False,
+            "data": None,
             "density": False,
             "histtype": "bar",
             "label": None,
@@ -24,8 +25,8 @@ class Hist(TwoDimensional):
             "range": None,
             "rwidth": None,
             "stacked": False,
+            "values": None,
             "weights": None,
-            "x": None,
         }
         cls._default_dict = cls._exclusive_dict | _top_def_dict
         return cls
@@ -35,9 +36,9 @@ class Hist(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        x = self._exclusive_dict.pop("x", None)
+        values = self._exclusive_dict.pop("values", None)
         label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.hist(x, **self._exclusive_dict)
+        self._graph = self._ax.hist(values, **self._exclusive_dict)
         if label is not None:
             self._ax.legend()

@@ -12,6 +12,7 @@ class Fill_Between(TwoDimensional):
         cls = super().__new__(cls)
         cls._exclusive_dict = {
             "alpha": 1,
+            "data": None,
             "interpolate": False,
             "label": None,
             "step": None,

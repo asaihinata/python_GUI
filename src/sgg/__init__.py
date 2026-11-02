@@ -210,6 +210,10 @@ class gui:
     def Ecdf(**kw):
         return {"type": "Ecdf", "kw": kw}
 
+    @staticmethod
+    def DScatter(**kw):
+        return {"type": "DScatter", "kw": kw}
+
 
 def __dir__():
     return (i for i in globals().keys() if i.startswith("__") or not i.startswith("_"))

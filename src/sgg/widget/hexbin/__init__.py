@@ -13,8 +13,6 @@ class Hexbin(TwoDimensional):
         _top_def_dict = TwoDimensional.__new__(cls)._default_dict
         cls = super().__new__(cls)
         cls._exclusive_dict = {
-            "x": None,
-            "y": None,
             "alpha": None,
             "bins": None,
             "C": None,
@@ -32,7 +30,9 @@ class Hexbin(TwoDimensional):
             "reduce_C_function": np.mean,
             "vmax": None,
             "vmin": None,
+            "x": None,
             "xscale": "linear",
+            "y": None,
             "yscale": "linear",
         }
         cls._default_dict = cls._exclusive_dict | _top_def_dict

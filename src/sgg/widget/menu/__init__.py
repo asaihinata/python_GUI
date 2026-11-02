@@ -24,6 +24,7 @@ class Menu(tkmenu):
             "fg": None,
             "font": None,
             "foreground": None,
+            "menubar": None,
             "name": None,
             "postcommand": "",
             "relief": None,
@@ -33,7 +34,6 @@ class Menu(tkmenu):
             "tearoffcommand": "",
             "title": "",
             "type": "normal",
-            "menubar": None,
         }
         return cls
 

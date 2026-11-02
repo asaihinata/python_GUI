@@ -13,6 +13,7 @@ class Stackplot(TwoDimensional):
         cls._exclusive_dict = {
             "baseline": "zero",
             "colors": None,
+            "data": None,
             "edgecolor": None,
             "facecolor": None,
             "hatch": None,

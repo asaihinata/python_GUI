@@ -15,11 +15,12 @@ class Pie(TwoDimensional):
             "center": (0, 0),
             "colors": None,
             "counterclock": True,
+            "data": None,
             "explode": None,
             "frame": False,
             "hatch": None,
-            "labeldistance": 1.1,
             "label": None,
+            "labeldistance": 1.1,
             "normalize": True,
             "pctdistance": 0.6,
             "radius": 1,
@@ -29,7 +30,6 @@ class Pie(TwoDimensional):
             "textprops": None,
             "value": None,
             "wedgeprops": None,
-            "data": None,
         }
         cls._default_dict = cls._exclusive_dict | _top_def_dict
         return cls

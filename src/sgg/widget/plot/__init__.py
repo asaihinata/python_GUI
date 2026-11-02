@@ -16,6 +16,7 @@ class Plot(TwoDimensional):
             "marker": None,
             "x": None,
             "y": None,
+            "data": None,
         }
         cls._default_dict = cls._exclusive_dict | _top_def_dict
         return cls

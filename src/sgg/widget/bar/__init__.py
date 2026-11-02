@@ -13,6 +13,7 @@ class Bar(TwoDimensional):
         cls._exclusive_dict = {
             "align": "center",
             "bottom": None,
+            "data": None,
             "label": None,
             "width": 0.8,
             "x": None,

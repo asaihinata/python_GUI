@@ -13,6 +13,7 @@ from sgg.widget.barh import Barh
 from sgg.widget.boxplot import Boxplot
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
+from sgg.widget.dscatter import DScatter
 from sgg.widget.ecdf import Ecdf
 from sgg.widget.entry import Entry
 from sgg.widget.errorbar import Errorbar
@@ -262,6 +263,8 @@ class Window(Wm):
                     widget = Pie(**kw)
                 elif type_ == "Ecdf":
                     widget = Ecdf(**kw)
+                elif type_ == "DScatter":
+                    widget = DScatter(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
