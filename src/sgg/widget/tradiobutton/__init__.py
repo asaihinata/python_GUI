@@ -37,7 +37,7 @@ class TRadiobutton(ttkradiobutton):
         if self._group in self._group_setting:
             var = self._group_setting[self._group]
         else:
-            var = BooleanVar(value=True, name=self._group)
+            var = BooleanVar(value=True, name=f"TRadio_{self._group}")
             self._group_setting[self._group] = var
         command = self._default_dict.pop("command", None)
         super().__init__(

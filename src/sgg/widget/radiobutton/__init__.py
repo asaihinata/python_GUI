@@ -64,6 +64,6 @@ class Radiobutton(tkradiobutton):
         if self._group in self._group_setting:
             var = self._group_setting[self._group]
         else:
-            var = BooleanVar(value=True, name=self._group)
+            var = BooleanVar(value=True, name=f"Radio_{self._group}")
             self._group_setting[self._group] = var
         super().__init__(master, self._default_dict, variable=var, value=self)

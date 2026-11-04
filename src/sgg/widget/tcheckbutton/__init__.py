@@ -9,6 +9,7 @@ __all__ = ("TCheckbutton",)
 class TCheckbutton(ttkcheckbutton):
     _group_setting = {}
     _default_dict = {}
+    _count = 0
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
@@ -25,7 +26,6 @@ class TCheckbutton(ttkcheckbutton):
             "textvariable": None,
             "underline": -1,
             "width": "",
-            "check": False,
             "group": "default",
         }
         return cls
@@ -33,13 +33,15 @@ class TCheckbutton(ttkcheckbutton):
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._group = self._default_dict.pop("group", "default")
-        variable = BooleanVar(value=False, name=self._group)
-        on, off = (0, 1) if self._default_dict.pop("check", False) else (1, 0)
+        variable = BooleanVar(
+            value=False, name=f"TCheckbutton_{self._group}_{self._count}"
+        )
+        TCheckbutton._count = TCheckbutton._count + 1
         command = self._default_dict.pop("command", None)
         super().__init__(
             master,
-            offvalue=off,
-            onvalue=on,
+            onvalue=0,
+            offvalue=1,
             variable=variable,
             command=lambda: _do_func(command),
             class_="TCheckbutton",
