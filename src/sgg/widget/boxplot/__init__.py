@@ -36,11 +36,11 @@ class Boxplot(TwoDimensional):
             "sym": None,
             "tick_labels": None,
             "usermedians": None,
+            "values": None,
             "vert": None,
             "whis": None,
             "whiskerprops": None,
             "widths": None,
-            "x": None,
             "zorder": None,
         }
         cls._default_dict = cls._exclusive_dict | _top_def_dict
@@ -51,13 +51,13 @@ class Boxplot(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        x = self._exclusive_dict.pop("x", None)
-        if x is not None:
-            x = asanyarray(x).T
+        values = self._exclusive_dict.pop("values", None)
+        if values is not None:
+            values = asanyarray(values).T
         else:
             raise TypeError
         label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.boxplot(x, **self._exclusive_dict)
+        self._graph = self._ax.boxplot(values, **self._exclusive_dict)
         if label is not None:
             self._ax.legend()

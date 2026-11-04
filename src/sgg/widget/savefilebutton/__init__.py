@@ -2,7 +2,7 @@ from functools import partial
 from tkinter import Button as tkbutton
 
 from sgg.dialog.saveasfile import AskSaveAsFilename
-from sgg.models import _setDefaultValues2
+from sgg.models import _delete_keys, _setDefaultValues2
 
 __all__ = ("SaveFileButton",)
 
@@ -71,10 +71,11 @@ class SaveFileButton(tkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
+        _default_dict = _delete_keys(self._default_dict, self._exclusive_dict)
         self._path = ""
         super().__init__(
             master,
-            self._default_dict,
+            _default_dict,
             command=partial(_click_ask, **self._exclusive_dict),
         )
 

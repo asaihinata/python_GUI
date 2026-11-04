@@ -296,6 +296,9 @@ class Window(Wm):
     def run(self, n=0):
         self._root.mainloop(n=n)
 
+    def quit(self):
+        self._root.quit()
+
     @property
     def root(self):
         return self._root
