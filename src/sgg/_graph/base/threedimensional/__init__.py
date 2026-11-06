@@ -1,7 +1,7 @@
 from matplotlib.figure import Figure
 from mpl_toolkits.mplot3d.axes3d import Axes3D
 
-from sgg._graph._base import _Base_Graph, _Top_Graph
+from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
 
 __all__ = ("ThreeDimensional",)
@@ -41,6 +41,3 @@ class ThreeDimensional(_Top_Graph):
     @property
     def ax(self) -> Axes3D:
         return self._ax
-
-    def widget(self, master=None):
-        return _Base_Graph.__new__(self, master=master, figure=self.fig)

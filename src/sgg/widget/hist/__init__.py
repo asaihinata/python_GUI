@@ -16,7 +16,6 @@ class Hist(TwoDimensional):
             "bottom": 0,
             "color": None,
             "cumulative": False,
-            "data": None,
             "density": False,
             "histtype": "bar",
             "label": None,

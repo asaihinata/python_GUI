@@ -13,7 +13,6 @@ class Eventplot(TwoDimensional):
         cls._exclusive_dict = {
             "alpha": None,
             "colors": None,
-            "data": None,
             "label": None,
             "linelengths": 1,
             "lineoffsets": 1,

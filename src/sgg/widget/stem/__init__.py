@@ -13,7 +13,6 @@ class Stem(TwoDimensional):
         cls._exclusive_dict = {
             "basefmt": None,
             "bottom": 0,
-            "data": None,
             "label": None,
             "linefmt": None,
             "markerfmt": None,

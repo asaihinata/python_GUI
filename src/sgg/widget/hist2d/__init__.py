@@ -14,7 +14,6 @@ class Hist2D(TwoDimensional):
             "bins": 10,
             "cmax": None,
             "cmin": None,
-            "data": None,
             "density": False,
             "range": None,
             "label": None,

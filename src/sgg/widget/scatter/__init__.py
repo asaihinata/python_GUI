@@ -16,7 +16,6 @@ class Scatter(TwoDimensional):
             "cmap": None,
             "colorizer": None,
             "edgecolors": None,
-            "data": None,
             "label": None,
             "linestyle": "-",
             "linewidths": None,

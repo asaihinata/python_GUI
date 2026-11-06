@@ -14,7 +14,6 @@ class Errorbar(TwoDimensional):
             "barsabove": False,
             "capsize": None,
             "capthick": None,
-            "data": None,
             "ecolor": None,
             "elinestyle": None,
             "elinewidth": None,

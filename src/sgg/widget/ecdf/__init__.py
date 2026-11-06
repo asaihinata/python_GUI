@@ -13,7 +13,6 @@ class Ecdf(TwoDimensional):
         cls._exclusive_dict = {
             "complementary": False,
             "compress": False,
-            "data": None,
             "label": None,
             "orientation": "vertical",
             "values": None,

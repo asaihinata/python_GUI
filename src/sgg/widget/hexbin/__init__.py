@@ -18,7 +18,6 @@ class Hexbin(TwoDimensional):
             "C": None,
             "cmap": None,
             "colorizer": None,
-            "data": None,
             "edgecolors": "face",
             "extent": None,
             "gridsize": 100,

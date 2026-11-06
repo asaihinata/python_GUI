@@ -15,7 +15,6 @@ class DScatter(ThreeDimensional):
             "c": None,
             "cmap": None,
             "colorizer": None,
-            "data": None,
             "edgecolors": None,
             "label": None,
             "linestyle": "-",

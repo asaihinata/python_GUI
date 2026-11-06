@@ -14,7 +14,6 @@ class Violinplot(TwoDimensional):
         if __matplotlib_version_info__ >= (3, 11):
             cls._exclusive_dict = {
                 "bw_method": None,
-                "data": None,
                 "facecolor": None,
                 "linecolor": None,
                 "orientation": "vertical",
@@ -31,7 +30,6 @@ class Violinplot(TwoDimensional):
         elif __matplotlib_version_info__ >= (3, 10):
             cls._exclusive_dict = {
                 "bw_method": None,
-                "data": None,
                 "orientation": "vertical",
                 "points": 100,
                 "positions": None,
@@ -46,7 +44,6 @@ class Violinplot(TwoDimensional):
         else:
             cls._exclusive_dict = {
                 "bw_method": None,
-                "data": None,
                 "points": 100,
                 "positions": None,
                 "quantiles": None,

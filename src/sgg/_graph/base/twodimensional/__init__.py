@@ -1,7 +1,7 @@
 from matplotlib.axes._axes import Axes
 from matplotlib.figure import Figure
 
-from sgg._graph._base import _Base_Graph, _Top_Graph
+from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
 
 __all__ = ("TwoDimensional",)
@@ -39,6 +39,3 @@ class TwoDimensional(_Top_Graph):
     @property
     def ax(self) -> Axes:
         return self._ax
-
-    def widget(self, master=None):
-        return _Base_Graph.__new__(self, master=master, figure=self.fig)

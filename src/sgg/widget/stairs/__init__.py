@@ -12,7 +12,6 @@ class Stairs(TwoDimensional):
         cls = super().__new__(cls)
         cls._exclusive_dict = {
             "baseline": 0,
-            "data": None,
             "edges": None,
             "fill": False,
             "label": None,

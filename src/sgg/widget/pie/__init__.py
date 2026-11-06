@@ -15,7 +15,6 @@ class Pie(TwoDimensional):
             "center": (0, 0),
             "colors": None,
             "counterclock": True,
-            "data": None,
             "explode": None,
             "frame": False,
             "hatch": None,
