@@ -1,8 +1,20 @@
-from sgg.color import *
+from sgg.color import Color
 from sgg.font import TKFont
-from sgg.popup import *
-from sgg.version import *
-from sgg.widget import *
+from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
+                       PopupWarning)
+from sgg.version import (__matplotlib_version_info__, __numpy_version_info__,
+                         __version__, __version_info__)
+from sgg.widget import (AskColorButton, AskDirectoryButton, AskFileButton, Bar,
+                        Barh, Boxplot, Button, Checkbutton, DScatter, Ecdf,
+                        Entry, Errorbar, Eventplot, Fill_Between, Frame,
+                        FrameLabel, Hexbin, Hist, Hist2D, Image, Label,
+                        Listbox, Menu, Pie, Plot, Radiobutton, SaveFileButton,
+                        Scale, Scatter, Spinbox, Stackplot, Stairs, Stem,
+                        TAskColorButton, TAskDirectoryButton, TAskFileButton,
+                        TButton, TCheckbutton, TEntry, Text, TFrame,
+                        TFrameLabel, TImage, TLabel, TNotebook, TProgressbar,
+                        TRadiobutton, TSaveFileButton, TScale, TSpinbox,
+                        Violinplot, Window)
 
 
 class gui:
@@ -213,7 +225,3 @@ class gui:
     @staticmethod
     def DScatter(**kw):
         return {"type": "DScatter", "kw": kw}
-
-
-def __dir__():
-    return (i for i in globals().keys() if i.startswith("__") or not i.startswith("_"))

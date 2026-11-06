@@ -1,7 +1,6 @@
 from typing import ClassVar, Literal, overload
 
 from sgg._dialog import Dialog
-from sgg._typing import *
 
 __all__ = (
     "Popup",
@@ -17,74 +16,87 @@ class Message(Dialog):
 class Popup:
     @overload
     def __init__(
-        self: Popup[_Type_ok],
+        self: Popup[Literal["ok"]],
         title: str | None = None,
         message: str | None = None,
         *,
         detail: str | None = None,
-        icon: _Type_icon | None = None,
-        type: _Type_ok = ...,
-        default: _Type_ok = ...,
+        icon: Literal["error", "info", "question", "warning"] | None = None,
+        type: Literal["ok"] = ...,
+        default: Literal["ok"] = ...,
     ) -> None: ...
     @overload
     def __init__(
-        self: Popup[_Type_okcancel],
+        self: Popup[Literal["ok", "cancel"]],
         title: str | None = None,
         message: str | None = None,
         *,
         detail: str | None = None,
-        icon: _Type_icon | None = None,
+        icon: Literal["error", "info", "question", "warning"] | None = None,
         type: Literal["okcancel"],
-        default: _Type_okcancel = ...,
+        default: Literal["ok", "cancel"] = ...,
     ) -> None: ...
     @overload
     def __init__(
-        self: Popup[_Type_yesno],
+        self: Popup[Literal["yes", "no"]],
         title: str | None = None,
         message: str | None = None,
         *,
         detail: str | None = None,
-        icon: _Type_icon | None = None,
+        icon: Literal["error", "info", "question", "warning"] | None = None,
         type: Literal["yesno"],
-        default: _Type_yesno = ...,
+        default: Literal["yes", "no"] = ...,
     ) -> None: ...
     @overload
     def __init__(
-        self: Popup[_Type_yesnocancel],
+        self: Popup[Literal["cancel", "yes", "no"]],
         title: str | None = None,
         message: str | None = None,
         *,
         detail: str | None = None,
-        icon: _Type_icon | None = None,
+        icon: Literal["error", "info", "question", "warning"] | None = None,
         type: Literal["yesnocancel"],
-        default: _Type_yesnocancel = ...,
+        default: Literal["cancel", "yes", "no"] = ...,
     ) -> None: ...
     @overload
     def __init__(
-        self: Popup[_Type_retrycancel],
+        self: Popup[Literal["retry", "cancel"]],
         title: str | None = None,
         message: str | None = None,
         *,
         detail: str | None = None,
-        icon: _Type_icon | None = None,
+        icon: Literal["error", "info", "question", "warning"] | None = None,
         type: Literal["retrycancel"],
-        default: _Type_retrycancel = ...,
+        default: Literal["retry", "cancel"] = ...,
     ) -> None: ...
     @overload
     def __init__(
-        self: Popup[_Type_abortretryignore],
+        self: Popup[Literal["abort", "retry", "ignore"]],
         title: str | None = None,
         message: str | None = None,
         *,
         detail: str | None = None,
-        icon: _Type_icon | None = None,
+        icon: Literal["error", "info", "question", "warning"] | None = None,
         type: Literal["abortretryignore"],
-        default: _Type_abortretryignore = ...,
+        default: Literal["abort", "retry", "ignore"] = ...,
     ) -> None: ...
     def __dir__(self) -> list[str]: ...
     def __str__(self) -> str: ...
     @property
     def select(self) -> str: ...
+
+class PopupInformation:
+    def __init__(
+        self,
+        title: str | None = "Information",
+        message: str | None = "Information",
+        *,
+        detail: str | None = None,
+    ) -> None: ...
+    def __dir__(self) -> list[str]: ...
+    def __str__(self) -> Literal["ok"]: ...
+    @property
+    def select(self) -> Literal["ok"]: ...
 
 class PopupError:
     def __init__(
@@ -95,9 +107,9 @@ class PopupError:
         detail: str | None = None,
     ) -> None: ...
     def __dir__(self) -> list[str]: ...
-    def __str__(self) -> _Type_ok: ...
+    def __str__(self) -> Literal["ok"]: ...
     @property
-    def select(self) -> _Type_ok: ...
+    def select(self) -> Literal["ok"]: ...
 
 class PopupWarning:
     def __init__(
@@ -108,9 +120,9 @@ class PopupWarning:
         detail: str | None = None,
     ) -> None: ...
     def __dir__(self) -> list[str]: ...
-    def __str__(self) -> _Type_ok: ...
+    def __str__(self) -> Literal["ok"]: ...
     @property
-    def select(self) -> _Type_ok: ...
+    def select(self) -> Literal["ok"]: ...
 
 class PopupQuestion:
     def __init__(
@@ -119,12 +131,12 @@ class PopupQuestion:
         message: str | None = "Question",
         *,
         detail: str | None = None,
-        default: _Type_yesno = "yes",
+        default: Literal["yes", "no"] = "yes",
     ) -> None: ...
     def __dir__(self) -> list[str]: ...
     def __bool__(self) -> bool: ...
     def __invert__(self) -> bool: ...
     __not__ = __invert__
-    def __str__(self) -> _Type_yesno: ...
+    def __str__(self) -> Literal["yes", "no"]: ...
     @property
-    def select(self) -> _Type_yesno: ...
+    def select(self) -> Literal["yes", "no"]: ...
