@@ -1,4 +1,3 @@
-from functools import partial
 from tkinter.ttk import Button as ttkbutton
 
 from sgg.dialog.opendirectory import AskDirectoryname
@@ -35,8 +34,8 @@ class TAskDirectoryButton(ttkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        def _click_ask(**kw):
-            self._path = AskDirectoryname(**kw)
+        def _click_ask():
+            self._path = AskDirectoryname(**self._exclusive_dict)
 
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
@@ -46,7 +45,7 @@ class TAskDirectoryButton(ttkbutton):
         self._path = ""
         super().__init__(
             master,
-            command=partial(_click_ask, **self._exclusive_dict),
+            command=_click_ask,
             class_="TButton",
             style="TButton",
             **_default_dict,
@@ -54,3 +53,14 @@ class TAskDirectoryButton(ttkbutton):
 
     def __fspath__(self):
         return str(self._path)
+
+    def configure(self, cnf={}, **kw):
+        if not cnf and not kw:
+            return super().configure()
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
+        )
+        return super().configure(_delete_keys(self._default_dict, self._exclusive_dict))
+
+    config = configure

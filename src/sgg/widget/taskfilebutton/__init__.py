@@ -1,4 +1,3 @@
-from functools import partial
 from tkinter.ttk import Button as ttkbutton
 
 from sgg.dialog.openfile import AskOpenFilename
@@ -38,8 +37,8 @@ class TAskFileButton(ttkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        def _click_ask(**kw):
-            self._path = AskOpenFilename(**kw)
+        def _click_ask():
+            self._path = AskOpenFilename(**self._exclusive_dict)
 
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
@@ -49,7 +48,7 @@ class TAskFileButton(ttkbutton):
         self._path = ""
         super().__init__(
             master,
-            command=partial(_click_ask, **self._exclusive_dict),
+            command=_click_ask,
             class_="TButton",
             style="TButton",
             **_default_dict,
@@ -57,3 +56,14 @@ class TAskFileButton(ttkbutton):
 
     def __fspath__(self):
         return str(self._path)
+
+    def configure(self, cnf={}, **kw):
+        if not cnf and not kw:
+            return super().configure()
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
+        )
+        return super().configure(_delete_keys(self._default_dict, self._exclusive_dict))
+
+    config = configure

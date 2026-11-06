@@ -1,4 +1,4 @@
-from functools import partial
+from copy import deepcopy
 from tkinter import Button as tkbutton
 
 from sgg.dialog.chooser import AskColor
@@ -60,9 +60,11 @@ class AskColorButton(tkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        def _click_ask(**kw):
+        def _click_ask():
+            kw = deepcopy(self._exclusive_dict)
             color = kw.pop("color")
             self._color = AskColor(color=color, **kw)
+            del kw
 
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
@@ -73,7 +75,7 @@ class AskColorButton(tkbutton):
         super().__init__(
             master,
             _default_dict,
-            command=partial(_click_ask, **self._exclusive_dict),
+            command=_click_ask,
         )
 
     def get_color(self):
@@ -84,3 +86,14 @@ class AskColorButton(tkbutton):
 
     def get_hex(self):
         return self._color[1]
+
+    def configure(self, cnf={}, **kw):
+        if not cnf and not kw:
+            return super().configure()
+        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues2(
+            self._exclusive_dict, self._default_dict
+        )
+        return super().configure(_delete_keys(self._default_dict, self._exclusive_dict))
+
+    config = configure
