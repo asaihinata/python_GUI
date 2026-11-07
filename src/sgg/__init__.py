@@ -24,7 +24,7 @@ class gui:
 
     @staticmethod
     def Label(**kw):
-        return {"type": "label", "kw": kw}
+        return {"type": "Label", "kw": kw}
 
     @staticmethod
     def Image(**kw):

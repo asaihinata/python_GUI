@@ -71,7 +71,7 @@ class Window(Wm):
         "title": "window",
     }
 
-    def __init__(self, cnf={}, **kw):
+    def __init__(self, cnf=None, **kw):
         self._key_widget_save = {}
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._root = Tk()
@@ -151,7 +151,7 @@ class Window(Wm):
             for j in i:
                 type_ = j.get("type", None)
                 kw = j.get("kw", {})
-                if type_ == "label":
+                if type_ == "Label":
                     widget = Label(row_frame, **kw)
                 elif type_ == "Image":
                     widget = Image(row_frame, **kw)
