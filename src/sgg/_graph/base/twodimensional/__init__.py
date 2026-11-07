@@ -16,7 +16,13 @@ class TwoDimensional(_Top_Graph):
             "dpi": 100,
             "edgecolor": None,
             "facecolor": None,
-            "linewidth": 0.0,
+            "grid": True,
+            "grid_alpha": 0.5,
+            "grid_axis": "both",
+            "grid_color": "gray",
+            "grid_linestyle": "--",
+            "grid_linewidth": 0.7,
+            "grid_which": "major",
             "title": None,
             "xlabel": None,
             "ylabel": None,
@@ -32,10 +38,27 @@ class TwoDimensional(_Top_Graph):
             edgecolor=self._default_dict["edgecolor"],
         )
         self._ax = self.fig.add_subplot(111)
-        self._ax.set_title(self._default_dict["title"])
-        self._ax.set_xlabel(self._default_dict["xlabel"])
-        self._ax.set_ylabel(self._default_dict["ylabel"])
+        self._set_style()
 
     @property
     def ax(self) -> Axes:
         return self._ax
+
+    def _update(self, kw):
+        for k, v in kw.items():
+            self._default_dict[k] = v
+
+    def _set_style(self):
+        dicts = self._default_dict
+        if dicts["grid"]:
+            self._ax.grid(
+                alpha=dicts["grid_alpha"],
+                axis=dicts["grid_axis"],
+                color=dicts["grid_color"],
+                linestyle=dicts["grid_linestyle"],
+                linewidth=dicts["grid_linewidth"],
+                which=dicts["grid_which"],
+            )
+        self._ax.set_title(dicts["title"])
+        self._ax.set_xlabel(dicts["xlabel"])
+        self._ax.set_ylabel(dicts["ylabel"])

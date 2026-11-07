@@ -1,5 +1,5 @@
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _update_dict
 from sgg.version import __matplotlib_version_info__
 
 __all__ = ("Violinplot",)
@@ -63,6 +63,16 @@ class Violinplot(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        values = self._exclusive_dict.pop("values", None)
+        self._values = self._exclusive_dict.pop("values", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.violinplot(values, **self._exclusive_dict)
+        self._graph = self._ax.violinplot(self._values, **self._exclusive_dict)
+
+    def update(self, values=None, **kw):
+        self._clear()
+        if values is not None:
+            self._values = values
+        self._update(kw)
+        self._set_style()
+        self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
+        self._graph = self._ax.hist(self._values, **self._exclusive_dict)
+        self._redraw()

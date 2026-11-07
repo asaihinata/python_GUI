@@ -1,5 +1,5 @@
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _update_dict
 
 __all__ = ("Pie",)
 
@@ -38,9 +38,19 @@ class Pie(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        value = self._exclusive_dict.pop("value", None)
+        self._value = self._exclusive_dict.pop("value", None)
         label = self._exclusive_dict.pop("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.pie(value, labels=label, **self._exclusive_dict)
+        self._graph = self._ax.pie(self._value, labels=label, **self._exclusive_dict)
         if label is not None:
             self._ax.legend()
+
+    def update(self, value=None, **kw):
+        self._clear()
+        if value is not None:
+            self._value = value
+        self._update(kw)
+        self._set_style()
+        self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
+        self._graph = self._ax.pie(self._value, **self._exclusive_dict)
+        self._redraw()

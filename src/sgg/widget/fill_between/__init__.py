@@ -1,5 +1,5 @@
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _update_dict
 
 __all__ = ("Fill_Between",)
 
@@ -28,11 +28,29 @@ class Fill_Between(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        x = self._exclusive_dict.pop("x", None)
-        y1 = self._exclusive_dict.pop("y1", None)
-        y2 = self._exclusive_dict.pop("y2", 0)
+        self._x = self._exclusive_dict.pop("x", None)
+        self._y1 = self._exclusive_dict.pop("y1", None)
+        self._y2 = self._exclusive_dict.pop("y2", 0)
         label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.fill_between(x, y1, y2, **self._exclusive_dict)
+        self._graph = self._ax.fill_between(
+            self._x, self._y1, self._y2, **self._exclusive_dict
+        )
         if label is not None:
             self._ax.legend()
+
+    def update(self, x=None, y1=None, y2=None, **kw):
+        self._clear()
+        if x is not None:
+            self._x = x
+        if y1 is not None:
+            self._y1 = y1
+        if y2 is not None:
+            self._y2 = y2
+        self._update(kw)
+        self._set_style()
+        self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
+        self._graph = self._ax.fill_between(
+            self._x, self._y1, self._y2, **self._exclusive_dict
+        )
+        self._redraw()

@@ -1,6 +1,6 @@
 from numpy import ndarray
 
-__all__ = ("_to_tuple", "_to_list")
+__all__ = ("_to_list", "_to_tuple")
 
 
 def _to_list(array):

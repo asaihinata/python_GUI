@@ -271,7 +271,10 @@ class Window(Wm):
                 if isinstance(widget, Menu):
                     self._root.config(menu=widget)
                 elif isinstance(widget, _Top_Graph):
-                    widget.widget(row_frame).pack(side="left")
+                    widget.master = row_frame
+                    w = widget.widget(row_frame)
+                    w.pack(side="left")
+                    w.config(cursor=kw.get("cursor", ""))
                 else:
                     widget.pack(side="left")
 

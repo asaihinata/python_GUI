@@ -1,5 +1,6 @@
 from inspect import stack
 from pathlib import Path
+from tkinter import Misc
 
 from sgg._graph._base import _Base_Graph
 
@@ -8,6 +9,18 @@ __all__ = ("_Top_Graph",)
 
 class _Top_Graph:
     _last_child_ids = {}
+    _master = None
+    _widget = None
+
+    @property
+    def master(self):
+        return self._master
+
+    @master.setter
+    def master(self, master):
+        if not isinstance(master, Misc):
+            raise TypeError
+        self._master = master
 
     def __str__(self):
         return self._name
@@ -39,4 +52,18 @@ class _Top_Graph:
         self._last_child_ids[name] = count
         name = f"!{name}" if count == 1 else f"!{name}{count}"
         self._name = "." + name if master._w == "." else master._w + "." + name
-        return _Base_Graph.__new__(self, master=master, figure=self.fig)
+        self._widget = _Base_Graph.__new__(self, master=master, figure=self.fig)
+        self._canvas = self._widget.get_tk_widget()
+        return self._canvas
+
+    def configure(self, cnf=None, **kw):
+        return self._canvas.configure(cnf=cnf, **kw)
+
+    config = configure
+
+    def _redraw(self):
+        if self._widget is not None:
+            self._widget.draw()
+
+    def _clear(self):
+        self._ax.clear()

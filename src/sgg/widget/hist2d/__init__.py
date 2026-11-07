@@ -1,5 +1,5 @@
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _update_dict
 
 __all__ = ("Hist2D",)
 
@@ -29,10 +29,22 @@ class Hist2D(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        x = self._exclusive_dict.pop("x", None)
-        y = self._exclusive_dict.pop("y", None)
+        self._x = self._exclusive_dict.pop("x", None)
+        self._y = self._exclusive_dict.pop("y", None)
         label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.hist2d(x, y, **self._exclusive_dict)
+        self._graph = self._ax.hist2d(self._x, self._y, **self._exclusive_dict)
         if label is not None:
             self._ax.legend()
+
+    def update(self, x=None, y=None, **kw):
+        self._clear()
+        if x is not None:
+            self._x = x
+        if y is not None:
+            self._y = y
+        self._update(kw)
+        self._set_style()
+        self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
+        self._graph = self._ax.hist2d(self._x, self._y, **self._exclusive_dict)
+        self._redraw()

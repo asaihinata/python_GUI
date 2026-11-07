@@ -11,5 +11,4 @@ class _set_figure_canvas(FigureCanvasTkAgg):
 
 class _Base_Graph:
     def __new__(cls, master=None, figure=None):
-        cls = _set_figure_canvas(figure=figure, master=master).get_tk_widget()
-        return cls
+        return _set_figure_canvas(figure=figure, master=master)
