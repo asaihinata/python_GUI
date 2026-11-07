@@ -64,10 +64,11 @@ class Window(Wm):
     _default_dict = {
         "alpha": 1.0,
         "layout": None,
-        "title": "window",
+        "maximize": False,
         "scroll": False,
         "scroll_x": False,
         "scroll_y": False,
+        "title": "window",
     }
 
     def __init__(self, cnf={}, **kw):
@@ -79,6 +80,8 @@ class Window(Wm):
         parent = self._root
         self.title = self._default_dict["title"]
         self.alpha = self._default_dict["alpha"]
+        if self._default_dict["maximize"]:
+            self.maximize()
         scroll = self._default_dict["scroll"]
         if scroll:
             scroll_x, scroll_y = True, True
@@ -367,3 +370,9 @@ class Window(Wm):
                 child.config(cnf)
 
     config = configure
+
+    def maximize(self):
+        self.root.state("zoomed")
+
+    def minimize(self):
+        self.root.iconify()
