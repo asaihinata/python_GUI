@@ -1,6 +1,4 @@
-from tkinter import Canvas
-from tkinter import Frame as tkframe
-from tkinter import Tk, Wm
+from tkinter import Canvas, Misc, Tk, Wm
 from tkinter.ttk import Scrollbar
 
 from sgg._graph._base import _Top_Graph
@@ -60,16 +58,21 @@ from sgg.widget.violinplot import Violinplot
 __all__ = ("Window",)
 
 
-class Window(Wm):
-    _default_dict = {
-        "alpha": 1.0,
-        "layout": None,
-        "maximize": False,
-        "scroll": False,
-        "scroll_x": False,
-        "scroll_y": False,
-        "title": "window",
-    }
+class Window(Misc, Wm):
+    _default_dict = {}
+
+    def __new__(cls, *args, **kw):
+        cls = super().__new__(cls)
+        cls._default_dict = {
+            "alpha": 1.0,
+            "layout": None,
+            "maximize": False,
+            "scroll": False,
+            "scroll_x": False,
+            "scroll_y": False,
+            "title": "window",
+        }
+        return cls
 
     def __init__(self, cnf=None, **kw):
         self._key_widget_save = {}
@@ -82,6 +85,7 @@ class Window(Wm):
         self.alpha = self._default_dict["alpha"]
         if self._default_dict["maximize"]:
             self.maximize()
+        self._root.protocol("WM_DELETE_WINDOW", self._on_window_close)
         scroll = self._default_dict["scroll"]
         if scroll:
             scroll_x, scroll_y = True, True
@@ -94,9 +98,15 @@ class Window(Wm):
         if self._scroll_canvas is not None:
             self._fit_canvas_to_content(parent)
 
+    def __str__(self):
+        return str(self._root)
+
+    def __repr__(self):
+        return repr(self._root)
+
     def _setup_scroll(self, scroll_x, scroll_y):
         canvas = Canvas(self._root, highlightthickness=0)
-        inner = tkframe(canvas)
+        inner = Frame(canvas)
         win_id = canvas.create_window((0, 0), window=inner, anchor="nw")
         self._scroll_canvas = canvas
 
@@ -131,11 +141,9 @@ class Window(Wm):
 
     def _fit_canvas_to_content(self, inner):
         self._root.update_idletasks()
-        max_w = self._root.winfo_screenwidth() - 100
-        max_h = self._root.winfo_screenheight() - 150
         self._scroll_canvas.configure(
-            width=min(inner.winfo_reqwidth(), max_w),
-            height=min(inner.winfo_reqheight(), max_h),
+            width=min(inner.winfo_reqwidth(), self._root.winfo_screenwidth() - 100),
+            height=min(inner.winfo_reqheight(), self._root.winfo_screenheight() - 150),
         )
 
     def _win_creat(self, root, layout):
@@ -146,7 +154,7 @@ class Window(Wm):
         for c, i in enumerate(layout):
             if not isinstance(i, list | tuple):
                 raise TypeError("layoutの値が不正です")
-            row_frame = tkframe(root, name=f"layout_row_{c}")
+            row_frame = Frame(root, name=f"layout_row_{c}")
             row_frame.pack(fill="x")
             for j in i:
                 type_ = j.get("type", None)
@@ -281,6 +289,9 @@ class Window(Wm):
                 else:
                     widget.pack(side="left")
 
+    def _on_window_close(self):
+        self._root.destroy()
+
     def _key_set(self, key, widget):
         if key is None or not isinstance(key, str):
             key = "widget"
@@ -304,6 +315,10 @@ class Window(Wm):
 
     def quit(self):
         self._root.quit()
+
+    @property
+    def tk(self):
+        return self._root.tk
 
     @property
     def root(self):
@@ -342,11 +357,14 @@ class Window(Wm):
     def configure(self, cnf=None, **kw):
         if cnf is None and not kw:
             return self._root.configure()
-        self._root.configure(cnf, **kw)
+        if isinstance(cnf, dict):
+            cnf.update(kw)
+        else:
+            cnf = kw
         cnf = {
-            i: self._root.cget(i)
-            for i in self._root.keys()
-            if i
+            k: v
+            for k, v in cnf.items()
+            if k
             in (
                 "background",
                 "bd",
@@ -358,6 +376,7 @@ class Window(Wm):
                 "highlightbackground",
                 "highlightcolor",
                 "highlightthickness",
+                "menu",
                 "padx",
                 "pady",
                 "relief",
@@ -365,14 +384,20 @@ class Window(Wm):
                 "width",
             )
         }
+        if isinstance(cnf["menu"], dict) is not None:
+            self._root.configure(menu=Menu(self._root, cnf.pop("menu")["kw"]))
+        self._root.configure(cnf)
         for child in self._root.winfo_children():
-            if isinstance(child, tkframe):
+            if isinstance(child, Frame):
                 child.config(cnf)
 
     config = configure
 
     def maximize(self):
-        self.root.state("zoomed")
+        self._root.state("zoomed")
 
     def minimize(self):
-        self.root.iconify()
+        self._root.iconify()
+
+    def destroy(self):
+        self._root.destroy()
