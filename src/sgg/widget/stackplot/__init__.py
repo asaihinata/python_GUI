@@ -1,3 +1,4 @@
+from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
 from sgg.models import _setDefaultValues2, _update_dict
 
@@ -8,7 +9,6 @@ class Stackplot(TwoDimensional):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
-        _top_def_dict = TwoDimensional.__new__(cls)._default_dict
         cls = super().__new__(cls)
         cls._exclusive_dict = {
             "baseline": "zero",
@@ -22,7 +22,7 @@ class Stackplot(TwoDimensional):
             "x": None,
             "y": None,
         }
-        cls._default_dict = cls._exclusive_dict | _top_def_dict
+        cls._default_dict = cls._exclusive_dict | _TWODIMENSIONAL_PROPERTY_DICT
         return cls
 
     def __init__(self, cnf={}, **kw):

@@ -1,3 +1,4 @@
+from sgg._constant import _THREEDIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.threedimensional import ThreeDimensional
 from sgg.models import _setDefaultValues2, _update_dict
 
@@ -8,7 +9,6 @@ class DScatter(ThreeDimensional):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
-        _top_def_dict = ThreeDimensional.__new__(cls)._default_dict
         cls = super().__new__(cls)
         cls._exclusive_dict = {
             "alpha": None,
@@ -29,7 +29,7 @@ class DScatter(ThreeDimensional):
             "y": None,
             "z": None,
         }
-        cls._default_dict = cls._exclusive_dict | _top_def_dict
+        cls._default_dict = cls._exclusive_dict | _THREEDIMENSIONAL_PROPERTY_DICT
         return cls
 
     def __init__(self, cnf={}, **kw):
