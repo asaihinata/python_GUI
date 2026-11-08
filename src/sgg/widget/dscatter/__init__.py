@@ -40,13 +40,15 @@ class DScatter(ThreeDimensional):
         self._x = self._exclusive_dict.pop("x", None)
         self._y = self._exclusive_dict.pop("y", None)
         self._z = self._exclusive_dict.pop("z", None)
-        label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.scatter(
-            self._x, self._y, self._z, **self._exclusive_dict
-        )
+        self._graph_draw(self._x, self._y, self._z, self._exclusive_dict)
+
+    def _graph_draw(self, x, y, z, kw):
+        label = self._default_dict.get("label", None)
+        self._graph = self._ax.scatter(x, y, z, **kw)
         if label is not None:
             self._ax.legend()
+        self._set_style()
 
     def update(self, x=None, y=None, z=None, **kw):
         self._clear()
@@ -57,9 +59,6 @@ class DScatter(ThreeDimensional):
         if z is not None:
             self._z = z
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.scatter(
-            self._x, self._y, self._z, **self._exclusive_dict
-        )
+        self._graph_draw(self._x, self._y, self._z, self._exclusive_dict)
         self._redraw()

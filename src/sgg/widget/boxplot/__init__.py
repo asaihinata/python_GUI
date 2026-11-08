@@ -52,22 +52,25 @@ class Boxplot(TwoDimensional):
             self._exclusive_dict, self._default_dict
         )
         self._values = self._exclusive_dict.pop("values", None)
-        if self._values is not None:
-            self._values = asanyarray(self._values).T
+        super().__init__(self._default_dict)
+        self._graph_draw(self._values, self._exclusive_dict)
+
+    def _graph_draw(self, values, kw):
+        label = self._default_dict.get("label", None)
+        if values is not None:
+            self._values = asanyarray(values).T
         else:
             raise TypeError
-        label = self._default_dict.get("label", None)
-        super().__init__(self._default_dict)
-        self._graph = self._ax.boxplot(self._values, **self._exclusive_dict)
+        self._graph = self._ax.boxplot(self._values, **kw)
         if label is not None:
             self._ax.legend()
+        self._set_style()
 
     def update(self, values=None, **kw):
         self._clear()
-        if values is not None:
-            self._values = values
+        if values is None:
+            values = self._values
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.boxplot(self._values, **self._exclusive_dict)
+        self._graph_draw(values, self._exclusive_dict)
         self._redraw()

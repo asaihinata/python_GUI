@@ -65,14 +65,20 @@ class Violinplot(TwoDimensional):
         )
         self._values = self._exclusive_dict.pop("values", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.violinplot(self._values, **self._exclusive_dict)
+        self._graph_draw(self._values, self._exclusive_dict)
+
+    def _graph_draw(self, values, kw):
+        label = self._default_dict.get("label", None)
+        self._graph = self._ax.violinplot(values, **kw)
+        if label is not None:
+            self._ax.legend()
+        self._set_style()
 
     def update(self, values=None, **kw):
         self._clear()
         if values is not None:
             self._values = values
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.hist(self._values, **self._exclusive_dict)
+        self._graph_draw(self._values, self._exclusive_dict)
         self._redraw()

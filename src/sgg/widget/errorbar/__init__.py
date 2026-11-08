@@ -40,11 +40,15 @@ class Errorbar(TwoDimensional):
         )
         self._x = self._exclusive_dict.pop("x", None)
         self._y = self._exclusive_dict.pop("y", None)
-        label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.errorbar(self._x, self._y, **self._exclusive_dict)
+        self._graph_draw(self._x, self._y, self._exclusive_dict)
+
+    def _graph_draw(self, x, y, kw):
+        label = self._default_dict.get("label", None)
+        self._graph = self._ax.errorbar(x, y, **kw)
         if label is not None:
             self._ax.legend()
+        self._set_style()
 
     def update(self, x=None, y=None, **kw):
         self._clear()
@@ -53,7 +57,6 @@ class Errorbar(TwoDimensional):
         if y is not None:
             self._y = y
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.errorbar(self._x, self._y, **self._exclusive_dict)
+        self._graph_draw(self._x, self._y, self._exclusive_dict)
         self._redraw()

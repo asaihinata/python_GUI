@@ -16,7 +16,7 @@ class Stackplot(TwoDimensional):
             "edgecolor": None,
             "facecolor": None,
             "hatch": None,
-            "label": None,
+            "labels": (),
             "linestyle": "-",
             "linewidth": None,
             "x": None,
@@ -32,13 +32,15 @@ class Stackplot(TwoDimensional):
         )
         self._x = self._exclusive_dict.pop("x", None)
         self._y = self._exclusive_dict.pop("y", None)
-        label = self._exclusive_dict.pop("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.stackplot(
-            self._x, self._y, labels=label, **self._exclusive_dict
-        )
-        if label is not None:
+        self._graph_draw(self._x, self._y, self._exclusive_dict)
+
+    def _graph_draw(self, x, y, kw):
+        label = self._default_dict.get("labels", ())
+        self._graph = self._ax.stackplot(x, y, **kw)
+        if len(label):
             self._ax.legend()
+        self._set_style()
 
     def update(self, x=None, y=None, **kw):
         self._clear()
@@ -47,7 +49,6 @@ class Stackplot(TwoDimensional):
         if y is not None:
             self._y = y
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.stackplot(self._x, self._y, **self._exclusive_dict)
+        self._graph_draw(self._x, self._y, self._exclusive_dict)
         self._redraw()

@@ -31,13 +31,15 @@ class Fill_Between(TwoDimensional):
         self._x = self._exclusive_dict.pop("x", None)
         self._y1 = self._exclusive_dict.pop("y1", None)
         self._y2 = self._exclusive_dict.pop("y2", 0)
-        label = self._default_dict.get("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.fill_between(
-            self._x, self._y1, self._y2, **self._exclusive_dict
-        )
+        self._graph_draw(self._x, self._y1, self._y2, self._exclusive_dict)
+
+    def _graph_draw(self, x, y1, y2, kw):
+        label = self._default_dict.get("label", None)
+        self._graph = self._ax.fill_between(x, y1, y2, **kw)
         if label is not None:
             self._ax.legend()
+        self._set_style()
 
     def update(self, x=None, y1=None, y2=None, **kw):
         self._clear()
@@ -48,9 +50,6 @@ class Fill_Between(TwoDimensional):
         if y2 is not None:
             self._y2 = y2
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.fill_between(
-            self._x, self._y1, self._y2, **self._exclusive_dict
-        )
+        self._graph_draw(self._x, self._y1, self._y2, self._exclusive_dict)
         self._redraw()

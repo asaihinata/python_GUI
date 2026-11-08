@@ -18,7 +18,7 @@ class Pie(TwoDimensional):
             "explode": None,
             "frame": False,
             "hatch": None,
-            "label": None,
+            "labels": None,
             "labeldistance": 1.1,
             "normalize": True,
             "pctdistance": 0.6,
@@ -39,18 +39,21 @@ class Pie(TwoDimensional):
             self._exclusive_dict, self._default_dict
         )
         self._value = self._exclusive_dict.pop("value", None)
-        label = self._exclusive_dict.pop("label", None)
         super().__init__(self._default_dict)
-        self._graph = self._ax.pie(self._value, labels=label, **self._exclusive_dict)
+        self._graph_draw(self._value, self._exclusive_dict)
+
+    def _graph_draw(self, value, kw):
+        label = self._default_dict.get("labels", None)
+        self._graph = self._ax.pie(value, **kw)
         if label is not None:
             self._ax.legend()
+        self._set_style()
 
     def update(self, value=None, **kw):
         self._clear()
         if value is not None:
             self._value = value
         self._update(kw)
-        self._set_style()
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph = self._ax.pie(self._value, **self._exclusive_dict)
+        self._graph_draw(self._value, self._exclusive_dict)
         self._redraw()
