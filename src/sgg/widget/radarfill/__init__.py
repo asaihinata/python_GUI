@@ -40,7 +40,7 @@ class Radarfill(Radar):
     def _graph_draw(self, value, kw):
         self._set_style()
         label = self._default_dict.get("label", None)
-        self._graph = self._ax.fill(self.theta, value, **kw)
+        self._graph = self._ax.fill(self._theta, value, **kw)
         if label is not None:
             self._ax.legend()
 
