@@ -42,14 +42,6 @@ class ThreeDimensional(_Top_Graph):
         self._ax = self.fig.add_subplot(111, projection="3d")
         self._set_style()
 
-    @property
-    def ax(self) -> Axes3D:
-        return self._ax
-
-    def _update(self, kw):
-        for k, v in kw.items():
-            self._default_dict[k] = v
-
     def _set_style(self):
         dicts = self._default_dict
         if dicts["grid"]:

@@ -12,6 +12,13 @@ class _Top_Graph:
     _master = None
     _widget = None
 
+    def __str__(self):
+        return self._name
+
+    def __repr__(self):
+        class_ = self.__class__
+        return f"<{class_.__module__}.{class_.__qualname__} object {self._name}>"
+
     @property
     def master(self):
         return self._master
@@ -22,12 +29,9 @@ class _Top_Graph:
             raise TypeError
         self._master = master
 
-    def __str__(self):
-        return self._name
-
-    def __repr__(self):
-        class_ = self.__class__
-        return f"<{class_.__module__}.{class_.__qualname__} object {self._name}>"
+    @property
+    def ax(self):
+        return self._ax
 
     def savefig(self, filename, path=None, dpi="figure"):
         if path is None:
@@ -67,3 +71,7 @@ class _Top_Graph:
 
     def _clear(self):
         self._ax.clear()
+
+    def _update(self, kw):
+        for k, v in kw.items():
+            self._default_dict[k] = v

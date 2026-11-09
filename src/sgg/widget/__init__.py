@@ -23,6 +23,8 @@ from sgg.widget.listbox import Listbox
 from sgg.widget.menu import Menu
 from sgg.widget.pie import Pie
 from sgg.widget.plot import Plot
+from sgg.widget.radarfill import Radarfill
+from sgg.widget.radarplot import Radarplot
 from sgg.widget.radiobutton import Radiobutton
 from sgg.widget.savefilebutton import SaveFileButton
 from sgg.widget.scale import Scale

@@ -8,13 +8,13 @@ from sgg.widget import (AskColorButton, AskDirectoryButton, AskFileButton, Bar,
                         Barh, Boxplot, Button, Checkbutton, DScatter, Ecdf,
                         Entry, Errorbar, Eventplot, Fill_Between, Frame,
                         FrameLabel, Hexbin, Hist, Hist2D, Image, Label,
-                        Listbox, Menu, Pie, Plot, Radiobutton, SaveFileButton,
-                        Scale, Scatter, Spinbox, Stackplot, Stairs, Stem,
-                        TAskColorButton, TAskDirectoryButton, TAskFileButton,
-                        TButton, TCheckbutton, TEntry, Text, TFrame,
-                        TFrameLabel, TImage, TLabel, TNotebook, TProgressbar,
-                        TRadiobutton, TSaveFileButton, TScale, TSpinbox,
-                        Violinplot, Window)
+                        Listbox, Menu, Pie, Plot, Radarfill, Radarplot,
+                        Radiobutton, SaveFileButton, Scale, Scatter, Spinbox,
+                        Stackplot, Stairs, Stem, TAskColorButton,
+                        TAskDirectoryButton, TAskFileButton, TButton,
+                        TCheckbutton, TEntry, Text, TFrame, TFrameLabel,
+                        TImage, TLabel, TNotebook, TProgressbar, TRadiobutton,
+                        TSaveFileButton, TScale, TSpinbox, Violinplot, Window)
 
 
 class gui:
@@ -225,3 +225,11 @@ class gui:
     @staticmethod
     def DScatter(**kw):
         return {"type": "DScatter", "kw": kw}
+
+    @staticmethod
+    def Radarplot(**kw):
+        return {"type": "Radarplot", "kw": kw}
+
+    @staticmethod
+    def Radarfill(**kw):
+        return {"type": "Radarfill", "kw": kw}
