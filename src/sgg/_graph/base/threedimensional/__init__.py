@@ -1,5 +1,4 @@
 from matplotlib.figure import Figure
-from mpl_toolkits.mplot3d.axes3d import Axes3D
 
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
@@ -16,7 +15,6 @@ class ThreeDimensional(_Top_Graph):
             "dpi": 100,
             "edgecolor": None,
             "facecolor": None,
-            "linewidth": 0.0,
             "grid": True,
             "grid_alpha": 0.5,
             "grid_axis": "both",
@@ -24,10 +22,23 @@ class ThreeDimensional(_Top_Graph):
             "grid_linestyle": "--",
             "grid_linewidth": 0.7,
             "grid_which": "major",
+            "linewidth": 0.0,
             "title": None,
+            "title_fontdict": None,
+            "title_pad": 6.0,
+            "title_loc": "center",
             "xlabel": None,
+            "xlabel_fontdict": None,
+            "xlabel_labelpad": 4.0,
+            "xlabel_loc": "center",
             "ylabel": None,
+            "ylabel_fontdict": None,
+            "ylabel_labelpad": 4.0,
+            "ylabel_loc": "center",
             "zlabel": None,
+            "zlabel_fontdict": None,
+            "zlabel_labelpad": 4.0,
+            "zlabel_loc": "center",
         }
         return cls
 
@@ -53,7 +64,27 @@ class ThreeDimensional(_Top_Graph):
                 linewidth=dicts["grid_linewidth"],
                 which=dicts["grid_which"],
             )
-        self._ax.set_title(dicts["title"])
-        self._ax.set_xlabel(dicts["xlabel"])
-        self._ax.set_ylabel(dicts["ylabel"])
-        self._ax.set_zlabel(dicts["zlabel"])
+        self._ax.set_title(
+            dicts["title"],
+            fontdict=dicts["title_fontdict"],
+            loc=dicts["title_loc"],
+            pad=dicts["title_pad"],
+        )
+        self._ax.set_xlabel(
+            dicts["xlabel"],
+            fontdict=dicts["xlabel_fontdict"],
+            loc=dicts["xlabel_loc"],
+            labelpad=dicts["xlabel_labelpad"],
+        )
+        self._ax.set_ylabel(
+            dicts["ylabel"],
+            fontdict=dicts["ylabel_fontdict"],
+            loc=dicts["ylabel_loc"],
+            labelpad=dicts["ylabel_labelpad"],
+        )
+        self._ax.set_zlabel(
+            dicts["zlabel"],
+            fontdict=dicts["zlabel_fontdict"],
+            loc=dicts["zlabel_loc"],
+            labelpad=dicts["zlabel_labelpad"],
+        )

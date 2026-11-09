@@ -14,7 +14,6 @@ class Radar(_Top_Graph):
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
         cls._default_dict = {
-            "value": None,
             "dpi": 100,
             "edgecolor": None,
             "facecolor": None,
@@ -26,8 +25,18 @@ class Radar(_Top_Graph):
             "grid_linewidth": 0.7,
             "grid_which": "major",
             "title": None,
+            "title_fontdict": None,
+            "title_loc": "center",
+            "title_pad": 6.0,
+            "value": None,
             "xlabel": None,
+            "xlabel_fontdict": None,
+            "xlabel_labelpad": 4.0,
+            "xlabel_loc": "center",
             "ylabel": None,
+            "ylabel_fontdict": None,
+            "ylabel_labelpad": 4.0,
+            "ylabel_loc": "center",
         }
         return cls
 
@@ -55,9 +64,24 @@ class Radar(_Top_Graph):
                 which=dicts["grid_which"],
             )
         self._set_theta()
-        self._ax.set_title(dicts["title"])
-        self._ax.set_xlabel(dicts["xlabel"])
-        self._ax.set_ylabel(dicts["ylabel"])
+        self._ax.set_title(
+            dicts["title"],
+            fontdict=dicts["title_fontdict"],
+            loc=dicts["title_loc"],
+            pad=dicts["title_pad"],
+        )
+        self._ax.set_xlabel(
+            dicts["xlabel"],
+            fontdict=dicts["xlabel_fontdict"],
+            loc=dicts["xlabel_loc"],
+            labelpad=dicts["xlabel_labelpad"],
+        )
+        self._ax.set_ylabel(
+            dicts["ylabel"],
+            fontdict=dicts["ylabel_fontdict"],
+            loc=dicts["ylabel_loc"],
+            labelpad=dicts["ylabel_labelpad"],
+        )
         self._ax.set_xticks(self._theta)
         self._ax.set_theta_zero_location("N")  # 方向の決定
         self._ax.set_theta_direction(-1)  # 時計回り

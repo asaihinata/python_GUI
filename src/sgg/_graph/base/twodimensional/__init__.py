@@ -1,4 +1,3 @@
-from matplotlib.axes._axes import Axes
 from matplotlib.figure import Figure
 
 from sgg._graph._base import _Top_Graph
@@ -24,8 +23,17 @@ class TwoDimensional(_Top_Graph):
             "grid_linewidth": 0.7,
             "grid_which": "major",
             "title": None,
+            "title_fontdict": None,
+            "title_pad": 6.0,
+            "title_loc": "center",
             "xlabel": None,
+            "xlabel_fontdict": None,
+            "xlabel_labelpad": 4.0,
+            "xlabel_loc": "center",
             "ylabel": None,
+            "ylabel_fontdict": None,
+            "ylabel_labelpad": 4.0,
+            "ylabel_loc": "center",
         }
         return cls
 
@@ -51,6 +59,21 @@ class TwoDimensional(_Top_Graph):
                 linewidth=dicts["grid_linewidth"],
                 which=dicts["grid_which"],
             )
-        self._ax.set_title(dicts["title"])
-        self._ax.set_xlabel(dicts["xlabel"])
-        self._ax.set_ylabel(dicts["ylabel"])
+        self._ax.set_title(
+            dicts["title"],
+            fontdict=dicts["title_fontdict"],
+            loc=dicts["title_loc"],
+            pad=dicts["title_pad"],
+        )
+        self._ax.set_xlabel(
+            dicts["xlabel"],
+            fontdict=dicts["xlabel_fontdict"],
+            loc=dicts["xlabel_loc"],
+            labelpad=dicts["xlabel_labelpad"],
+        )
+        self._ax.set_ylabel(
+            dicts["ylabel"],
+            fontdict=dicts["ylabel_fontdict"],
+            loc=dicts["ylabel_loc"],
+            labelpad=dicts["ylabel_labelpad"],
+        )
