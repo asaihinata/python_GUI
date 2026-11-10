@@ -1,4 +1,5 @@
 from matplotlib.figure import Figure
+from matplotlib.projections.polar import PolarAxes
 
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
@@ -22,30 +23,27 @@ class Polar(_Top_Graph):
             "grid_linestyle": "--",
             "grid_linewidth": 0.7,
             "grid_which": "major",
+            "theta_direction": True,
+            "theta_offset": 0,
+            "theta_zero_location_loc": "E",
+            "theta_zero_location_offset": 0.0,
             "title": None,
             "title_fontdict": None,
-            "title_pad": 6.0,
             "title_loc": "center",
-            "xlabel": None,
-            "xlabel_fontdict": None,
-            "xlabel_labelpad": 4.0,
-            "xlabel_loc": "center",
-            "ylabel": None,
-            "ylabel_fontdict": None,
-            "ylabel_labelpad": 4.0,
-            "ylabel_loc": "center",
+            "title_pad": 6.0,
         }
         return cls
 
     def __init__(self, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        dicts = self._default_dict
         self.fig = Figure(
             figsize=(5, 4),
-            dpi=self._default_dict["dpi"],
-            facecolor=self._default_dict["facecolor"],
-            edgecolor=self._default_dict["edgecolor"],
+            dpi=dicts["dpi"],
+            facecolor=dicts["facecolor"],
+            edgecolor=dicts["edgecolor"],
         )
-        self._ax = self.fig.add_subplot(111, projection="polar")
+        self._ax: PolarAxes = self.fig.add_subplot(111, projection="polar")
         self._set_style()
 
     def _set_style(self):
@@ -65,15 +63,11 @@ class Polar(_Top_Graph):
             loc=dicts["title_loc"],
             pad=dicts["title_pad"],
         )
-        self._ax.set_xlabel(
-            dicts["xlabel"],
-            fontdict=dicts["xlabel_fontdict"],
-            loc=dicts["xlabel_loc"],
-            labelpad=dicts["xlabel_labelpad"],
+        if not isinstance(dicts["theta_direction"], bool):
+            dicts["theta_direction"] = True
+        self._ax.set_theta_direction(1 if dicts["theta_direction"] else -1)
+        self._ax.set_theta_offset(dicts["theta_offset"])
+        self._ax.set_theta_zero_location(
+            dicts["theta_zero_location_loc"], dicts["theta_zero_location_offset"]
         )
-        self._ax.set_ylabel(
-            dicts["ylabel"],
-            fontdict=dicts["ylabel_fontdict"],
-            loc=dicts["ylabel_loc"],
-            labelpad=dicts["ylabel_labelpad"],
-        )
+        self._ax.set_thetagrids((0, 45, 90, 135, 180, 225, 270, 315))
