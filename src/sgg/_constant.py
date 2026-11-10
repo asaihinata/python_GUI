@@ -1,11 +1,12 @@
 from types import MappingProxyType
 
 __all__ = (
-    "_TWODIMENSIONAL_PROPERTY_DICT",
-    "_THREEDIMENSIONAL_PROPERTY_DICT",
+    "_POLAR_PROPERTY_DICT",
     "_RADAR_PROPERTY_DICT",
+    "_THREEDIMENSIONAL_PROPERTY_DICT",
+    "_TWODIMENSIONAL_PROPERTY_DICT",
 )
-_TWODIMENSIONAL_PROPERTY_DICT = MappingProxyType(
+_POLAR_PROPERTY_DICT = MappingProxyType(
     {
         "dpi": 100,
         "edgecolor": None,
@@ -19,8 +20,44 @@ _TWODIMENSIONAL_PROPERTY_DICT = MappingProxyType(
         "grid_which": "major",
         "title": None,
         "title_fontdict": None,
-        "title_pad": 6.0,
         "title_loc": "center",
+        "title_pad": 6.0,
+        "value": None,
+        "xlabel": None,
+        "xlabel_fontdict": None,
+        "xlabel_labelpad": 4.0,
+        "xlabel_loc": "center",
+        "ylabel": None,
+        "ylabel_fontdict": None,
+        "ylabel_labelpad": 4.0,
+        "ylabel_loc": "center",
+    }
+)
+"""
+References:
+    ### title
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
+    ### xlabel,ylabel
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
+"""
+_RADAR_PROPERTY_DICT = MappingProxyType(
+    {
+        "dpi": 100,
+        "edgecolor": None,
+        "facecolor": None,
+        "grid": True,
+        "grid_alpha": 0.5,
+        "grid_axis": "both",
+        "grid_color": "gray",
+        "grid_linestyle": "--",
+        "grid_linewidth": 0.7,
+        "grid_which": "major",
+        "title": None,
+        "title_fontdict": None,
+        "title_loc": "center",
+        "title_pad": 6.0,
+        "value": None,
         "xlabel": None,
         "xlabel_fontdict": None,
         "xlabel_labelpad": 4.0,
@@ -79,7 +116,7 @@ References:
         https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
         https://matplotlib.org/stable/api/_as_gen/mpl_toolkits.mplot3d.axes3d.Axes3D.set_zlabel.html
 """
-_RADAR_PROPERTY_DICT = MappingProxyType(
+_TWODIMENSIONAL_PROPERTY_DICT = MappingProxyType(
     {
         "dpi": 100,
         "edgecolor": None,
@@ -93,9 +130,8 @@ _RADAR_PROPERTY_DICT = MappingProxyType(
         "grid_which": "major",
         "title": None,
         "title_fontdict": None,
-        "title_loc": "center",
         "title_pad": 6.0,
-        "value": None,
+        "title_loc": "center",
         "xlabel": None,
         "xlabel_fontdict": None,
         "xlabel_labelpad": 4.0,

@@ -28,6 +28,7 @@ from sgg.widget.listbox import Listbox
 from sgg.widget.menu import Menu
 from sgg.widget.pie import Pie
 from sgg.widget.plot import Plot
+from sgg.widget.polarplot import Polarplot
 from sgg.widget.radarfill import Radarfill
 from sgg.widget.radarplot import Radarplot
 from sgg.widget.radiobutton import Radiobutton
@@ -282,6 +283,8 @@ class Window(Misc, Wm):
                     widget = Radarplot(**kw)
                 elif type_ == "Radarfill":
                     widget = Radarfill(**kw)
+                elif type_ == "Polarplot":
+                    widget = Polarplot(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
                 self._key_set(kw.pop("key", None), widget)
