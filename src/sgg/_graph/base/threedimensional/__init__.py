@@ -38,7 +38,6 @@ class ThreeDimensional(_Top_Graph):
             "zlabel": None,
             "zlabel_fontdict": None,
             "zlabel_labelpad": 4.0,
-            "zlabel_loc": "center",
         }
         return cls
 
@@ -85,6 +84,5 @@ class ThreeDimensional(_Top_Graph):
         self._ax.set_zlabel(
             dicts["zlabel"],
             fontdict=dicts["zlabel_fontdict"],
-            loc=dicts["zlabel_loc"],
             labelpad=dicts["zlabel_labelpad"],
         )

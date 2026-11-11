@@ -97,7 +97,6 @@ _THREEDIMENSIONAL_PROPERTY_DICT = MappingProxyType(
         "ylabel_loc": "center",
         "ylabel_fontdict": None,
         "zlabel_labelpad": 4.0,
-        "zlabel_loc": "center",
         "zlabel_fontdict": None,
     }
 )
