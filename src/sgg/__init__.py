@@ -1,4 +1,5 @@
 from sgg.color import Color
+from sgg.constant import *
 from sgg.font import TKFont
 from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
                        PopupWarning)

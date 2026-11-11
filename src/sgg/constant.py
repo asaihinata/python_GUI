@@ -1,0 +1,46 @@
+"""シンボリック定数を保存しているモジュール"""
+
+# 配置
+LEFT = "left"
+CENTER = "center"
+RIGHT = "right"
+TOP = "top"
+BOTTOM = "bottom"
+# 方向
+HORIZONTAL = "horizontal"
+VERTICAL = "vertical"
+# アンカー
+N = "n"
+S = "s"
+W = "w"
+E = "e"
+NW = "nw"
+SW = "sw"
+NE = "ne"
+SE = "se"
+NS = "ns"
+EW = "ew"
+NSEW = "nsew"
+# ステータス
+NORMAL = "normal"
+DISABLED = "disabled"
+ACTIVE = "active"
+# Listウィジェットの選択モード
+SINGLE = "single"
+BROWSE = "browse"
+MULTIPLE = "multiple"
+EXTENDED = "extended"
+# 特殊なシンボリック定数
+SEL = "sel"
+SEL_FIRST = "sel.first"
+SEL_LAST = "sel.last"
+END = "end"
+INSERT = "insert"
+CURRENT = "current"
+ANCHOR = "anchor"
+ALL = "all"
+# 線種
+SOLIDLINE = "-"
+DASHEDLINE = "--"
+DASHDOTLINE = "-."
+DOTTEDLINE = ":"
