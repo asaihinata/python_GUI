@@ -1,5 +1,3 @@
-import numpy as np
-
 from sgg._constant import _POLAR_PROPERTY_DICT
 from sgg._graph.base.polar import Polar
 from sgg.models import _setDefaultValues2, _update_dict
