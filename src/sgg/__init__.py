@@ -1,21 +1,9 @@
 from sgg.color import Color
 from sgg.constant import *
 from sgg.font import TKFont
-from sgg.popup import (Popup, PopupError, PopupInformation, PopupQuestion,
-                       PopupWarning)
-from sgg.version import (__matplotlib_version_info__, __numpy_version_info__,
-                         __version__, __version_info__)
-from sgg.widget import (AskColorButton, AskDirectoryButton, AskFileButton, Bar,
-                        Barh, Boxplot, Button, Checkbutton, DScatter, Ecdf,
-                        Entry, Errorbar, Eventplot, Fill_Between, Frame,
-                        FrameLabel, Hexbin, Hist, Hist2D, Image, Label,
-                        Listbox, Menu, Pie, Plot, Polarplot, Radarfill,
-                        Radarplot, Radiobutton, SaveFileButton, Scale, Scatter,
-                        Spinbox, Stackplot, Stairs, Stem, TAskColorButton,
-                        TAskDirectoryButton, TAskFileButton, TButton,
-                        TCheckbutton, TEntry, Text, TFrame, TFrameLabel,
-                        TImage, TLabel, TNotebook, TProgressbar, TRadiobutton,
-                        TSaveFileButton, TScale, TSpinbox, Violinplot, Window)
+from sgg.popup import *
+from sgg.version import *
+from sgg.widget import *
 
 
 class gui:
@@ -238,3 +226,15 @@ class gui:
     @staticmethod
     def Polarplot(**kw):
         return {"type": "Polarplot", "kw": kw}
+
+    @staticmethod
+    def Polarscatter(**kw):
+        return {"type": "Polarscatter", "kw": kw}
+
+    @staticmethod
+    def Polarstem(**kw):
+        return {"type": "Polarstem", "kw": kw}
+
+    @staticmethod
+    def Polarhist(**kw):
+        return {"type": "Polarhist", "kw": kw}

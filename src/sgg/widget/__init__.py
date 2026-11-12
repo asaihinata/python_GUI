@@ -23,7 +23,10 @@ from sgg.widget.listbox import Listbox
 from sgg.widget.menu import Menu
 from sgg.widget.pie import Pie
 from sgg.widget.plot import Plot
+from sgg.widget.polarhist import Polarhist
 from sgg.widget.polarplot import Polarplot
+from sgg.widget.polarscatter import Polarscatter
+from sgg.widget.polarstem import Polarstem
 from sgg.widget.radarfill import Radarfill
 from sgg.widget.radarplot import Radarplot
 from sgg.widget.radiobutton import Radiobutton
