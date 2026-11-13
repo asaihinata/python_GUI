@@ -2,6 +2,7 @@ from sgg.color import Color
 from sgg.constant import *
 from sgg.font import TKFont
 from sgg.popup import *
+from sgg.style import *
 from sgg.version import *
 from sgg.widget import *
 
