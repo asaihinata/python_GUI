@@ -173,6 +173,10 @@ class gui:
         return {"type": "Stairs", "kw": kw}
 
     @staticmethod
+    def Fill(**kw):
+        return {"type": "Fill", "kw": kw}
+
+    @staticmethod
     def Fill_Between(**kw):
         return {"type": "Fill_Between", "kw": kw}
 
@@ -211,6 +215,12 @@ class gui:
     @staticmethod
     def Ecdf(**kw):
         return {"type": "Ecdf", "kw": kw}
+
+    if __matplotlib_version_info__ >= (3, 11):
+
+        @staticmethod
+        def Grouped_bar(**kw):
+            return {"type": "Grouped_bar", "kw": kw}
 
     @staticmethod
     def DScatter(**kw):

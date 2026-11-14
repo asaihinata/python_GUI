@@ -11,9 +11,11 @@ from sgg.widget.ecdf import Ecdf
 from sgg.widget.entry import Entry
 from sgg.widget.errorbar import Errorbar
 from sgg.widget.eventplot import Eventplot
+from sgg.widget.fill import Fill
 from sgg.widget.fill_between import Fill_Between
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
+from sgg.widget.grouped_bar import Grouped_bar
 from sgg.widget.hexbin import Hexbin
 from sgg.widget.hist import Hist
 from sgg.widget.hist2d import Hist2D

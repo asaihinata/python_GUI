@@ -3,6 +3,7 @@ from tkinter.ttk import Scrollbar
 
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
+from sgg.version import __matplotlib_version_info__
 from sgg.widget.askcolorbutton import AskColorButton
 from sgg.widget.askdirectorybutton import AskDirectoryButton
 from sgg.widget.askfilebutton import AskFileButton
@@ -16,9 +17,11 @@ from sgg.widget.ecdf import Ecdf
 from sgg.widget.entry import Entry
 from sgg.widget.errorbar import Errorbar
 from sgg.widget.eventplot import Eventplot
+from sgg.widget.fill import Fill
 from sgg.widget.fill_between import Fill_Between
 from sgg.widget.frame import Frame
 from sgg.widget.framelabel import FrameLabel
+from sgg.widget.grouped_bar import Grouped_bar
 from sgg.widget.hexbin import Hexbin
 from sgg.widget.hist import Hist
 from sgg.widget.hist2d import Hist2D
@@ -260,6 +263,8 @@ class Window(Misc, Wm):
                     widget = Stackplot(**kw)
                 elif type_ == "Stairs":
                     widget = Stairs(**kw)
+                elif type_ == "Fill":
+                    widget = Fill(**kw)
                 elif type_ == "Fill_Between":
                     widget = Fill_Between(**kw)
                 elif type_ == "Hist":
@@ -280,6 +285,12 @@ class Window(Misc, Wm):
                     widget = Pie(**kw)
                 elif type_ == "Ecdf":
                     widget = Ecdf(**kw)
+                elif type_ == "Grouped_bar":
+                    if __matplotlib_version_info__ < (3, 11):
+                        raise ImportError(
+                            "matplotlibのバージョンを3.11以上にしてください"
+                        )
+                    widget = Grouped_bar(**kw)
                 elif type_ == "DScatter":
                     widget = DScatter(**kw)
                 elif type_ == "Radarplot":
