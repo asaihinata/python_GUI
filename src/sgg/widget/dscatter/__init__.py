@@ -27,7 +27,7 @@ class DScatter(ThreeDimensional):
             "vmin": None,
             "x": None,
             "y": None,
-            "z": None,
+            "z": 0,
         }
         cls._default_dict = cls._exclusive_dict | _THREEDIMENSIONAL_PROPERTY_DICT
         return cls
@@ -39,7 +39,7 @@ class DScatter(ThreeDimensional):
         )
         self._x = self._exclusive_dict.pop("x", None)
         self._y = self._exclusive_dict.pop("y", None)
-        self._z = self._exclusive_dict.pop("z", None)
+        self._z = self._exclusive_dict.pop("z", 0)
         super().__init__(self._default_dict)
         self._graph_draw(self._x, self._y, self._z, self._exclusive_dict)
 

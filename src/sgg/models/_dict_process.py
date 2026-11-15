@@ -1,6 +1,12 @@
 """`辞書型(dict)`についての処理を行うモジュール"""
 
-__all__ = ("_delete_keys", "_setDefaultValues1", "_setDefaultValues2", "_update_dict")
+__all__ = (
+    "_delete_keys",
+    "_setDefaultValues1",
+    "_setDefaultValues2",
+    "_setDefaultValues3",
+    "_update_dict",
+)
 
 
 def _delete_keys(key1, key2={}):
@@ -20,6 +26,10 @@ def _setDefaultValues2(default, cnf=None, **kw):
             if key in default:
                 default[key] = val
     return default
+
+
+def _setDefaultValues3(default, removedict):
+    return {k: default[k] for k in (default.keys() - removedict)}
 
 
 def _update_dict(target, input_dict):

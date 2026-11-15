@@ -1,6 +1,8 @@
+import numpy as np
+
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2, _update_dict
+from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
 
 __all__ = ("Scatter",)
 
@@ -22,6 +24,8 @@ class Scatter(TwoDimensional):
             "marker": None,
             "norm": None,
             "plotnonfinite": False,
+            "regressionanalysis": False,
+            "regressionanalysis_type": 1,
             "s": None,
             "vmax": None,
             "vmin": None,
@@ -43,7 +47,19 @@ class Scatter(TwoDimensional):
 
     def _graph_draw(self, x, y, kw):
         label = self._default_dict.get("label", None)
-        self._graph = self._ax.scatter(x, y, **kw)
+        self._graph = self._ax.scatter(
+            x,
+            y,
+            **_setDefaultValues3(kw, {"regressionanalysis_type", "regressionanalysis"}),
+        )
+        if kw["regressionanalysis"]:
+            x, y = np.sort(self._graph.get_offsets(), axis=0).T
+            self._graph = (
+                self._graph,
+                self._ax.plot(
+                    x, np.polyval(np.polyfit(x, y, kw["regressionanalysis_type"]), x)
+                ),
+            )
         if label is not None:
             self._ax.legend()
         self._set_style()
@@ -58,3 +74,8 @@ class Scatter(TwoDimensional):
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
         self._graph_draw(self._x, self._y, self._exclusive_dict)
         self._redraw()
+
+    def point_coordinates(self):
+        if isinstance(self._graph, tuple):
+            return self._graph[0].get_offsets()
+        return self._graph.get_offsets()
