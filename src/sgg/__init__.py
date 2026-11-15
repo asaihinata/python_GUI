@@ -1,8 +1,10 @@
 from sgg.color import Color
 from sgg.constant import *
+from sgg.dialog import (AskColor, AskDirectoryname, AskOpenFilename,
+                        AskSaveAsFilename)
 from sgg.font import TKFont
 from sgg.popup import *
-from sgg.style import *
+from sgg.style import Cursor, Marker
 from sgg.version import *
 from sgg.widget import *
 

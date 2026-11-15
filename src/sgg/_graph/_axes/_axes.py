@@ -80,3 +80,12 @@ class _AXES:
 
     def get_yticks(self, *, minor=False):
         return self._ax.get_yticks(minor=minor)
+
+    # axis
+    def get_title(self, loc="center"):
+        if not loc.lower() in ("left", "center", "right"):
+            loc = "center"
+        return self._ax.get_title(loc)
+
+    def set_title(self, label, fontdict=None, loc=None, pad=None, *, y=None, **kw):
+        return self._ax.set_title(label, fontdict, loc, pad, y=y, **kw)

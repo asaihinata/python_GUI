@@ -1,4 +1,8 @@
-# https://drafts.csswg.org/css-color-4/#named-colors
+"""
+References:
+    https://drafts.csswg.org/css-color-4/#named-colors
+"""
+
 from types import MappingProxyType
 
 __all__ = ("_COLOR_DICT",)
