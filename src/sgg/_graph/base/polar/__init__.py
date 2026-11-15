@@ -1,13 +1,13 @@
 from matplotlib.figure import Figure
-from matplotlib.projections.polar import PolarAxes
 
+from sgg._graph._axes import _AXESPOLAR
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
 
 __all__ = ("Polar",)
 
 
-class Polar(_Top_Graph):
+class Polar(_Top_Graph, _AXESPOLAR):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -43,13 +43,14 @@ class Polar(_Top_Graph):
             facecolor=dicts["facecolor"],
             edgecolor=dicts["edgecolor"],
         )
-        self._ax: PolarAxes = self.fig.add_subplot(111, projection="polar")
+        self._ax = self.fig.add_subplot(111, projection="polar")
         self._set_style()
 
     def _set_style(self):
         dicts = self._default_dict
+        ax = self._ax
         if dicts["grid"]:
-            self._ax.grid(
+            ax.grid(
                 alpha=dicts["grid_alpha"],
                 axis=dicts["grid_axis"],
                 color=dicts["grid_color"],
@@ -57,7 +58,7 @@ class Polar(_Top_Graph):
                 linewidth=dicts["grid_linewidth"],
                 which=dicts["grid_which"],
             )
-        self._ax.set_title(
+        ax.set_title(
             dicts["title"],
             fontdict=dicts["title_fontdict"],
             loc=dicts["title_loc"],
@@ -65,9 +66,9 @@ class Polar(_Top_Graph):
         )
         if not isinstance(dicts["theta_direction"], bool):
             dicts["theta_direction"] = True
-        self._ax.set_theta_direction(1 if dicts["theta_direction"] else -1)
-        self._ax.set_theta_offset(dicts["theta_offset"])
-        self._ax.set_theta_zero_location(
+        ax.set_theta_direction(1 if dicts["theta_direction"] else -1)
+        ax.set_theta_offset(dicts["theta_offset"])
+        ax.set_theta_zero_location(
             dicts["theta_zero_location_loc"], dicts["theta_zero_location_offset"]
         )
-        self._ax.set_thetagrids((0, 45, 90, 135, 180, 225, 270, 315))
+        ax.set_thetagrids((0, 45, 90, 135, 180, 225, 270, 315))

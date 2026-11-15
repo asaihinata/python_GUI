@@ -1,6 +1,7 @@
 import numpy as np
 from matplotlib.figure import Figure
 
+from sgg._graph._axes import _AXESPOLAR
 from sgg._graph._base import _Top_Graph
 from sgg._graph.base.radar.custom import radar_factory
 from sgg.models import _setDefaultValues2
@@ -8,7 +9,7 @@ from sgg.models import _setDefaultValues2
 __all__ = ("Radar",)
 
 
-class Radar(_Top_Graph):
+class Radar(_Top_Graph, _AXESPOLAR):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -54,8 +55,9 @@ class Radar(_Top_Graph):
 
     def _set_style(self):
         dicts = self._default_dict
+        ax = self._ax
         if dicts["grid"]:
-            self._ax.grid(
+            ax.grid(
                 alpha=dicts["grid_alpha"],
                 axis=dicts["grid_axis"],
                 color=dicts["grid_color"],
@@ -64,27 +66,27 @@ class Radar(_Top_Graph):
                 which=dicts["grid_which"],
             )
         self._set_theta()
-        self._ax.set_title(
+        ax.set_title(
             dicts["title"],
             fontdict=dicts["title_fontdict"],
             loc=dicts["title_loc"],
             pad=dicts["title_pad"],
         )
-        self._ax.set_xlabel(
+        ax.set_xlabel(
             dicts["xlabel"],
             fontdict=dicts["xlabel_fontdict"],
             loc=dicts["xlabel_loc"],
             labelpad=dicts["xlabel_labelpad"],
         )
-        self._ax.set_ylabel(
+        ax.set_ylabel(
             dicts["ylabel"],
             fontdict=dicts["ylabel_fontdict"],
             loc=dicts["ylabel_loc"],
             labelpad=dicts["ylabel_labelpad"],
         )
-        self._ax.set_xticks(self._theta)
-        self._ax.set_theta_zero_location("N")  # 方向の決定
-        self._ax.set_theta_direction(-1)  # 時計回り
+        ax.set_xticks(self._theta)
+        ax.set_theta_zero_location("N")  # 方向の決定
+        ax.set_theta_direction(-1)  # 時計回り
 
     def _set_theta(self):
         self._theta = radar_factory(self._default_dict["value"].shape[-1])

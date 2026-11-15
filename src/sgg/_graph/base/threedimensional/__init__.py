@@ -1,12 +1,13 @@
 from matplotlib.figure import Figure
 
+from sgg._graph._axes import _AXES3D
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2
 
 __all__ = ("ThreeDimensional",)
 
 
-class ThreeDimensional(_Top_Graph):
+class ThreeDimensional(_Top_Graph, _AXES3D):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -54,6 +55,7 @@ class ThreeDimensional(_Top_Graph):
 
     def _set_style(self):
         dicts = self._default_dict
+        ax = self._ax
         if dicts["grid"]:
             self._ax.grid(
                 alpha=dicts["grid_alpha"],
@@ -63,25 +65,25 @@ class ThreeDimensional(_Top_Graph):
                 linewidth=dicts["grid_linewidth"],
                 which=dicts["grid_which"],
             )
-        self._ax.set_title(
+        ax.set_title(
             dicts["title"],
             fontdict=dicts["title_fontdict"],
             loc=dicts["title_loc"],
             pad=dicts["title_pad"],
         )
-        self._ax.set_xlabel(
+        ax.set_xlabel(
             dicts["xlabel"],
             fontdict=dicts["xlabel_fontdict"],
             loc=dicts["xlabel_loc"],
             labelpad=dicts["xlabel_labelpad"],
         )
-        self._ax.set_ylabel(
+        ax.set_ylabel(
             dicts["ylabel"],
             fontdict=dicts["ylabel_fontdict"],
             loc=dicts["ylabel_loc"],
             labelpad=dicts["ylabel_labelpad"],
         )
-        self._ax.set_zlabel(
+        ax.set_zlabel(
             dicts["zlabel"],
             fontdict=dicts["zlabel_fontdict"],
             labelpad=dicts["zlabel_labelpad"],
