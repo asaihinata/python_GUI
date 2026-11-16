@@ -65,6 +65,13 @@ class _Top_Graph:
 
     config = configure
 
+    @property
+    def graph(self):
+        return self._graph
+
+    def graphdata(self):
+        return self._graph
+
     def _redraw(self):
         if self._widget is not None:
             self._widget.draw()

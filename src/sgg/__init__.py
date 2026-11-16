@@ -218,6 +218,10 @@ class gui:
     def Ecdf(**kw):
         return {"type": "Ecdf", "kw": kw}
 
+    @staticmethod
+    def Waterfall(**kw):
+        return {"type": "Waterfall", "kw": kw}
+
     if __matplotlib_version_info__ >= (3, 11):
 
         @staticmethod

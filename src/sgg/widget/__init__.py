@@ -57,4 +57,5 @@ from sgg.widget.tsavefilebutton import TSaveFileButton
 from sgg.widget.tscale import TScale
 from sgg.widget.tspinbox import TSpinbox
 from sgg.widget.violinplot import Violinplot
+from sgg.widget.waterfall import Waterfall
 from sgg.widget.window import Window
