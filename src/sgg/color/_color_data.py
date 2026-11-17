@@ -1,4 +1,6 @@
 """
+色データを保存しているモジュール
+
 References:
     https://drafts.csswg.org/css-color-4/#named-colors
 """

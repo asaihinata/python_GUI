@@ -1,5 +1,7 @@
 from re import IGNORECASE, compile, sub
 
+from numpy import floating, integer
+
 from sgg.color._color_data import _COLOR_DICT
 
 __all__ = ("Color",)
@@ -19,10 +21,12 @@ class Color:
         if isinstance(r, str) and g is None and b is None:
             r, g, b, a = cls._parse_text(r)
         for label, value in (("r", r), ("g", g), ("b", b)):
-            if isinstance(value, bool) or not isinstance(value, int):
+            if not isinstance(value, int | integer):
                 raise TypeError(f"{label} は整数で指定してください: {value!r}")
             if not 0 <= value <= 255:
-                raise ValueError(f"{label} は 0 - 255 で指定してください: {value}")
+                raise ValueError(f"{label} は 0 - 255 で指定してください: {value!r}")
+        if not isinstance(a, int | integer | float | floating):
+            raise TypeError(f"aには実数で指定してください: {a!r}")
         if not 0.0 <= a <= 1.0:
             raise ValueError(f"a は 0.0 - 1.0 で指定してください: {a}")
         cls.r, cls.g, cls.b, cls.a = r, g, b, float(a)
