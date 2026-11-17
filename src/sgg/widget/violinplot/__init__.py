@@ -68,12 +68,9 @@ class Violinplot(TwoDimensional):
 
     def _graph_draw(self, kw):
         self._set_style()
-        label = self._default_dict.get("label", None)
         self._graph = self._ax.violinplot(
             kw["values"], **_setDefaultValues3(kw, {"values"})
         )
-        if kw["label"] is not None:
-            self._ax.legend()
 
     def update(self, values=None, **kw):
         self._clear()
