@@ -63,7 +63,6 @@ from sgg.widget.tsavefilebutton import TSaveFileButton
 from sgg.widget.tscale import TScale
 from sgg.widget.tspinbox import TSpinbox
 from sgg.widget.violinplot import Violinplot
-from sgg.widget.waterfall import Waterfall
 
 __all__ = ("Window",)
 
@@ -286,8 +285,6 @@ class Window(Misc, Wm):
                     widget = Pie(**kw)
                 elif type_ == "Ecdf":
                     widget = Ecdf(**kw)
-                elif type_ == "Waterfall":
-                    widget = Waterfall(**kw)
                 elif type_ == "Grouped_bar":
                     if __matplotlib_version_info__ < (3, 11):
                         raise ImportError(

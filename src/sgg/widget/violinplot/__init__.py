@@ -1,6 +1,6 @@
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2, _update_dict
+from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
 from sgg.version import __matplotlib_version_info__
 
 __all__ = ("Violinplot",)
@@ -63,22 +63,23 @@ class Violinplot(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        self._values = self._exclusive_dict.pop("values", None)
         super().__init__(self._default_dict)
-        self._graph_draw(self._values, self._exclusive_dict)
+        self._graph_draw(self._exclusive_dict)
 
-    def _graph_draw(self, values, kw):
-        label = self._default_dict.get("label", None)
-        self._graph = self._ax.violinplot(values, **kw)
-        if label is not None:
-            self._ax.legend()
+    def _graph_draw(self, kw):
         self._set_style()
+        label = self._default_dict.get("label", None)
+        self._graph = self._ax.violinplot(
+            kw["values"], **_setDefaultValues3(kw, {"values"})
+        )
+        if kw["label"] is not None:
+            self._ax.legend()
 
     def update(self, values=None, **kw):
         self._clear()
         if values is not None:
-            self._values = values
+            self._default_dict["values"] = self._exclusive_dict["values"] = values
         self._update(kw)
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph_draw(self._values, self._exclusive_dict)
+        self._graph_draw(self._exclusive_dict)
         self._redraw()

@@ -2,7 +2,7 @@ from numpy import asanyarray
 
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2, _update_dict
+from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
 
 __all__ = ("Boxplot",)
 
@@ -51,26 +51,25 @@ class Boxplot(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        self._values = self._exclusive_dict.pop("values", None)
         super().__init__(self._default_dict)
-        self._graph_draw(self._values, self._exclusive_dict)
+        self._graph_draw(self._exclusive_dict)
 
-    def _graph_draw(self, values, kw):
-        label = self._default_dict.get("label", None)
-        if values is not None:
-            self._values = asanyarray(values).T
-        else:
-            raise TypeError
-        self._graph = self._ax.boxplot(self._values, **kw)
-        if label is not None:
-            self._ax.legend()
+    def _graph_draw(self, kw):
         self._set_style()
+        values = kw["values"]
+        if values is None:
+            raise TypeError
+        else:
+            values = asanyarray(values).T
+        self._graph = self._ax.boxplot(values, **_setDefaultValues3(kw, {"values"}))
+        if kw["label"] is not None:
+            self._ax.legend()
 
     def update(self, values=None, **kw):
         self._clear()
-        if values is None:
-            values = self._values
+        if values is not None:
+            self._default_dict["values"] = self._exclusive_dict["values"] = values
         self._update(kw)
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph_draw(values, self._exclusive_dict)
+        self._graph_draw(self._exclusive_dict)
         self._redraw()

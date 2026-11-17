@@ -40,17 +40,17 @@ class Scatter(TwoDimensional):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        self._x = self._exclusive_dict.pop("x", None)
-        self._y = self._exclusive_dict.pop("y", None)
         super().__init__(self._default_dict)
-        self._graph_draw(self._x, self._y, self._exclusive_dict)
+        self._graph_draw(self._exclusive_dict)
 
-    def _graph_draw(self, x, y, kw):
-        label = self._default_dict.get("label", None)
+    def _graph_draw(self, kw):
+        self._set_style()
         self._graph = self._ax.scatter(
-            x,
-            y,
-            **_setDefaultValues3(kw, {"regressionanalysis_type", "regressionanalysis"}),
+            kw["x"],
+            kw["y"],
+            **_setDefaultValues3(
+                kw, {"x", "y", "regressionanalysis_type", "regressionanalysis"}
+            ),
         )
         if kw["regressionanalysis"]:
             x, y = np.sort(self._graph.get_offsets(), axis=0).T
@@ -60,19 +60,18 @@ class Scatter(TwoDimensional):
                     x, np.polyval(np.polyfit(x, y, kw["regressionanalysis_type"]), x)
                 ),
             )
-        if label is not None:
+        if kw["label"] is not None:
             self._ax.legend()
-        self._set_style()
 
     def update(self, x=None, y=None, **kw):
         self._clear()
         if x is not None:
-            self._x = x
+            self._default_dict["x"] = self._exclusive_dict["x"] = x
         if y is not None:
-            self._y = y
+            self._default_dict["y"] = self._exclusive_dict["y"] = y
         self._update(kw)
         self._exclusive_dict = _update_dict(self._exclusive_dict, kw)
-        self._graph_draw(self._x, self._y, self._exclusive_dict)
+        self._graph_draw(self._exclusive_dict)
         self._redraw()
 
     def point_coordinates(self):

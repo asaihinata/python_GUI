@@ -29,7 +29,6 @@ class Radar(_Top_Graph, _AXESPOLAR):
             "title_fontdict": None,
             "title_loc": "center",
             "title_pad": 6.0,
-            "value": None,
             "xlabel": None,
             "xlabel_fontdict": None,
             "xlabel_labelpad": 4.0,
@@ -89,7 +88,9 @@ class Radar(_Top_Graph, _AXESPOLAR):
         ax.set_theta_direction(-1)  # 時計回り
 
     def _set_theta(self):
-        self._theta = radar_factory(self._default_dict["value"].shape[-1])
+        self._theta = radar_factory(
+            np.asanyarray(self._default_dict["value"]).shape[-1]
+        )
         return self._theta
 
     def _update(self, kw):
