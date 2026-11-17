@@ -38,7 +38,7 @@ class _Top_Graph:
             path = stack()[1].filename
         if not isinstance(filename, str):
             raise TypeError("filenameの型が不正です")
-        self.fig.savefig(
+        self._fig.savefig(
             Path(path).parent / f"{filename}.png",
             format="png",
             dpi=dpi,
@@ -56,7 +56,7 @@ class _Top_Graph:
         self._last_child_ids[name] = count
         name = f"!{name}" if count == 1 else f"!{name}{count}"
         self._name = "." + name if master._w == "." else master._w + "." + name
-        self._widget = _Base_Graph.__new__(self, master=master, figure=self.fig)
+        self._widget = _Base_Graph.__new__(self, master=master, figure=self._fig)
         self._canvas = self._widget.get_tk_widget()
         return self._canvas
 

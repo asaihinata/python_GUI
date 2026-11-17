@@ -37,13 +37,13 @@ class Polar(_Top_Graph, _AXESPOLAR):
     def __init__(self, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         dicts = self._default_dict
-        self.fig = Figure(
+        self._fig = Figure(
             figsize=(5, 4),
             dpi=dicts["dpi"],
             facecolor=dicts["facecolor"],
             edgecolor=dicts["edgecolor"],
         )
-        self._ax = self.fig.add_subplot(111, projection="polar")
+        self._ax = self._fig.add_subplot(111, projection="polar")
         self._set_style()
 
     def _set_style(self):
@@ -71,4 +71,3 @@ class Polar(_Top_Graph, _AXESPOLAR):
         ax.set_theta_zero_location(
             dicts["theta_zero_location_loc"], dicts["theta_zero_location_offset"]
         )
-        ax.set_thetagrids((0, 45, 90, 135, 180, 225, 270, 315))

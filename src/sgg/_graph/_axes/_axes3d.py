@@ -3,7 +3,10 @@ References:
     https://matplotlib.org/stable/api/toolkits/mplot3d/axes3d.html
 """
 
-from ._axes import _AXES
+from matplotlib.scale import ScaleBase
+
+from sgg._constant import _SCALE_TUPLE
+from sgg._graph._axes import _AXES
 
 __all__ = ("_AXES3D",)
 
@@ -111,3 +114,10 @@ class _AXES3D(_AXES):
 
     def get_zticks(self, *, minor=False):
         return self._ax.get_zticks(minor=minor)
+
+    def set_zscale(self, value, **kw):
+        if value in _SCALE_TUPLE or isinstance(value, ScaleBase):
+            self._ax.set_zscale(value, **kw)
+
+    def get_zscale(self):
+        return self._ax.get_zscale()

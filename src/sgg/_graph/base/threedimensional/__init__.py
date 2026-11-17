@@ -44,13 +44,13 @@ class ThreeDimensional(_Top_Graph, _AXES3D):
 
     def __init__(self, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self.fig = Figure(
+        self._fig = Figure(
             figsize=(5, 4),
             dpi=self._default_dict["dpi"],
             facecolor=self._default_dict["facecolor"],
             edgecolor=self._default_dict["edgecolor"],
         )
-        self._ax = self.fig.add_subplot(111, projection="3d")
+        self._ax = self._fig.add_subplot(111, projection="3d")
         self._set_style()
 
     def _set_style(self):

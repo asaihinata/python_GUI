@@ -3,7 +3,7 @@ References:
     https://matplotlib.org/stable/api/projections/polar.html#matplotlib.projections.polar.PolarAxes
 """
 
-from ._axes import _AXES
+from sgg._graph._axes import _AXES
 
 __all__ = ("_AXESPOLAR",)
 

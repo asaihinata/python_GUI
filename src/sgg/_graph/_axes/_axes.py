@@ -3,6 +3,10 @@ References:
     https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html
 """
 
+from matplotlib.scale import ScaleBase
+
+from sgg._constant import _SCALE_TUPLE
+
 __all__ = ("_AXES",)
 
 
@@ -44,6 +48,13 @@ class _AXES:
     def get_xticks(self, *, minor=False):
         return self._ax.get_xticks(minor=minor)
 
+    def set_xscale(self, value, **kw):
+        if value in _SCALE_TUPLE or isinstance(value, ScaleBase):
+            self._ax.set_xscale(value, **kw)
+
+    def get_xscale(self):
+        return self._ax.get_xscale()
+
     # y軸
     def set_ylim(
         self, min=None, max=None, *, emit=True, auto=False, ymin=None, ymax=None
@@ -80,6 +91,13 @@ class _AXES:
 
     def get_yticks(self, *, minor=False):
         return self._ax.get_yticks(minor=minor)
+
+    def set_yscale(self, value, **kw):
+        if value in _SCALE_TUPLE or isinstance(value, ScaleBase):
+            self._ax.set_yscale(value, **kw)
+
+    def get_yscale(self):
+        return self._ax.get_yscale()
 
     # axis
     def get_title(self, loc="center"):
