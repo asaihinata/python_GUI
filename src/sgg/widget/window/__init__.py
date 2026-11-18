@@ -2,6 +2,7 @@ from tkinter import Canvas, Misc, Tk, Wm
 from tkinter.ttk import Scrollbar
 
 from sgg._graph._base import _Top_Graph
+from sgg.exceptions import VersionError
 from sgg.models import _setDefaultValues2
 from sgg.version import __matplotlib_version_info__
 from sgg.widget.askcolorbutton import AskColorButton
@@ -287,7 +288,7 @@ class Window(Misc, Wm):
                     widget = Ecdf(**kw)
                 elif type_ == "Grouped_bar":
                     if __matplotlib_version_info__ < (3, 11):
-                        raise ImportError(
+                        raise VersionError(
                             "matplotlibのバージョンを3.11以上にしてください"
                         )
                     widget = Grouped_bar(**kw)

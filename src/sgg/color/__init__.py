@@ -3,6 +3,7 @@ from re import IGNORECASE, compile, sub
 from numpy import floating, integer
 
 from sgg.color._color_data import _COLOR_DICT
+from sgg.exceptions import ColorError
 
 __all__ = ("Color",)
 
@@ -50,13 +51,13 @@ class Color:
             return Color._parse_hex(hex6)
         if _HEX_RE.match(s):
             return Color._parse_hex(s)
-        raise ValueError(f"色として解釈できません: {text!r}")
+        raise ColorError(f"色として解釈できません: {text!r}")
 
     @staticmethod
     def _parse_hex(code):
         match = _HEX_RE.match(code.strip())
         if match is None:
-            raise ValueError(f"16進数カラーコードの形式が不正です: {code!r}")
+            raise ColorError(f"16進数カラーコードの形式が不正です: {code!r}")
         digits = match.group(1)
         if len(digits) in (3, 4):
             digits = "".join(ch * 2 for ch in digits)
