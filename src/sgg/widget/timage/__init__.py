@@ -2,7 +2,7 @@ from pathlib import Path
 from tkinter import PhotoImage
 from tkinter.ttk import Label as ttklabel
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("TImage",)
 
@@ -38,7 +38,7 @@ class TImage(ttklabel):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        file = self._default_dict.pop("file")
+        file = self._default_dict["file"]
         if not isinstance(file, str | Path):
             raise TypeError(f"{file}が不正の値です")
         elif isinstance(file, str):
@@ -51,6 +51,10 @@ class TImage(ttklabel):
             raise ValueError(f"{file.suffix}は対応していない拡張子です")
         image = PhotoImage(file=file)
         super().__init__(
-            master, class_="TLabel", style="TLabel", image=image, **self._default_dict
+            master,
+            class_="TLabel",
+            style="TLabel",
+            image=image,
+            **_setDefaultValues3(self._default_dict, {"file"}),
         )
         self.image = image

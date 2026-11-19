@@ -60,10 +60,13 @@ class Checkbutton(tkcheckbutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._group = self._default_dict.get("group", "default")
+        groupname = self._default_dict["group"]
+        if not isinstance(groupname, str):
+            groupname = "default"
         self._variable = BooleanVar(
-            value=False, name=f"Checkbutton_{self._group}_{Checkbutton._count}"
+            value=False, name=f"Checkbutton_{groupname}_{Checkbutton._count}"
         )
+        Checkbutton._count = Checkbutton._count + 1
         super().__init__(
             master,
             variable=self._variable,
@@ -72,13 +75,10 @@ class Checkbutton(tkcheckbutton):
             offvalue=False,
             **_setDefaultValues3(self._default_dict, {"variable", "command", "group"}),
         )
-        Checkbutton._count = Checkbutton._count + 1
-        if not isinstance(self._group, str):
-            self._group = "default"
-        if self._group in self._group_setting:
-            self._group_setting[self._group].append(self)
+        if groupname in self._group_setting:
+            self._group_setting[groupname].append(self)
         else:
-            self._group_setting[self._group] = [self]
+            self._group_setting[groupname] = [self]
 
     def __bool__(self):
         return self._variable.get()

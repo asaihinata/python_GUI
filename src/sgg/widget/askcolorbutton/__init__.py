@@ -1,8 +1,7 @@
-from copy import deepcopy
 from tkinter import Button as tkbutton
 
 from sgg.dialog.chooser import AskColor
-from sgg.models import _delete_keys, _setDefaultValues2
+from sgg.models import _delete_keys, _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("AskColorButton",)
 
@@ -61,10 +60,9 @@ class AskColorButton(tkbutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         def _click_ask():
-            kw = deepcopy(self._exclusive_dict)
-            color = kw.pop("color")
-            self._color = AskColor(color=color, **kw)
-            del kw
+            self._color = AskColor(
+                color=kw["color"], **_setDefaultValues3(kw, {"color"})
+            )
 
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(

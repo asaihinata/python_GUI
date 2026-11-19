@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter.ttk import Radiobutton as ttkradiobutton
 
-from sgg.models import _do_func, _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("TRadiobutton",)
 
@@ -31,21 +31,22 @@ class TRadiobutton(ttkradiobutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._group = self._default_dict.pop("group", "default")
-        if not isinstance(self._group, str):
-            self._group = "default"
-        if self._group in self._group_setting:
-            var = self._group_setting[self._group]
+        groupname = self._default_dict["group"]
+        if not isinstance(groupname, str):
+            groupname = "default"
+        if groupname in self._group_setting:
+            var = self._group_setting[groupname]
         else:
-            var = BooleanVar(value=True, name=f"TRadio_{self._group}")
-            self._group_setting[self._group] = var
-        command = self._default_dict.pop("command", None)
+            var = BooleanVar(value=True, name=f"TRadio_{groupname}")
+            self._group_setting[groupname] = var
         super().__init__(
             master,
             variable=var,
             value=self,
-            command=lambda: _do_func(command),
+            command=lambda x=self._default_dict["command"]: _do_func(x),
             class_="TRadiobutton",
             style="TRadiobutton",
-            **self._default_dict,
+            **_setDefaultValues3(
+                self._default_dict, {"command", "group", "value", "variable"}
+            ),
         )

@@ -1,6 +1,6 @@
 from tkinter import Menu as tkmenu
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("Menu",)
 
@@ -39,8 +39,9 @@ class Menu(tkmenu):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        menubar = self._default_dict.pop("menubar", None)
-        super().__init__(master, self._default_dict)
+        self._set_dict = _setDefaultValues3(self._default_dict, {"menubar"})
+        super().__init__(master, **self._set_dict)
+        menubar = self._default_dict["menubar"]
         if menubar is not None:
             self._create_menu(menubar)
 
@@ -50,7 +51,7 @@ class Menu(tkmenu):
             if not isinstance(menus, dict):
                 continue
             for key, val in menus.items():
-                submenu = tkmenu(self, self._default_dict)
+                submenu = tkmenu(self, **self._set_dict)
                 self._add_items_recursive(submenu, val)
                 self.add_cascade(label=key, menu=submenu)
 
@@ -61,6 +62,7 @@ class Menu(tkmenu):
             elif isinstance(items, str):
                 menu.add_command(label=items)
             elif isinstance(items, dict):
-                label = items.get("label", "")
-                command = items.get("command", "")
-                menu.add_command(label=label, command=command)
+                menu.add_command(
+                    label=items.get("label", ""),
+                    command=lambda x=items.get("command", None): _do_func(x),
+                )

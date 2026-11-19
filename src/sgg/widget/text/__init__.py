@@ -1,6 +1,6 @@
 from tkinter import Text as tktext
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("Text",)
 
@@ -61,7 +61,7 @@ class Text(tktext):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        text = self._default_dict.pop("text", "")
-        super().__init__(master, self._default_dict)
+        super().__init__(master, **_setDefaultValues3(self._default_dict, {"text"}))
+        text = self._default_dict["text"]
         if isinstance(text, str):
             self.insert("1.0", text)

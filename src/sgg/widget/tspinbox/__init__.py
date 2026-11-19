@@ -1,6 +1,6 @@
 from tkinter.ttk import Spinbox as ttkspinbox
 
-from sgg.models import _do_func, _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("TSpinbox",)
 
@@ -38,11 +38,10 @@ class TSpinbox(ttkspinbox):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        command = self._default_dict.pop("command", None)
         super().__init__(
             master,
-            command=lambda: _do_func(command),
+            command=lambda x=self._default_dict["command"]: _do_func(x),
             class_="TSpinbox",
             style="TSpinbox",
-            **self._default_dict,
+            **_setDefaultValues3(self._default_dict, {"command"}),
         )

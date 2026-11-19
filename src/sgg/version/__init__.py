@@ -18,6 +18,7 @@ __all__ = (
 @final
 class _Version:
     __slots__ = ("_major", "_minor", "_micro")
+    __match_args__ = ("_major", "_minor", "_micro")
 
     def __init__(self, var):
         self._major, self._minor, self._micro = tuple(map(int, split(r"[.]", var)))
