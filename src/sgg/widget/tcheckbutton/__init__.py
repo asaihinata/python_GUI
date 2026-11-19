@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter.ttk import Checkbutton as ttkcheckbutton
 
-from sgg.models import _do_func, _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("TCheckbutton",)
 
@@ -33,20 +33,30 @@ class TCheckbutton(ttkcheckbutton):
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._group = self._default_dict.pop("group", "default")
-        variable = BooleanVar(
-            value=False, name=f"TCheckbutton_{self._group}_{self._count}"
+        self._variable = BooleanVar(
+            value=False, name=f"TCheckbutton_{self._group}_{TCheckbutton._count}"
         )
         TCheckbutton._count = TCheckbutton._count + 1
-        command = self._default_dict.pop("command", None)
         super().__init__(
             master,
-            onvalue=0,
-            offvalue=1,
-            variable=variable,
-            command=lambda: _do_func(command),
             class_="TCheckbutton",
             style="TCheckbutton",
-            **self._default_dict,
+            variable=self._variable,
+            command=lambda x=self._default_dict["command"]: _do_func(x),
+            onvalue=True,
+            offvalue=False,
+            **_setDefaultValues3(
+                self._default_dict,
+                {
+                    "onvalue",
+                    "offvalue",
+                    "class_",
+                    "style",
+                    "variable",
+                    "command",
+                    "group",
+                },
+            ),
         )
         if not isinstance(self._group, str):
             self._group = "default"
@@ -54,3 +64,14 @@ class TCheckbutton(ttkcheckbutton):
             self._group_setting[self._group].append(self)
         else:
             self._group_setting[self._group] = [self]
+
+    def __bool__(self):
+        return self._variable.get()
+
+    def get(self):
+        return self._variable.get()
+
+    def set(self, value):
+        if not isinstance(value, bool):
+            raise TypeError("値の型が不正です")
+        self._variable.set(value=value)

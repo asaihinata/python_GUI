@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter import Checkbutton as tkcheckbutton
 
-from sgg.models import _do_func, _setDefaultValues2
+from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("Checkbutton",)
 
@@ -60,23 +60,33 @@ class Checkbutton(tkcheckbutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._group = self._default_dict.pop("group", "default")
-        command = self._default_dict.pop("command", None)
-        variable = BooleanVar(
+        self._group = self._default_dict.get("group", "default")
+        self._variable = BooleanVar(
             value=False, name=f"Checkbutton_{self._group}_{Checkbutton._count}"
         )
-        Checkbutton._count = Checkbutton._count + 1
         super().__init__(
             master,
-            self._default_dict,
-            variable=variable,
-            command=lambda: _do_func(command),
-            onvalue=0,
-            offvalue=1,
+            variable=self._variable,
+            command=lambda x=self._default_dict["command"]: _do_func(x),
+            onvalue=True,
+            offvalue=False,
+            **_setDefaultValues3(self._default_dict, {"variable", "command", "group"}),
         )
+        Checkbutton._count = Checkbutton._count + 1
         if not isinstance(self._group, str):
             self._group = "default"
         if self._group in self._group_setting:
             self._group_setting[self._group].append(self)
         else:
             self._group_setting[self._group] = [self]
+
+    def __bool__(self):
+        return self._variable.get()
+
+    def get(self):
+        return self._variable.get()
+
+    def set(self, value):
+        if not isinstance(value, bool):
+            raise TypeError("値の型が不正です")
+        self._variable.set(value=value)

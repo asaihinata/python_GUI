@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter import Radiobutton as tkradiobutton
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("Radiobutton",)
 
@@ -58,12 +58,17 @@ class Radiobutton(tkradiobutton):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._group = self._default_dict.pop("group", "default")
+        self._group = self._default_dict["group"]
         if not isinstance(self._group, str):
             self._group = "default"
         if self._group in self._group_setting:
-            var = self._group_setting[self._group]
+            self._variable = self._group_setting[self._group]
         else:
-            var = BooleanVar(value=True, name=f"Radio_{self._group}")
-            self._group_setting[self._group] = var
-        super().__init__(master, self._default_dict, variable=var, value=self)
+            self._variable = BooleanVar(value=True, name=f"Radio_{self._group}")
+            self._group_setting[self._group] = self._variable
+        super().__init__(
+            master,
+            variable=self._variable,
+            value=self,
+            **_setDefaultValues3(self._default_dict, {"group", "value", "variable"}),
+        )
