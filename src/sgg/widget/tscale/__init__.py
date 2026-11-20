@@ -33,7 +33,7 @@ class TScale(ttkscale):
         stylename = "Horizontal.TScale" if orient == "horizontal" else "Vertical.TScale"
         super().__init__(
             master,
-            command=lambda x=self._default_dict["command"]: _do_func(x),
+            command=lambda _: _do_func(self._default_dict["command"]),
             class_="TScale",
             style=stylename,
             **_setDefaultValues3(self._default_dict, {"command"}),

@@ -54,12 +54,13 @@ class Entry(tkentry):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._variable = Variable(value=self._default_dict["value"])
         super().__init__(
             master,
-            textvariable=Variable(value=self._default_dict["value"]),
-            **_setDefaultValues3(self._default_dict, {"value", "textvariable"}),
+            textvariable=self._variable
+            ** _setDefaultValues3(self._default_dict, {"value", "textvariable"}),
         )
 
     def set(self, value):
         self._default_dict["value"] = value
-        self.config(textvariable=Variable(value=value))
+        self._variable.set(value=value)

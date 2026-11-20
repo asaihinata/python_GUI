@@ -1,6 +1,7 @@
+from tkinter import Variable
 from tkinter.ttk import Entry as ttkentry
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("TEntry",)
 
@@ -22,7 +23,7 @@ class TEntry(ttkentry):
             "show": "",
             "state": "normal",
             "takefocus": None,
-            "textvariable": None,
+            "value": None,
             "validate": "none",
             "validatecommand": "",
             "width": 20,
@@ -31,4 +32,15 @@ class TEntry(ttkentry):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        super().__init__(master, class_="TEntry", style="TEntry", **self._default_dict)
+        self._variable = Variable(value=self._default_dict["value"])
+        super().__init__(
+            master,
+            textvariable=self._variable,
+            class_="TEntry",
+            style="TEntry",
+            **_setDefaultValues3(self._default_dict, {"value", "textvariable"}),
+        )
+
+    def set(self, value):
+        self._default_dict["value"] = value
+        self._variable.set(value=value)

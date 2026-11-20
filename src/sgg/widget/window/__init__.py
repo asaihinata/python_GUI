@@ -337,7 +337,7 @@ class Window(Misc, Wm):
             raise NameError(f"{key}というkey名は存在しません")
         return self._key_widget_save.get(key)
 
-    def get(self,key):
+    def get(self, key):
         if key not in self._key_widget_save:
             raise NameError(f"{key}というkey名は存在しません")
         return self._key_widget_save.get(key)
