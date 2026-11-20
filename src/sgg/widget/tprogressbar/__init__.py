@@ -26,8 +26,7 @@ class TProgressbar(ttkprogressbar):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        value = self._default_dict["value"]
-        self.set_value(value)
+        self.set_value(self._default_dict["value"])
         maximum = self._default_dict["maximum"]
         if maximum is None or not isinstance(maximum, int | float):
             maximum = self._maximum(100)

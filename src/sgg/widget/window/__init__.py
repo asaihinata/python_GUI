@@ -333,9 +333,14 @@ class Window(Misc, Wm):
             self._key_widget_save[key] = widget
 
     def get_key(self, key):
+        if key not in self._key_widget_save:
+            raise NameError(f"{key}というkey名は存在しません")
         return self._key_widget_save.get(key)
 
-    get = get_key
+    def get(self,key):
+        if key not in self._key_widget_save:
+            raise NameError(f"{key}というkey名は存在しません")
+        return self._key_widget_save.get(key)
 
     def widget_key_namelist(self):
         return self._key_widget_save
