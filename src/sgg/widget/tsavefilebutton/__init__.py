@@ -45,14 +45,13 @@ class TSaveFileButton(ttkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        _default_dict = _delete_keys(self._default_dict, self._exclusive_dict)
         self._path = ""
         super().__init__(
             master,
             command=_click_ask,
             class_="TButton",
             style="TButton",
-            **_default_dict,
+            **_delete_keys(self._default_dict, self._exclusive_dict),
         )
 
     def __fspath__(self):

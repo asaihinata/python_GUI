@@ -70,9 +70,8 @@ class SaveFileButton(tkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        _default_dict = _delete_keys(self._default_dict, self._exclusive_dict)
         self._path = ""
-        super().__init__(master, _default_dict, command=_click_ask)
+        super().__init__(master, _delete_keys(self._default_dict, self._exclusive_dict), command=_click_ask)
 
     def __fspath__(self):
         return str(self._path)

@@ -66,11 +66,10 @@ class AskDirectoryButton(tkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        _default_dict = _delete_keys(self._default_dict, self._exclusive_dict)
         self._path = ""
         super().__init__(
             master,
-            _default_dict,
+            _delete_keys(self._default_dict, self._exclusive_dict),
             command=_click_ask,
         )
 
