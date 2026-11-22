@@ -26,17 +26,8 @@ class Radar(_Top_Graph, _AXESPOLAR):
             "grid_linewidth": 0.7,
             "grid_which": "major",
             "title": None,
-            "title_fontdict": None,
-            "title_loc": "center",
-            "title_pad": 6.0,
             "xlabel": None,
-            "xlabel_fontdict": None,
-            "xlabel_labelpad": 4.0,
-            "xlabel_loc": "center",
             "ylabel": None,
-            "ylabel_fontdict": None,
-            "ylabel_labelpad": 4.0,
-            "ylabel_loc": "center",
         }
         return cls
 
@@ -64,24 +55,9 @@ class Radar(_Top_Graph, _AXESPOLAR):
                 which=dicts["grid_which"],
             )
         self._set_theta()
-        ax.set_title(
-            dicts["title"],
-            fontdict=dicts["title_fontdict"],
-            loc=dicts["title_loc"],
-            pad=dicts["title_pad"],
-        )
-        ax.set_xlabel(
-            dicts["xlabel"],
-            fontdict=dicts["xlabel_fontdict"],
-            loc=dicts["xlabel_loc"],
-            labelpad=dicts["xlabel_labelpad"],
-        )
-        ax.set_ylabel(
-            dicts["ylabel"],
-            fontdict=dicts["ylabel_fontdict"],
-            loc=dicts["ylabel_loc"],
-            labelpad=dicts["ylabel_labelpad"],
-        )
+        ax.set_title(dicts["title"])
+        ax.set_xlabel(dicts["xlabel"])
+        ax.set_ylabel(dicts["ylabel"])
         ax.set_xticks(self._theta)
         ax.set_theta_zero_location("N")  # 方向の決定
         ax.set_theta_direction(-1)  # 時計回り

@@ -26,20 +26,9 @@ class ThreeDimensional(_Top_Graph, _AXES3D):
             "grid_which": "major",
             "linewidth": 0.0,
             "title": None,
-            "title_fontdict": None,
-            "title_pad": 6.0,
-            "title_loc": "center",
             "xlabel": None,
-            "xlabel_fontdict": None,
-            "xlabel_labelpad": 4.0,
-            "xlabel_loc": "center",
             "ylabel": None,
-            "ylabel_fontdict": None,
-            "ylabel_labelpad": 4.0,
-            "ylabel_loc": "center",
             "zlabel": None,
-            "zlabel_fontdict": None,
-            "zlabel_labelpad": 4.0,
         }
         return cls
 
@@ -66,26 +55,7 @@ class ThreeDimensional(_Top_Graph, _AXES3D):
                 linewidth=dicts["grid_linewidth"],
                 which=dicts["grid_which"],
             )
-        ax.set_title(
-            dicts["title"],
-            fontdict=dicts["title_fontdict"],
-            loc=dicts["title_loc"],
-            pad=dicts["title_pad"],
-        )
-        ax.set_xlabel(
-            dicts["xlabel"],
-            fontdict=dicts["xlabel_fontdict"],
-            loc=dicts["xlabel_loc"],
-            labelpad=dicts["xlabel_labelpad"],
-        )
-        ax.set_ylabel(
-            dicts["ylabel"],
-            fontdict=dicts["ylabel_fontdict"],
-            loc=dicts["ylabel_loc"],
-            labelpad=dicts["ylabel_labelpad"],
-        )
-        ax.set_zlabel(
-            dicts["zlabel"],
-            fontdict=dicts["zlabel_fontdict"],
-            labelpad=dicts["zlabel_labelpad"],
-        )
+        ax.set_title(dicts["title"])
+        ax.set_xlabel(dicts["xlabel"])
+        ax.set_ylabel(dicts["ylabel"])
+        ax.set_zlabel(dicts["zlabel"])

@@ -26,9 +26,6 @@ _POLAR_PROPERTY_DICT = MappingProxyType(
         "theta_zero_location_loc": "E",
         "theta_zero_location_offset": 0.0,
         "title": None,
-        "title_fontdict": None,
-        "title_loc": "center",
-        "title_pad": 6.0,
     }
 )
 """
@@ -51,18 +48,9 @@ _RADAR_PROPERTY_DICT = MappingProxyType(
         "grid_linewidth": 0.7,
         "grid_which": "major",
         "title": None,
-        "title_fontdict": None,
-        "title_loc": "center",
-        "title_pad": 6.0,
         "value": None,
         "xlabel": None,
-        "xlabel_fontdict": None,
-        "xlabel_labelpad": 4.0,
-        "xlabel_loc": "center",
         "ylabel": None,
-        "ylabel_fontdict": None,
-        "ylabel_labelpad": 4.0,
-        "ylabel_loc": "center",
     }
 )
 """
@@ -89,20 +77,9 @@ if __matplotlib_version_info__ >= (3, 10):
             "grid_linewidth": 0.7,
             "grid_which": "major",
             "title": None,
-            "title_fontdict": None,
-            "title_pad": 6.0,
-            "title_loc": "center",
             "xlabel": None,
             "ylabel": None,
             "zlabel": None,
-            "xlabel_labelpad": 4.0,
-            "xlabel_loc": "center",
-            "xlabel_fontdict": None,
-            "ylabel_labelpad": 4.0,
-            "ylabel_loc": "center",
-            "ylabel_fontdict": None,
-            "zlabel_labelpad": 4.0,
-            "zlabel_fontdict": None,
         }
     )
 else:
@@ -120,20 +97,9 @@ else:
             "grid_linewidth": 0.7,
             "grid_which": "major",
             "title": None,
-            "title_fontdict": None,
-            "title_pad": 6.0,
-            "title_loc": "center",
             "xlabel": None,
             "ylabel": None,
             "zlabel": None,
-            "xlabel_labelpad": 4.0,
-            "xlabel_loc": "center",
-            "xlabel_fontdict": None,
-            "ylabel_labelpad": 4.0,
-            "ylabel_loc": "center",
-            "ylabel_fontdict": None,
-            "zlabel_labelpad": 4.0,
-            "zlabel_fontdict": None,
         }
     )
 """
@@ -158,17 +124,8 @@ _TWODIMENSIONAL_PROPERTY_DICT = MappingProxyType(
         "grid_linewidth": 0.7,
         "grid_which": "major",
         "title": None,
-        "title_fontdict": None,
-        "title_pad": 6.0,
-        "title_loc": "center",
         "xlabel": None,
-        "xlabel_fontdict": None,
-        "xlabel_labelpad": 4.0,
-        "xlabel_loc": "center",
         "ylabel": None,
-        "ylabel_fontdict": None,
-        "ylabel_labelpad": 4.0,
-        "ylabel_loc": "center",
     }
 )
 """

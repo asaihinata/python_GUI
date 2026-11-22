@@ -28,9 +28,6 @@ class Polar(_Top_Graph, _AXESPOLAR):
             "theta_zero_location_loc": "E",
             "theta_zero_location_offset": 0.0,
             "title": None,
-            "title_fontdict": None,
-            "title_loc": "center",
-            "title_pad": 6.0,
         }
         return cls
 
@@ -58,12 +55,7 @@ class Polar(_Top_Graph, _AXESPOLAR):
                 linewidth=dicts["grid_linewidth"],
                 which=dicts["grid_which"],
             )
-        ax.set_title(
-            dicts["title"],
-            fontdict=dicts["title_fontdict"],
-            loc=dicts["title_loc"],
-            pad=dicts["title_pad"],
-        )
+        ax.set_title(dicts["title"])
         if not isinstance(dicts["theta_direction"], bool):
             dicts["theta_direction"] = True
         ax.set_theta_direction(1 if dicts["theta_direction"] else -1)
