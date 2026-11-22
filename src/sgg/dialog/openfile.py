@@ -1,6 +1,6 @@
 from os.path import split
 
-from sgg._dialog import _Dialog
+from sgg.dialog._dialog import _Dialog
 
 __all__ = ("AskOpenFilename",)
 

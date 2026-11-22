@@ -1,4 +1,4 @@
-from sgg._dialog import Dialog
+from sgg.dialog._dialog import Dialog
 
 __all__ = ("AskColor",)
 
