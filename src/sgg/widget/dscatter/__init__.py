@@ -1,3 +1,8 @@
+"""
+References:
+    https://matplotlib.org/stable/api/_as_gen/mpl_toolkits.mplot3d.axes3d.Axes3D.scatter.html
+"""
+
 from sgg._constant import _THREEDIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.threedimensional import ThreeDimensional
 from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict

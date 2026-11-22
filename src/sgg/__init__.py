@@ -8,84 +8,6 @@ from sgg.version import (__matplotlib_version_info__, __version__,
                          __version_info__)
 from sgg.widget import *
 
-__all__ = (
-    "__version__",
-    "__version_info__",
-    "AskColor",
-    "AskColorButton",
-    "AskDirectoryButton",
-    "AskDirectoryname",
-    "AskFileButton",
-    "AskOpenFilename",
-    "AskSaveAsFilename",
-    "Bar",
-    "Barh",
-    "Boxplot",
-    "Button",
-    "Checkbutton",
-    "Cursor",
-    "DScatter",
-    "Ecdf",
-    "Entry",
-    "Errorbar",
-    "Eventplot",
-    "Fill",
-    "Fill_Between",
-    "Frame",
-    "FrameLabel",
-    "Grouped_bar",
-    "gui",
-    "Hexbin",
-    "Hist",
-    "Hist2D",
-    "Image",
-    "Label",
-    "Listbox",
-    "Marker",
-    "Menu",
-    "Pie",
-    "Plot",
-    "Polarhist",
-    "Polarplot",
-    "Polarscatter",
-    "Polarstem",
-    "Popup",
-    "PopupError",
-    "PopupInformation",
-    "PopupQuestion",
-    "PopupWarning",
-    "Radarfill",
-    "Radarplot",
-    "Radiobutton",
-    "SaveFileButton",
-    "Scale",
-    "Scatter",
-    "Spinbox",
-    "Stackplot",
-    "Stairs",
-    "Stem",
-    "TAskColorButton",
-    "TAskDirectoryButton",
-    "TAskFileButton",
-    "TButton",
-    "TCheckbutton",
-    "TEntry",
-    "Text",
-    "TFrame",
-    "TFrameLabel",
-    "TImage",
-    "TKFont",
-    "TLabel",
-    "TNotebook",
-    "TProgressbar",
-    "TRadiobutton",
-    "TSaveFileButton",
-    "TScale",
-    "TSpinbox",
-    "Violinplot",
-    "Window",
-)
-
 
 class gui:
     @classmethod
@@ -224,6 +146,8 @@ class gui:
     def TNotebook(**kw):
         return {"type": "TNotebook", "kw": kw}
 
+    # グラフ
+
     @staticmethod
     def Plot(**kw):
         return {"type": "Plot", "kw": kw}
@@ -301,6 +225,18 @@ class gui:
         @staticmethod
         def Grouped_bar(**kw):
             return {"type": "Grouped_bar", "kw": kw}
+
+    @staticmethod
+    def DPlot(**kw):
+        return {"type": "DPlot", "kw": kw}
+
+    @staticmethod
+    def DBar(**kw):
+        return {"type": "DBar", "kw": kw}
+
+    @staticmethod
+    def DStem(**kw):
+        return {"type": "DStem", "kw": kw}
 
     @staticmethod
     def DScatter(**kw):

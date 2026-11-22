@@ -13,7 +13,10 @@ from sgg.widget.barh import Barh
 from sgg.widget.boxplot import Boxplot
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
+from sgg.widget.dbar import DBar
+from sgg.widget.dplot import DPlot
 from sgg.widget.dscatter import DScatter
+from sgg.widget.dstem import DStem
 from sgg.widget.ecdf import Ecdf
 from sgg.widget.entry import Entry
 from sgg.widget.errorbar import Errorbar
@@ -292,6 +295,12 @@ class Window(Misc, Wm):
                             "matplotlibのバージョンを3.11以上にしてください"
                         )
                     widget = Grouped_bar(**kw)
+                elif type_ == "DPlot":
+                    widget = DPlot(**kw)
+                elif type_ == "DBar":
+                    widget = DBar(**kw)
+                elif type_ == "DStem":
+                    widget = DStem(**kw)
                 elif type_ == "DScatter":
                     widget = DScatter(**kw)
                 elif type_ == "Radarplot":

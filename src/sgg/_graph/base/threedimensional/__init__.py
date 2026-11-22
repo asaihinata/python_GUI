@@ -1,4 +1,5 @@
 from matplotlib.figure import Figure
+from mpl_toolkits.mplot3d import Axes3D
 
 from sgg._graph._axes import _AXES3D
 from sgg._graph._base import _Top_Graph
@@ -50,7 +51,7 @@ class ThreeDimensional(_Top_Graph, _AXES3D):
             facecolor=self._default_dict["facecolor"],
             edgecolor=self._default_dict["edgecolor"],
         )
-        self._ax = self._fig.add_subplot(111, projection="3d")
+        self._ax: Axes3D = self._fig.add_subplot(111, projection="3d")
         self._set_style()
 
     def _set_style(self):

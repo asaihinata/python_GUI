@@ -6,7 +6,10 @@ from sgg.widget.barh import Barh
 from sgg.widget.boxplot import Boxplot
 from sgg.widget.button import Button
 from sgg.widget.checkbutton import Checkbutton
+from sgg.widget.dbar import DBar
+from sgg.widget.dplot import DPlot
 from sgg.widget.dscatter import DScatter
+from sgg.widget.dstem import DStem
 from sgg.widget.ecdf import Ecdf
 from sgg.widget.entry import Entry
 from sgg.widget.errorbar import Errorbar
@@ -58,66 +61,3 @@ from sgg.widget.tscale import TScale
 from sgg.widget.tspinbox import TSpinbox
 from sgg.widget.violinplot import Violinplot
 from sgg.widget.window import Window
-
-__all__ = (
-    "AskColorButton",
-    "AskDirectoryButton",
-    "AskFileButton",
-    "Bar",
-    "Barh",
-    "Boxplot",
-    "Button",
-    "Checkbutton",
-    "DScatter",
-    "Ecdf",
-    "Entry",
-    "Errorbar",
-    "Eventplot",
-    "Fill",
-    "Fill_Between",
-    "Frame",
-    "FrameLabel",
-    "Grouped_bar",
-    "Hexbin",
-    "Hist",
-    "Hist2D",
-    "Image",
-    "Label",
-    "Listbox",
-    "Menu",
-    "Pie",
-    "Plot",
-    "Polarhist",
-    "Polarplot",
-    "Polarscatter",
-    "Polarstem",
-    "Radarfill",
-    "Radarplot",
-    "Radiobutton",
-    "SaveFileButton",
-    "Scale",
-    "Scatter",
-    "Spinbox",
-    "Stackplot",
-    "Stairs",
-    "Stem",
-    "TAskColorButton",
-    "TAskDirectoryButton",
-    "TAskFileButton",
-    "TButton",
-    "TCheckbutton",
-    "TEntry",
-    "Text",
-    "TFrame",
-    "TFrameLabel",
-    "TImage",
-    "TLabel",
-    "TNotebook",
-    "TProgressbar",
-    "TRadiobutton",
-    "TSaveFileButton",
-    "TScale",
-    "TSpinbox",
-    "Violinplot",
-    "Window",
-)
