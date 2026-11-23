@@ -1,5 +1,7 @@
 from tkinter import Text as tktext
 
+from numpy import ndarray
+
 from sgg.models import _setDefaultValues2, _setDefaultValues3
 
 __all__ = ("Text",)
@@ -63,5 +65,17 @@ class Text(tktext):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         super().__init__(master, **_setDefaultValues3(self._default_dict, {"text"}))
         text = self._default_dict["text"]
-        if isinstance(text, str):
+        if isinstance(text, list | tuple | range | ndarray):
+            for i in reversed(text):
+                self.insert("1.0", i)
+        else:
             self.insert("1.0", text)
+
+    def all_clear(self):
+        self.delete("1.0", "end")
+
+    def all_get(self):
+        return self.get("1.0", "end")
+
+    def numberlines(self):
+        return int(self.index("end-1c").split(".")[0])

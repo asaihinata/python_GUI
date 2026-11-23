@@ -39,19 +39,19 @@ class Menu(tkmenu):
 
     def __init__(self, master=None, cnf={}, **kw):
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._set_dict = _setDefaultValues3(self._default_dict, {"menubar"})
-        super().__init__(master, **self._set_dict)
+        _set_dict = _setDefaultValues3(self._default_dict, {"menubar"})
+        super().__init__(master, **_set_dict)
         menubar = self._default_dict["menubar"]
         if menubar is not None:
-            self._create_menu(menubar)
+            self._create_menu(menubar, _set_dict)
 
-    def _create_menu(self, menu):
+    def _create_menu(self, menu, kw):
         self.delete(0, "end")
         for menus in menu:
             if not isinstance(menus, dict):
                 continue
             for key, val in menus.items():
-                submenu = tkmenu(self, **self._set_dict)
+                submenu = tkmenu(self, **kw)
                 self._add_items_recursive(submenu, val)
                 self.add_cascade(label=key, menu=submenu)
 

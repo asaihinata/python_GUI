@@ -1,12 +1,13 @@
 from tkinter.ttk import Button as ttkbutton
 
+from sgg._widget.askbtn import _Ask_Path_Btn
 from sgg.dialog.saveasfile import AskSaveAsFilename
 from sgg.models import _delete_keys, _setDefaultValues2
 
 __all__ = ("TSaveFileButton",)
 
 
-class TSaveFileButton(ttkbutton):
+class TSaveFileButton(_Ask_Path_Btn, ttkbutton):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -35,35 +36,21 @@ class TSaveFileButton(ttkbutton):
             "title": None,
             "typevariable": None,
         }
+        cls._path = ""
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        def _click_ask():
-            self._path = AskSaveAsFilename(**self._exclusive_dict)
+        def _click_ask(kw):
+            self._path = AskSaveAsFilename(**kw)
 
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        self._path = ""
-        super().__init__(
+        ttkbutton.__init__(
             master,
-            command=_click_ask,
+            command=lambda: _click_ask(self._exclusive_dict),
             class_="TButton",
             style="TButton",
             **_delete_keys(self._default_dict, self._exclusive_dict),
         )
-
-    def __fspath__(self):
-        return str(self._path)
-
-    def configure(self, cnf={}, **kw):
-        if not cnf and not kw:
-            return super().configure()
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
-            self._exclusive_dict, self._default_dict
-        )
-        return super().configure(_delete_keys(self._default_dict, self._exclusive_dict))
-
-    config = configure

@@ -76,6 +76,9 @@ class Window(Misc, Wm):
 
     def __new__(cls, *args, **kw):
         cls = super().__new__(cls)
+        cls._count = {"widget": 0}
+        cls._scroll_canvas = None
+        cls._key_widget_save = {}
         cls._default_dict = {
             "alpha": 1.0,
             "layout": None,
@@ -88,17 +91,14 @@ class Window(Misc, Wm):
         return cls
 
     def __init__(self, cnf=None, **kw):
-        self._key_widget_save = {}
         self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
         self._root = Tk()
-        self._count = {"widget": 0}
-        self._scroll_canvas = None
         parent = self._root
         self.title = self._default_dict["title"]
         self.alpha = self._default_dict["alpha"]
         if self._default_dict["maximize"]:
             self.maximize()
-        self._root.protocol("WM_DELETE_WINDOW", self._on_window_close)
+        self._root.protocol("WM_DELETE_WINDOW", self._root.destroy)
         scroll = self._default_dict["scroll"]
         if scroll:
             scroll_x, scroll_y = True, True
@@ -317,7 +317,7 @@ class Window(Misc, Wm):
                     widget = Polarhist(**kw)
                 else:
                     widget = Label(row_frame, text="ウィジェットが存在しません")
-                self._key_set(kw.pop("key", None), widget)
+                self._key_set(kw.get("key", None), widget)
                 if isinstance(widget, Menu):
                     self._root.config(menu=widget)
                 elif isinstance(widget, _Top_Graph):
@@ -327,9 +327,6 @@ class Window(Misc, Wm):
                     w.config(cursor=kw.get("cursor", ""))
                 else:
                     widget.pack(side="left")
-
-    def _on_window_close(self):
-        self._root.destroy()
 
     def _key_set(self, key, widget):
         if key is None or not isinstance(key, str):
