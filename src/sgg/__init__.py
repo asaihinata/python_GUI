@@ -10,6 +10,10 @@ from sgg.widget import *
 
 
 class gui:
+    def __init_subclass__(cls):
+        super().__init_subclass__()
+        raise TypeError(f"{gui.__name__}オブジェクトは継承できません")
+
     @classmethod
     def window(cls, cnf={}, **kw):
         return Window(cnf, **kw)

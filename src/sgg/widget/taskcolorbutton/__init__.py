@@ -7,7 +7,7 @@ from sgg.models import _delete_keys, _setDefaultValues2, _setDefaultValues3
 __all__ = ("TAskColorButton",)
 
 
-class TAskColorButton(_Ask_Color_Btn, ttkbutton):
+class TAskColorButton(ttkbutton, _Ask_Color_Btn):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -45,7 +45,7 @@ class TAskColorButton(_Ask_Color_Btn, ttkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        ttkbutton.__init__(
+        super().__init__(
             master,
             command=lambda: _click_ask(self._exclusive_dict),
             class_="TButton",

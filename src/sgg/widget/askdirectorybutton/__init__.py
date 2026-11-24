@@ -7,7 +7,7 @@ from sgg.models import _delete_keys, _setDefaultValues2
 __all__ = ("AskDirectoryButton",)
 
 
-class AskDirectoryButton(_Ask_Path_Btn, tkbutton):
+class AskDirectoryButton(tkbutton, _Ask_Path_Btn):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -68,7 +68,7 @@ class AskDirectoryButton(_Ask_Path_Btn, tkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        tkbutton.__init__(
+        super().__init__(
             master,
             command=lambda: _click_ask(self._exclusive_dict),
             **_delete_keys(self._default_dict, self._exclusive_dict),

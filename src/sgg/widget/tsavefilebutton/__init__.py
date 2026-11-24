@@ -7,7 +7,7 @@ from sgg.models import _delete_keys, _setDefaultValues2
 __all__ = ("TSaveFileButton",)
 
 
-class TSaveFileButton(_Ask_Path_Btn, ttkbutton):
+class TSaveFileButton(ttkbutton, _Ask_Path_Btn):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
@@ -47,7 +47,7 @@ class TSaveFileButton(_Ask_Path_Btn, ttkbutton):
         self._exclusive_dict = _setDefaultValues2(
             self._exclusive_dict, self._default_dict
         )
-        ttkbutton.__init__(
+        super().__init__(
             master,
             command=lambda: _click_ask(self._exclusive_dict),
             class_="TButton",
