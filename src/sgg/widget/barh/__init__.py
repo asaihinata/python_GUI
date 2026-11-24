@@ -1,3 +1,8 @@
+"""
+References:
+    https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.barh.html
+"""
+
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
 from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
@@ -15,6 +20,9 @@ class Barh(TwoDimensional):
             "left": None,
             "label": None,
             "height": 0.8,
+            "xerr": None,
+            "yerr": None,
+            "log": False,
             "x": None,
             "y": None,
         }
