@@ -32,7 +32,20 @@ class _Top_Graph:
     @property
     def ax(self):
         return self._ax
+    def get_title(self, loc="center"):
+        if not loc.lower() in ("left", "center", "right"):
+            loc = "center"
+        return self._ax.get_title(loc)
 
+    def set_title(self, label, fontdict=None, loc=None, pad=None, *, y=None, **kw):
+        return self._ax.set_title(label, fontdict, loc, pad, y=y, **kw)
+
+    @property
+    def graph(self):
+        return self._graph
+
+    def graphdata(self):
+        return self._graph
     def savefig(self, filename, path=None, dpi="figure"):
         if path is None:
             path = stack()[1].filename
@@ -64,13 +77,6 @@ class _Top_Graph:
         return self._canvas.configure(cnf=cnf, **kw)
 
     config = configure
-
-    @property
-    def graph(self):
-        return self._graph
-
-    def graphdata(self):
-        return self._graph
 
     def _redraw(self):
         if self._widget is not None:
