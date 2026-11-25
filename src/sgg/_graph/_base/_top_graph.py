@@ -32,6 +32,7 @@ class _Top_Graph:
     @property
     def ax(self):
         return self._ax
+
     def get_title(self, loc="center"):
         if not loc.lower() in ("left", "center", "right"):
             loc = "center"
@@ -46,6 +47,7 @@ class _Top_Graph:
 
     def graphdata(self):
         return self._graph
+
     def savefig(self, filename, path=None, dpi="figure"):
         if path is None:
             path = stack()[1].filename

@@ -1,5 +1,6 @@
-from matplotlib.figure import Figure
 import numpy as np
+from matplotlib.figure import Figure
+
 from sgg._graph._base import _Top_Graph
 from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
 
@@ -54,12 +55,12 @@ class Pie(_Top_Graph):
         self._graph_draw(self._exclusive_dict)
 
     def _graph_draw(self, kw):
-        value=np.asarray(kw["value"])
-        if not value.ndim==1:
+        value = np.asarray(kw["value"])
+        if not value.ndim == 1:
             raise ValueError("valueの次元数が不正です")
-        elif value.dtype.kind not in ("i","u","f"):
+        elif value.dtype.kind not in ("i", "u", "f"):
             raise TypeError("配列内の要素の型が不正です")
-        elif np.any(value<0):
+        elif np.any(value < 0):
             raise ValueError("配列内の要素に負の数が含まれています")
         self._graph = self._ax.pie(value, **_setDefaultValues3(kw, {"value"}))
         self._ax.set_title(self._default_dict["title"])
