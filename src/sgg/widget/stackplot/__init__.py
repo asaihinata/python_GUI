@@ -13,12 +13,8 @@ class Stackplot(TwoDimensional):
         cls._exclusive_dict = {
             "baseline": "zero",
             "colors": None,
-            "edgecolor": None,
-            "facecolor": None,
-            "hatch": None,
             "labels": (),
-            "linestyle": "-",
-            "linewidth": None,
+            "hatch": None,
             "x": None,
             "y": None,
         }
@@ -36,7 +32,12 @@ class Stackplot(TwoDimensional):
     def _graph_draw(self, kw):
         self._set_style()
         self._graph = self._ax.stackplot(
-            kw["x"], kw["y"], **_setDefaultValues3(kw, {"x", "y"})
+            kw["x"],
+            kw["y"],
+            colors=kw["colors"],
+            labels=kw["labels"],
+            hatch=kw["hatch"],
+            baseline=kw["baseline"],
         )
         if len(kw["labels"]):
             self._ax.legend()

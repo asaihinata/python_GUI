@@ -27,7 +27,7 @@ class TimeZoneList:
         return len(self._set)
 
     def __getitem__(self, key):
-        if not isinstance(key,str):
+        if not isinstance(key, str):
             raise TypeError("keyの型が不正です")
         for tz in self:
             if key in tz:
