@@ -8,14 +8,15 @@ from typing import Literal, overload
 from matplotlib.font_manager import FontProperties
 
 __all__ = ("TKFont",)
-
+type LITERAL_WEIGHT=Literal["normal", "bold"]
+type LITERAL_SLANT=Literal["roman", "italic"]
 type _FontDescription = (
     Font
     | TKFont
-    | tuple[str, int, Literal["normal", "bold"], Literal["roman", "italic"], bool, bool]
-    | tuple[str, int, Literal["normal", "bold"], Literal["roman", "italic"], bool]
-    | tuple[str, int, Literal["normal", "bold"], Literal["roman", "italic"]]
-    | tuple[str, int, Literal["normal", "bold"]]
+    | tuple[str, int, LITERAL_WEIGHT, LITERAL_SLANT, bool, bool]
+    | tuple[str, int, LITERAL_WEIGHT, LITERAL_SLANT, bool]
+    | tuple[str, int, LITERAL_WEIGHT, LITERAL_SLANT]
+    | tuple[str, int, LITERAL_WEIGHT]
     | tuple[str, int]
     | tuple[str]
 )
@@ -36,8 +37,8 @@ class TKFont(Font):
         root: Misc | None = ...,
         family: str = ...,
         size: int = ...,
-        weight: Literal["normal", "bold"] = ...,
-        slant: Literal["roman", "italic"] = ...,
+        weight: LITERAL_WEIGHT = ...,
+        slant: LITERAL_SLANT = ...,
         underline: bool = ...,
         overstrike: bool = ...,
         name: str | None = None,

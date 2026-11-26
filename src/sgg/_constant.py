@@ -30,10 +30,8 @@ _POLAR_PROPERTY_DICT = MappingProxyType(
 )
 """
     References:
-        ### theta_direction,theta_offset
-            https://matplotlib.org/stable/api/projections/polar.html
-        ### title
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
+        https://matplotlib.org/stable/api/projections/polar.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
 """
 _RADAR_PROPERTY_DICT = MappingProxyType(
     {
@@ -55,11 +53,9 @@ _RADAR_PROPERTY_DICT = MappingProxyType(
 )
 """
     References:
-        ### title
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
-        ### xlabel,ylabel
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
 """
 if __matplotlib_version_info__ >= (3, 10):
     _THREEDIMENSIONAL_PROPERTY_DICT = MappingProxyType(
@@ -104,12 +100,10 @@ else:
     )
 """
     References:
-        ### title
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
-        ### xlabel,ylabel,zlabel
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
-            https://matplotlib.org/stable/api/_as_gen/mpl_toolkits.mplot3d.axes3d.Axes3D.set_zlabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
+        https://matplotlib.org/stable/api/_as_gen/mpl_toolkits.mplot3d.axes3d.Axes3D.set_zlabel.html
 """
 _TWODIMENSIONAL_PROPERTY_DICT = MappingProxyType(
     {
@@ -130,11 +124,9 @@ _TWODIMENSIONAL_PROPERTY_DICT = MappingProxyType(
 )
 """
     References:
-        ### title
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
-        ### xlabel,ylabel
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
-            https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
 """
 _SCALE_TUPLE = ("asinh", "function", "functionlog", "linear", "log", "logit", "symlog")
 """
