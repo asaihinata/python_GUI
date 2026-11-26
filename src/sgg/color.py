@@ -2,7 +2,7 @@ from re import IGNORECASE, compile, sub
 
 from numpy import floating, integer
 
-from sgg.color._color_data import _COLOR_DICT
+from sgg._color_data import _COLOR_DICT
 from sgg.exceptions import ColorError
 
 __all__ = ("Color",)
