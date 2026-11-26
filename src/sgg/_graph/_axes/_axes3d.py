@@ -1,8 +1,14 @@
 """
 References:
     https://matplotlib.org/stable/api/toolkits/mplot3d/axes3d.html
+    https://matplotlib.org/stable/api/ticker_api.html
+    https://matplotlib.org/stable/api/dates_api.html
 """
 
+from matplotlib.dates import (AutoDateLocator, DateFormatter, DayLocator,
+                              HourLocator, MicrosecondLocator, MinuteLocator,
+                              MonthLocator, SecondLocator, WeekdayLocator,
+                              YearLocator)
 from matplotlib.scale import ScaleBase
 from matplotlib.ticker import (AutoLocator, FuncFormatter, LogLocator,
                                MaxNLocator, NullFormatter, NullLocator,
@@ -145,6 +151,8 @@ class _AXES3D(_AXES):
     def get_zscale(self):
         return self._ax.get_zscale()
 
+    # z_ticker
+    # major
     def zmajor_setlocator(
         self,
         nbins=10,
@@ -208,6 +216,54 @@ class _AXES3D(_AXES):
         self._ax.zaxis.set_major_formatter(NullFormatter())
         self._redraw()
 
+    # 日付
+    def zmajor_yearlocator(self, base=1, month=1, day=1, tz=None):
+        self._ax.zaxis.set_major_locator(YearLocator(base, month, day, tz))
+        self._redraw()
+
+    def zmajor_monthlocator(self, bymonth=None, bymonthday=1, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(
+            MonthLocator(bymonth, bymonthday, interval, tz)
+        )
+        self._redraw()
+
+    def zmajor_weekdaylocator(self, byweekday=1, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(WeekdayLocator(byweekday, interval, tz))
+        self._redraw()
+
+    def zmajor_daylocator(self, bymonthday=None, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(DayLocator(bymonthday, interval, tz))
+        self._redraw()
+
+    def zmajor_hourlocator(self, byhour=None, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(HourLocator(byhour, interval, tz))
+        self._redraw()
+
+    def zmajor_minutelocator(self, byminute=None, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(MinuteLocator(byminute, interval, tz))
+        self._redraw()
+
+    def zmajor_secondlocator(self, bysecond=None, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(SecondLocator(bysecond, interval, tz))
+        self._redraw()
+
+    def zmajor_microsecondlocator(self, interval=1, tz=None):
+        self._ax.zaxis.set_major_locator(MicrosecondLocator(interval, tz))
+        self._redraw()
+
+    def zmajor_autodatelocator(
+        self, tz=None, minticks=5, maxticks=None, interval_multiples=True
+    ):
+        self._ax.zaxis.set_major_locator(
+            AutoDateLocator(tz, minticks, maxticks, interval_multiples)
+        )
+        self._redraw()
+
+    def zmajor_dateformat(self, fmt, tz=None, *, usetex=None):
+        self._ax.zaxis.set_major_formatter(DateFormatter(fmt, tz, usetex=usetex))
+        self._redraw()
+
+    # minor
     def zminor_setlocator(
         self,
         nbins=10,
@@ -269,4 +325,51 @@ class _AXES3D(_AXES):
 
     def zminor_hideformat(self):
         self._ax.zaxis.set_minor_formatter(NullFormatter())
+        self._redraw()
+
+    # 日付
+    def zminor_yearlocator(self, base=1, month=1, day=1, tz=None):
+        self._ax.zaxis.set_minor_locator(YearLocator(base, month, day, tz))
+        self._redraw()
+
+    def zminor_monthlocator(self, bymonth=None, bymonthday=1, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(
+            MonthLocator(bymonth, bymonthday, interval, tz)
+        )
+        self._redraw()
+
+    def zminor_weekdaylocator(self, byweekday=1, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(WeekdayLocator(byweekday, interval, tz))
+        self._redraw()
+
+    def zminor_daylocator(self, bymonthday=None, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(DayLocator(bymonthday, interval, tz))
+        self._redraw()
+
+    def zminor_hourlocator(self, byhour=None, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(HourLocator(byhour, interval, tz))
+        self._redraw()
+
+    def zminor_minutelocator(self, byminute=None, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(MinuteLocator(byminute, interval, tz))
+        self._redraw()
+
+    def zminor_secondlocator(self, bysecond=None, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(SecondLocator(bysecond, interval, tz))
+        self._redraw()
+
+    def zminor_microsecondlocator(self, interval=1, tz=None):
+        self._ax.zaxis.set_minor_locator(MicrosecondLocator(interval, tz))
+        self._redraw()
+
+    def zminor_autodatelocator(
+        self, tz=None, minticks=5, maxticks=None, interval_multiples=True
+    ):
+        self._ax.zaxis.set_minor_locator(
+            AutoDateLocator(tz, minticks, maxticks, interval_multiples)
+        )
+        self._redraw()
+
+    def zminor_dateformat(self, fmt, tz=None, *, usetex=None):
+        self._ax.zaxis.set_minor_formatter(DateFormatter(fmt, tz, usetex=usetex))
         self._redraw()

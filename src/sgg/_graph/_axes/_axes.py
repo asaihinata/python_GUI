@@ -2,9 +2,14 @@
 References:
     https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html
     https://matplotlib.org/stable/api/ticker_api.html
+    https://matplotlib.org/stable/api/dates_api.html
 """
 
 from matplotlib.axes import Axes
+from matplotlib.dates import (AutoDateLocator, DateFormatter, DayLocator,
+                              HourLocator, MicrosecondLocator, MinuteLocator,
+                              MonthLocator, SecondLocator, WeekdayLocator,
+                              YearLocator)
 from matplotlib.scale import ScaleBase
 from matplotlib.ticker import (AutoLocator, FuncFormatter, LogLocator,
                                MaxNLocator, NullFormatter, NullLocator,
@@ -75,6 +80,8 @@ class _AXES:
     def get_xscale(self):
         return self._ax.get_xscale()
 
+    # ticker
+    # x_ticker_major
     def xmajor_setlocator(
         self,
         nbins=10,
@@ -138,6 +145,54 @@ class _AXES:
         self._ax.xaxis.set_major_formatter(NullFormatter())
         self._redraw()
 
+    # 日付
+    def xmajor_yearlocator(self, base=1, month=1, day=1, tz=None):
+        self._ax.xaxis.set_major_locator(YearLocator(base, month, day, tz))
+        self._redraw()
+
+    def xmajor_monthlocator(self, bymonth=None, bymonthday=1, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(
+            MonthLocator(bymonth, bymonthday, interval, tz)
+        )
+        self._redraw()
+
+    def xmajor_weekdaylocator(self, byweekday=1, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(WeekdayLocator(byweekday, interval, tz))
+        self._redraw()
+
+    def xmajor_daylocator(self, bymonthday=None, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(DayLocator(bymonthday, interval, tz))
+        self._redraw()
+
+    def xmajor_hourlocator(self, byhour=None, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(HourLocator(byhour, interval, tz))
+        self._redraw()
+
+    def xmajor_minutelocator(self, byminute=None, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(MinuteLocator(byminute, interval, tz))
+        self._redraw()
+
+    def xmajor_secondlocator(self, bysecond=None, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(SecondLocator(bysecond, interval, tz))
+        self._redraw()
+
+    def xmajor_microsecondlocator(self, interval=1, tz=None):
+        self._ax.xaxis.set_major_locator(MicrosecondLocator(interval, tz))
+        self._redraw()
+
+    def xmajor_autodatelocator(
+        self, tz=None, minticks=5, maxticks=None, interval_multiples=True
+    ):
+        self._ax.xaxis.set_major_locator(
+            AutoDateLocator(tz, minticks, maxticks, interval_multiples)
+        )
+        self._redraw()
+
+    def xmajor_dateformat(self, fmt, tz=None, *, usetex=None):
+        self._ax.xaxis.set_major_formatter(DateFormatter(fmt, tz, usetex=usetex))
+        self._redraw()
+
+    # x_ticker_minor
     def xminor_setlocator(
         self,
         nbins=10,
@@ -201,6 +256,53 @@ class _AXES:
         self._ax.xaxis.set_minor_formatter(NullFormatter())
         self._redraw()
 
+    # 日付
+    def xminor_yearlocator(self, base=1, month=1, day=1, tz=None):
+        self._ax.xaxis.set_minor_locator(YearLocator(base, month, day, tz))
+        self._redraw()
+
+    def xminor_monthlocator(self, bymonth=None, bymonthday=1, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(
+            MonthLocator(bymonth, bymonthday, interval, tz)
+        )
+        self._redraw()
+
+    def xminor_weekdaylocator(self, byweekday=1, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(WeekdayLocator(byweekday, interval, tz))
+        self._redraw()
+
+    def xminor_daylocator(self, bymonthday=None, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(DayLocator(bymonthday, interval, tz))
+        self._redraw()
+
+    def xminor_hourlocator(self, byhour=None, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(HourLocator(byhour, interval, tz))
+        self._redraw()
+
+    def xminor_minutelocator(self, byminute=None, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(MinuteLocator(byminute, interval, tz))
+        self._redraw()
+
+    def xminor_secondlocator(self, bysecond=None, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(SecondLocator(bysecond, interval, tz))
+        self._redraw()
+
+    def xminor_microsecondlocator(self, interval=1, tz=None):
+        self._ax.xaxis.set_minor_locator(MicrosecondLocator(interval, tz))
+        self._redraw()
+
+    def xminor_autodatelocator(
+        self, tz=None, minticks=5, maxticks=None, interval_multiples=True
+    ):
+        self._ax.xaxis.set_minor_locator(
+            AutoDateLocator(tz, minticks, maxticks, interval_multiples)
+        )
+        self._redraw()
+
+    def xminor_dateformat(self, fmt, tz=None, *, usetex=None):
+        self._ax.xaxis.set_minor_formatter(DateFormatter(fmt, tz, usetex=usetex))
+        self._redraw()
+
     # y軸
     def set_ylim(
         self, min=None, max=None, *, emit=True, auto=False, ymin=None, ymax=None
@@ -252,6 +354,8 @@ class _AXES:
     def get_yscale(self):
         return self._ax.get_yscale()
 
+    # ticker
+    # y_ticker_major
     def ymajor_setlocator(
         self,
         nbins=10,
@@ -315,6 +419,54 @@ class _AXES:
         self._ax.yaxis.set_major_formatter(NullFormatter())
         self._redraw()
 
+    # 日付
+    def ymajor_yearlocator(self, base=1, month=1, day=1, tz=None):
+        self._ax.yaxis.set_major_locator(YearLocator(base, month, day, tz))
+        self._redraw()
+
+    def ymajor_monthlocator(self, bymonth=None, bymonthday=1, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(
+            MonthLocator(bymonth, bymonthday, interval, tz)
+        )
+        self._redraw()
+
+    def ymajor_weekdaylocator(self, byweekday=1, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(WeekdayLocator(byweekday, interval, tz))
+        self._redraw()
+
+    def ymajor_daylocator(self, bymonthday=None, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(DayLocator(bymonthday, interval, tz))
+        self._redraw()
+
+    def ymajor_hourlocator(self, byhour=None, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(HourLocator(byhour, interval, tz))
+        self._redraw()
+
+    def ymajor_minutelocator(self, byminute=None, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(MinuteLocator(byminute, interval, tz))
+        self._redraw()
+
+    def ymajor_secondlocator(self, bysecond=None, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(SecondLocator(bysecond, interval, tz))
+        self._redraw()
+
+    def ymajor_microsecondlocator(self, interval=1, tz=None):
+        self._ax.yaxis.set_major_locator(MicrosecondLocator(interval, tz))
+        self._redraw()
+
+    def ymajor_autodatelocator(
+        self, tz=None, minticks=5, maxticks=None, interval_multiples=True
+    ):
+        self._ax.yaxis.set_major_locator(
+            AutoDateLocator(tz, minticks, maxticks, interval_multiples)
+        )
+        self._redraw()
+
+    def ymajor_dateformat(self, fmt, tz=None, *, usetex=None):
+        self._ax.yaxis.set_major_formatter(DateFormatter(fmt, tz, usetex=usetex))
+        self._redraw()
+
+    # y_ticker_minor
     def yminor_setlocator(
         self,
         nbins=10,
@@ -376,4 +528,51 @@ class _AXES:
 
     def yminor_hideformat(self):
         self._ax.yaxis.set_minor_formatter(NullFormatter())
+        self._redraw()
+
+    # 日付
+    def yminor_yearlocator(self, base=1, month=1, day=1, tz=None):
+        self._ax.yaxis.set_minor_locator(YearLocator(base, month, day, tz))
+        self._redraw()
+
+    def yminor_monthlocator(self, bymonth=None, bymonthday=1, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(
+            MonthLocator(bymonth, bymonthday, interval, tz)
+        )
+        self._redraw()
+
+    def yminor_weekdaylocator(self, byweekday=1, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(WeekdayLocator(byweekday, interval, tz))
+        self._redraw()
+
+    def yminor_daylocator(self, bymonthday=None, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(DayLocator(bymonthday, interval, tz))
+        self._redraw()
+
+    def yminor_hourlocator(self, byhour=None, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(HourLocator(byhour, interval, tz))
+        self._redraw()
+
+    def yminor_minutelocator(self, byminute=None, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(MinuteLocator(byminute, interval, tz))
+        self._redraw()
+
+    def yminor_secondlocator(self, bysecond=None, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(SecondLocator(bysecond, interval, tz))
+        self._redraw()
+
+    def yminor_microsecondlocator(self, interval=1, tz=None):
+        self._ax.yaxis.set_minor_locator(MicrosecondLocator(interval, tz))
+        self._redraw()
+
+    def yminor_autodatelocator(
+        self, tz=None, minticks=5, maxticks=None, interval_multiples=True
+    ):
+        self._ax.yaxis.set_minor_locator(
+            AutoDateLocator(tz, minticks, maxticks, interval_multiples)
+        )
+        self._redraw()
+
+    def yminor_dateformat(self, fmt, tz=None, *, usetex=None):
+        self._ax.yaxis.set_minor_formatter(DateFormatter(fmt, tz, usetex=usetex))
         self._redraw()
