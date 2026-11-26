@@ -6,13 +6,15 @@ __all__ = ("TimeZoneList",)
 class TimeZoneList:
     __slots__ = ("_set",)
 
-    def __new__(cls, *, sort=False):
+    def __new__(cls, *, sort=None):
         cls = super().__new__(cls)
+        if not isinstance(sort,bool):
+            sort = False
         if sort:
             cls._set = sorted(available_timezones())
         else:
             cls._set = available_timezones()
-        return cls._set
+        return cls
 
     def __iter__(self):
         return iter(self._set)
@@ -29,8 +31,8 @@ class TimeZoneList:
     def __getitem__(self, key):
         if not isinstance(key, str):
             raise TypeError("keyの型が不正です")
-        for tz in self:
+        for tz in self._set:
             if key in tz:
                 return tz
         else:
-            raise KeyError(f"{key}というキー名は存在しません")
+            raise KeyError(f"{key}という国名は存在しません")
