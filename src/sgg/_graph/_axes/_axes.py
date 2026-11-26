@@ -39,18 +39,6 @@ class _AXES:
     def get_xlim(self):
         return self._ax.get_xlim()
 
-    def set_xinverted(self, inverted):
-        self._ax.set_xinverted(inverted)
-        self._redraw()
-
-    def get_xinverted(self):
-        return self._ax.get_xinverted()
-
-    def invert_xaxis(self):
-        ax = self._ax
-        ax.set_xinverted(not ax.get_xinverted())
-        self._redraw()
-
     def set_xbound(self, min=None, max=None):
         self._ax.set_xbound(min, max)
         self._redraw()
@@ -312,18 +300,6 @@ class _AXES:
 
     def get_ylim(self):
         return self._ax.get_ylim()
-
-    def set_yinverted(self, inverted):
-        self._ax.set_yinverted(inverted)
-        self._redraw()
-
-    def get_yinverted(self):
-        return self._ax.get_yinverted()
-
-    def invert_yaxis(self):
-        ax = self._ax
-        ax.set_yinverted(not ax.get_yinverted())
-        self._redraw()
 
     def set_ybound(self, min=None, max=None):
         self._ax.set_ybound(min, max)

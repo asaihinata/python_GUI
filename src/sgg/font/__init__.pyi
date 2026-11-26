@@ -8,8 +8,8 @@ from typing import Literal, overload
 from matplotlib.font_manager import FontProperties
 
 __all__ = ("TKFont",)
-type LITERAL_WEIGHT=Literal["normal", "bold"]
-type LITERAL_SLANT=Literal["roman", "italic"]
+type LITERAL_WEIGHT = Literal["normal", "bold"]
+type LITERAL_SLANT = Literal["roman", "italic"]
 type _FontDescription = (
     Font
     | TKFont

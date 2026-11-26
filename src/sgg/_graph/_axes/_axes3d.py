@@ -110,18 +110,6 @@ class _AXES3D(_AXES):
     def get_zlim(self):
         return self._ax.get_zlim()
 
-    def set_zinverted(self, inverted):
-        self._ax.set_zinverted(inverted)
-        self._redraw()
-
-    def get_zinverted(self):
-        return self._ax.get_zinverted()
-
-    def invert_zaxis(self):
-        ax = self._ax
-        ax.set_zinverted(not ax.get_zinverted())
-        self._redraw()
-
     def set_zbound(self, min=None, max=None, view_margin=None):
         self._ax.set_zbound(min, max, view_margin=view_margin)
         self._redraw()

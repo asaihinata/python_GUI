@@ -8,7 +8,7 @@ class TimeZoneList:
 
     def __new__(cls, *, sort=None):
         cls = super().__new__(cls)
-        if not isinstance(sort,bool):
+        if not isinstance(sort, bool):
             sort = False
         if sort:
             cls._set = sorted(available_timezones())
