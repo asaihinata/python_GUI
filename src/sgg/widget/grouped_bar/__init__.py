@@ -5,11 +5,16 @@ References:
     https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.grouped_bar.html
 """
 
+from sgg.version import __matplotlib_version_info__
+
+if __matplotlib_version_info__ < (3, 11):
+    raise VersionError("matplotlibのバージョンを3.11以上にしてください")
+import numpy as np
+
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.exceptions import VersionError
+from sgg.exceptions import FraudAxis, VersionError
 from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
-from sgg.version import __matplotlib_version_info__
 
 __all__ = ("Grouped_bar",)
 
@@ -18,8 +23,6 @@ class Grouped_bar(TwoDimensional):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
-        if __matplotlib_version_info__ < (3, 11):
-            raise VersionError("matplotlibのバージョンを3.11以上にしてください")
         cls = super().__new__(cls)
         cls._exclusive_dict = {
             "bar_spacing": 0,
@@ -44,8 +47,16 @@ class Grouped_bar(TwoDimensional):
 
     def _graph_draw(self, kw):
         self._set_style()
+        y = np.asarray(kw["y"])
+        if y.ndim == 1:
+            y = y[:, np.newaxis]
+        elif 2 < y.ndim | y.ndim < 1:
+            raise FraudAxis("配列の次元数が不正です")
+        x = kw["x"]
+        if x is None:
+            x = np.arange(y.shape[len(y.shape) - 1] - 1)
         self._graph = self._ax.grouped_bar(
-            kw["y"], tick_labels=kw["x"], **_setDefaultValues3(kw, {"x", "y"})
+            y, tick_labels=x, **_setDefaultValues3(kw, {"x", "y"})
         )
         if kw["labels"] is not None:
             self._ax.legend()

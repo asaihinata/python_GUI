@@ -1,4 +1,4 @@
-from numpy import asanyarray
+from numpy import asarray
 
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
@@ -60,7 +60,7 @@ class Boxplot(TwoDimensional):
         if values is None:
             raise TypeError
         else:
-            values = asanyarray(values).T
+            values = asarray(values).T
         self._graph = self._ax.boxplot(values, **_setDefaultValues3(kw, {"values"}))
         if kw["label"] is not None:
             self._ax.legend()

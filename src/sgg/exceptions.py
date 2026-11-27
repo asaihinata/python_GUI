@@ -1,6 +1,8 @@
 """例外を収めたモジュール"""
 
-__all__ = ("ColorError", "VersionError")
+from numpy.exceptions import AxisError
+
+__all__ = ("ColorError", "VersionError", "FraudAxis")
 
 
 class ColorError(ValueError):
@@ -11,5 +13,11 @@ class ColorError(ValueError):
 
 class VersionError(AttributeError):
     """ライブラリのバージョンが不正の時に発生させる例外"""
+
+    pass
+
+
+class FraudAxis(AxisError):
+    """配列の次元数が不正の時に発生させる例外"""
 
     pass

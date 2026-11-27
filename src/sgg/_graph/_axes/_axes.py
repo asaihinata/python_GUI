@@ -30,10 +30,8 @@ class _AXES:
         return self._ax
 
     # x軸
-    def set_xlim(
-        self, min=None, max=None, *, emit=True, auto=False, xmin=None, xmax=None
-    ):
-        self._ax.set_xlim(min, max, emit=emit, auto=auto, xmin=xmin, xmax=xmax)
+    def set_xlim(self, min=None, max=None, *, emit=True, auto=False):
+        self._ax.set_xlim(min, max, emit=emit, auto=auto)
         self._redraw()
 
     def get_xlim(self):
@@ -292,10 +290,8 @@ class _AXES:
         self._redraw()
 
     # y軸
-    def set_ylim(
-        self, min=None, max=None, *, emit=True, auto=False, ymin=None, ymax=None
-    ):
-        self._ax.set_ylim(min, max, emit=emit, auto=auto, ymin=ymin, ymax=ymax)
+    def set_ylim(self, min=None, max=None, *, emit=True, auto=False):
+        self._ax.set_ylim(min, max, emit=emit, auto=auto)
         self._redraw()
 
     def get_ylim(self):

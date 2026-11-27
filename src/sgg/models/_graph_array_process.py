@@ -7,10 +7,10 @@ __all__ = ("_Pairwise_Process", "_ThreeD_Process")
 
 class _Pairwise_Process(product):
     def __new__(cls, x, y, /, *iterables):
-        x = np.asanyarray(x)
+        x = np.asarray(x)
         if x.ndim <= 1:
             x = np.expand_dims(x, axis=0)
-        y = np.asanyarray(y)
+        y = np.asarray(y)
         if y.ndim <= 1:
             y = np.expand_dims(y, axis=0)
         return super().__new__(
@@ -24,13 +24,13 @@ class _Pairwise_Process(product):
 
 class _ThreeD_Process(product):
     def __new__(cls, x, y, z, /, *iterables):
-        x = np.asanyarray(x)
+        x = np.asarray(x)
         if x.ndim <= 1:
             x = np.expand_dims(x, axis=0)
-        y = np.asanyarray(y)
+        y = np.asarray(y)
         if y.ndim <= 1:
             y = np.expand_dims(y, axis=0)
-        z = np.asanyarray(z)
+        z = np.asarray(z)
         if z.ndim <= 1:
             z = np.expand_dims(z, axis=0)
         iterables = ((i,) if np.isscalar(i) else i for i in iterables)
