@@ -1,7 +1,8 @@
 from tkinter import BooleanVar
 from tkinter import Radiobutton as tkradiobutton
 
-from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
+from sgg.models import (_do_func, _setDefaultValues2, _setDefaultValues3,
+                        _update_dict)
 
 __all__ = ("Radiobutton",)
 
@@ -76,3 +77,16 @@ class Radiobutton(tkradiobutton):
                 self._default_dict, {"command", "group", "value", "variable"}
             ),
         )
+
+    def configure(self, cnf={}, **kw):
+        if not cnf and not kw:
+            return super().configure()
+        self._default_dict = _update_dict(self._default_dict, cnf | kw)
+        return super().configure(
+            command=lambda x=self._default_dict["command"]: _do_func(x),
+            **_setDefaultValues3(
+                self._default_dict, {"command", "group", "value", "variable"}
+            ),
+        )
+
+    config = configure

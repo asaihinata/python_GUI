@@ -1,6 +1,7 @@
 from tkinter import Scale as tkscale
 
-from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
+from sgg.models import (_do_func, _setDefaultValues2, _setDefaultValues3,
+                        _update_dict)
 
 __all__ = ("Scale",)
 
@@ -56,3 +57,14 @@ class Scale(tkscale):
             command=lambda _: _do_func(self._default_dict["command"]),
             **_setDefaultValues3(self._default_dict, {"command"}),
         )
+
+    def configure(self, cnf={}, **kw):
+        if not cnf and not kw:
+            return super().configure()
+        self._default_dict = _update_dict(self._default_dict, cnf | kw)
+        return super().configure(
+            command=lambda x=self._default_dict["command"]: _do_func(x),
+            **_setDefaultValues3(self._default_dict, {"command"}),
+        )
+
+    config = configure
