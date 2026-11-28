@@ -1,6 +1,6 @@
 from tkinter.ttk import Frame as ttkframe
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues1
 
 __all__ = ("TFrame",)
 
@@ -24,5 +24,5 @@ class TFrame(ttkframe):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         super().__init__(master, style="TFrame", class_="TFrame", **self._default_dict)

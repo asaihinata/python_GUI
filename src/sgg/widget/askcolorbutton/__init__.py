@@ -2,7 +2,7 @@ from tkinter import Button as tkbutton
 
 from sgg._widget.askbtn import _Ask_Color_Btn
 from sgg.dialog.chooser import AskColor
-from sgg.models import _delete_keys, _setDefaultValues2, _setDefaultValues3
+from sgg.models import _delete_keys, _setDefaultValues1, _setDefaultValues2
 
 __all__ = ("AskColorButton",)
 
@@ -63,11 +63,11 @@ class AskColorButton(tkbutton, _Ask_Color_Btn):
     def __init__(self, master=None, cnf={}, **kw):
         def _click_ask(kw):
             self._color = AskColor(
-                color=kw["color"], **_setDefaultValues3(kw, {"color"})
+                color=kw["color"], **_setDefaultValues2(kw, {"color"})
             )
 
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(

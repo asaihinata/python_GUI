@@ -1,6 +1,6 @@
 from tkinter import Menu as tkmenu
 
-from sgg.models import _do_func, _setDefaultValues2, _setDefaultValues3
+from sgg.models import _do_func, _setDefaultValues1, _setDefaultValues2
 
 __all__ = ("Menu",)
 
@@ -38,8 +38,8 @@ class Menu(tkmenu):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        _set_dict = _setDefaultValues3(self._default_dict, {"menubar"})
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        _set_dict = _setDefaultValues2(self._default_dict, {"menubar"})
         super().__init__(master, **_set_dict)
         menubar = self._default_dict["menubar"]
         if menubar is not None:

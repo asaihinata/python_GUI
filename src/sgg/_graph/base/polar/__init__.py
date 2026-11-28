@@ -2,7 +2,7 @@ from matplotlib.figure import Figure
 
 from sgg._graph._axes import _AXESPOLAR
 from sgg._graph._base import _Top_Graph
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues1
 
 __all__ = ("Polar",)
 
@@ -32,7 +32,7 @@ class Polar(_Top_Graph, _AXESPOLAR):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         dicts = self._default_dict
         self._fig = Figure(
             figsize=(5, 4),

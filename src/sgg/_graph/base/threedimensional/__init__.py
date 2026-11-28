@@ -3,7 +3,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 from sgg._graph._axes import _AXES3D
 from sgg._graph._base import _Top_Graph
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues1
 
 __all__ = ("ThreeDimensional",)
 
@@ -33,7 +33,7 @@ class ThreeDimensional(_Top_Graph, _AXES3D):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         self._fig = Figure(
             figsize=(5, 4),
             dpi=self._default_dict["dpi"],

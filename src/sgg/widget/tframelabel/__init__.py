@@ -1,6 +1,6 @@
 from tkinter.ttk import LabelFrame as ttklabelframe
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues1
 
 __all__ = ("TFrameLabel",)
 
@@ -28,7 +28,7 @@ class TFrameLabel(ttklabelframe):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         super().__init__(
             master, class_="TLabelframe", style="TLabelframe", **self._default_dict
         )

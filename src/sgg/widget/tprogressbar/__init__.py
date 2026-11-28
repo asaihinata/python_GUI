@@ -1,7 +1,7 @@
 from tkinter import DoubleVar, IntVar
 from tkinter.ttk import Progressbar as ttkprogressbar
 
-from sgg.models import _setDefaultValues2, _setDefaultValues3
+from sgg.models import _setDefaultValues1, _setDefaultValues2
 
 __all__ = ("TProgressbar",)
 
@@ -25,7 +25,7 @@ class TProgressbar(ttkprogressbar):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         self.set_value(self._default_dict["value"])
         maximum = self._default_dict["maximum"]
         if maximum is None or not isinstance(maximum, int | float):
@@ -46,7 +46,7 @@ class TProgressbar(ttkprogressbar):
             maximum=maximum,
             class_="TProgressbar",
             style=stylename,
-            **_setDefaultValues3(self._default_dict, {"maximum"}),
+            **_setDefaultValues2(self._default_dict, {"maximum"}),
         )
 
     def get_value(self):

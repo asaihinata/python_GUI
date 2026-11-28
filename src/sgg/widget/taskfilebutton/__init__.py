@@ -2,7 +2,7 @@ from tkinter.ttk import Button as ttkbutton
 
 from sgg._widget.askbtn import _Ask_File_Btn
 from sgg.dialog.openfile import AskOpenFilename
-from sgg.models import _delete_keys, _setDefaultValues2
+from sgg.models import _delete_keys, _setDefaultValues1
 
 __all__ = ("TAskFileButton",)
 
@@ -42,8 +42,8 @@ class TAskFileButton(ttkbutton, _Ask_File_Btn):
         def _click_ask(kw):
             self._path = AskOpenFilename(**kw)
 
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(

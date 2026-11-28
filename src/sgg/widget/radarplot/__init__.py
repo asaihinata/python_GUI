@@ -7,7 +7,7 @@ References:
 
 from sgg._constant import _RADAR_PROPERTY_DICT
 from sgg._graph.base.radar import Radar
-from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
+from sgg.models import _setDefaultValues1, _setDefaultValues2, _update_dict
 
 __all__ = ("Radarplot",)
 
@@ -27,8 +27,8 @@ class Radarplot(Radar):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(self._default_dict)
@@ -37,7 +37,7 @@ class Radarplot(Radar):
     def _graph_draw(self, kw):
         self._set_style()
         self._graph = self._ax.plot(
-            self._theta, kw["value"], **_setDefaultValues3(kw, {"value"})
+            self._theta, kw["value"], **_setDefaultValues2(kw, {"value"})
         )
         if kw["label"] is not None:
             self._ax.legend()

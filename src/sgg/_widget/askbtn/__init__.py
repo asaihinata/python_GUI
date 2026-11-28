@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from sgg.models import _delete_keys, _setDefaultValues2
+from sgg.models import _delete_keys, _setDefaultValues1
 
 __all__ = ("_Ask_Color_Btn", "_Ask_File_Btn", "_Ask_Directory_Btn")
 
@@ -9,8 +9,8 @@ class _Ask_Btn_base:
     def configure(self, cnf={}, **kw):
         if not cnf and not kw:
             return super().configure()
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         return super().configure(_delete_keys(self._default_dict, self._exclusive_dict))

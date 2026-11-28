@@ -4,7 +4,6 @@ __all__ = (
     "_delete_keys",
     "_setDefaultValues1",
     "_setDefaultValues2",
-    "_setDefaultValues3",
     "_update_dict",
 )
 
@@ -14,13 +13,7 @@ def _delete_keys(key1, key2={}):
     return {k: v for k, v in key1.items() if k not in common_keys}
 
 
-def _setDefaultValues1(default, kw):
-    for key in default:
-        default[key] = kw.pop(key, default[key])
-    return default
-
-
-def _setDefaultValues2(default, cnf=None, **kw):
+def _setDefaultValues1(default, cnf=None, **kw):
     for i in (cnf or {}, kw):
         for key, val in i.items():
             if key in default:
@@ -28,7 +21,7 @@ def _setDefaultValues2(default, cnf=None, **kw):
     return default
 
 
-def _setDefaultValues3(default, removedict):
+def _setDefaultValues2(default, removedict):
     return {k: default[k] for k in (default.keys() - removedict)}
 
 

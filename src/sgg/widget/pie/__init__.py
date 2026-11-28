@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib.figure import Figure
 
 from sgg._graph._base import _Top_Graph
-from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
+from sgg.models import _setDefaultValues1, _setDefaultValues2, _update_dict
 
 __all__ = ("Pie",)
 
@@ -41,8 +41,8 @@ class Pie(_Top_Graph):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         self._fig = Figure(
@@ -62,7 +62,7 @@ class Pie(_Top_Graph):
             raise TypeError("配列内の要素の型が不正です")
         elif np.any(value < 0):
             raise ValueError("配列内の要素に負の数が含まれています")
-        self._graph = self._ax.pie(value, **_setDefaultValues3(kw, {"value"}))
+        self._graph = self._ax.pie(value, **_setDefaultValues2(kw, {"value"}))
         self._ax.set_title(self._default_dict["title"])
         if kw["labels"] is not None:
             self._ax.legend()

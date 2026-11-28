@@ -1,6 +1,6 @@
 from tkinter.ttk import Scale as ttkscale
 
-from sgg.models import (_do_func, _setDefaultValues2, _setDefaultValues3,
+from sgg.models import (_do_func, _setDefaultValues1, _setDefaultValues2,
                         _update_dict)
 
 __all__ = ("TScale",)
@@ -27,7 +27,7 @@ class TScale(ttkscale):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         orient = self._default_dict["orient"]
         if orient not in ("horizontal", "vertical"):
             orient = "horizontal"
@@ -37,7 +37,7 @@ class TScale(ttkscale):
             class_="TScale",
             style=stylename,
             command=lambda _: _do_func(self._default_dict["command"]),
-            **_setDefaultValues3(self._default_dict, {"command"}),
+            **_setDefaultValues2(self._default_dict, {"command"}),
         )
 
     def configure(self, cnf={}, **kw):
@@ -46,7 +46,7 @@ class TScale(ttkscale):
         self._default_dict = _update_dict(self._default_dict, cnf | kw)
         return super().configure(
             command=lambda x=self._default_dict["command"]: _do_func(x),
-            **_setDefaultValues3(self._default_dict, {"command"}),
+            **_setDefaultValues2(self._default_dict, {"command"}),
         )
 
     config = configure

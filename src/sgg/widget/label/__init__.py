@@ -1,7 +1,7 @@
 from tkinter import Label as tklabel
 from tkinter import Variable
 
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues1
 
 __all__ = ("Label",)
 
@@ -47,6 +47,6 @@ class Label(tklabel):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         textvariable = Variable(value=self._default_dict["text"])
         super().__init__(master, self._default_dict, textvariable=textvariable)

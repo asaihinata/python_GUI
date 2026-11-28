@@ -1,6 +1,6 @@
 from tkinter.ttk import Button as ttkbutton
 
-from sgg.models import (_do_func, _setDefaultValues2, _setDefaultValues3,
+from sgg.models import (_do_func, _setDefaultValues1, _setDefaultValues2,
                         _update_dict)
 
 __all__ = ("TButton",)
@@ -29,13 +29,13 @@ class TButton(ttkbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         super().__init__(
             master,
             class_="TButton",
             style="TButton",
             command=lambda x=self._default_dict["command"]: _do_func(x),
-            **_setDefaultValues3(self._default_dict, {"command"}),
+            **_setDefaultValues2(self._default_dict, {"command"}),
         )
 
     def configure(self, cnf={}, **kw):
@@ -44,7 +44,7 @@ class TButton(ttkbutton):
         self._default_dict = _update_dict(self._default_dict, cnf | kw)
         return super().configure(
             command=lambda x=self._default_dict["command"]: _do_func(x),
-            **_setDefaultValues3(self._default_dict, {"command"}),
+            **_setDefaultValues2(self._default_dict, {"command"}),
         )
 
     config = configure

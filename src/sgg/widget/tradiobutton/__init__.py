@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter.ttk import Radiobutton as ttkradiobutton
 
-from sgg.models import (_do_func, _setDefaultValues2, _setDefaultValues3,
+from sgg.models import (_do_func, _setDefaultValues1, _setDefaultValues2,
                         _update_dict)
 
 __all__ = ("TRadiobutton",)
@@ -31,7 +31,7 @@ class TRadiobutton(ttkradiobutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         groupname = self._default_dict["group"]
         if not isinstance(groupname, str):
             groupname = "default"
@@ -47,7 +47,7 @@ class TRadiobutton(ttkradiobutton):
             command=lambda x=self._default_dict["command"]: _do_func(x),
             class_="TRadiobutton",
             style="TRadiobutton",
-            **_setDefaultValues3(
+            **_setDefaultValues2(
                 self._default_dict, {"command", "group", "value", "variable"}
             ),
         )
@@ -58,7 +58,7 @@ class TRadiobutton(ttkradiobutton):
         self._default_dict = _update_dict(self._default_dict, cnf | kw)
         return super().configure(
             command=lambda x=self._default_dict["command"]: _do_func(x),
-            **_setDefaultValues3(
+            **_setDefaultValues2(
                 self._default_dict, {"command", "group", "value", "variable"}
             ),
         )

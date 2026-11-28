@@ -14,7 +14,7 @@ import numpy as np
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
 from sgg.exceptions import FraudAxis, VersionError
-from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
+from sgg.models import _setDefaultValues1, _setDefaultValues2, _update_dict
 
 __all__ = ("Grouped_bar",)
 
@@ -38,8 +38,8 @@ class Grouped_bar(TwoDimensional):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(self._default_dict)
@@ -56,7 +56,7 @@ class Grouped_bar(TwoDimensional):
         if x is None:
             x = np.arange(y.shape[len(y.shape) - 1] - 1)
         self._graph = self._ax.grouped_bar(
-            y, tick_labels=x, **_setDefaultValues3(kw, {"x", "y"})
+            y, tick_labels=x, **_setDefaultValues2(kw, {"x", "y"})
         )
         if kw["labels"] is not None:
             self._ax.legend()

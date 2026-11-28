@@ -3,7 +3,7 @@ from tkinter.ttk import Scrollbar
 
 from sgg._graph._base import _Top_Graph
 from sgg.exceptions import VersionError
-from sgg.models import _setDefaultValues2
+from sgg.models import _setDefaultValues1
 from sgg.version import __matplotlib_version_info__
 from sgg.widget.askcolorbutton import AskColorButton
 from sgg.widget.askdirectorybutton import AskDirectoryButton
@@ -91,7 +91,7 @@ class Window(Misc, Wm):
         return cls
 
     def __init__(self, cnf=None, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         self._root = Tk()
         parent = self._root
         self.title = self._default_dict["title"]

@@ -1,6 +1,6 @@
 from sgg._constant import _POLAR_PROPERTY_DICT
 from sgg._graph.base.polar import Polar
-from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
+from sgg.models import _setDefaultValues1, _setDefaultValues2, _update_dict
 
 __all__ = ("Polarstem",)
 
@@ -23,8 +23,8 @@ class Polarstem(Polar):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(self._default_dict)
@@ -36,7 +36,7 @@ class Polarstem(Polar):
             kw["x"],
             kw["y"],
             orientation="vertical",
-            **_setDefaultValues3(kw, {"x", "y"}),
+            **_setDefaultValues2(kw, {"x", "y"}),
         )
         if kw["label"] is not None:
             self._ax.legend()

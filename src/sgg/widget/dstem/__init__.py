@@ -5,7 +5,7 @@ References:
 
 from sgg._constant import _THREEDIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.threedimensional import ThreeDimensional
-from sgg.models import _setDefaultValues2, _update_dict
+from sgg.models import _setDefaultValues1, _update_dict
 from sgg.version import __matplotlib_version_info__
 
 __all__ = ("DStem",)
@@ -31,8 +31,8 @@ class DStem(ThreeDimensional):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(self._default_dict)

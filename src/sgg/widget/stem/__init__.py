@@ -1,6 +1,6 @@
 from sgg._constant import _TWODIMENSIONAL_PROPERTY_DICT
 from sgg._graph.base.twodimensional import TwoDimensional
-from sgg.models import _setDefaultValues2, _setDefaultValues3, _update_dict
+from sgg.models import _setDefaultValues1, _setDefaultValues2, _update_dict
 
 __all__ = ("Stem",)
 
@@ -24,8 +24,8 @@ class Stem(TwoDimensional):
         return cls
 
     def __init__(self, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
-        self._exclusive_dict = _setDefaultValues2(
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
+        self._exclusive_dict = _setDefaultValues1(
             self._exclusive_dict, self._default_dict
         )
         super().__init__(self._default_dict)
@@ -34,7 +34,7 @@ class Stem(TwoDimensional):
     def _graph_draw(self, kw):
         self._set_style()
         self._graph = self._ax.stem(
-            kw["x"], kw["y"], **_setDefaultValues3(kw, {"x", "y"})
+            kw["x"], kw["y"], **_setDefaultValues2(kw, {"x", "y"})
         )
         if kw["label"] is not None:
             self._ax.legend()

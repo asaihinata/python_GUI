@@ -15,14 +15,17 @@ class Message(Dialog):
 
 
 class _Popup:
-    _default_dict = {
-        "default": None,
-        "detail": None,
-        "icon": None,
-        "message": None,
-        "title": None,
-        "type": None,
-    }
+    def __new__(cls, *args, **kw):
+        cls = super().__new__(cls)
+        cls._default_dict = {
+            "default": None,
+            "detail": None,
+            "icon": None,
+            "message": None,
+            "title": None,
+            "type": None,
+        }
+        return cls
 
     def __init__(self, **kw):
         self._default_dict = _setDefaultValues1(self._default_dict, kw)
@@ -100,15 +103,13 @@ class PopupQuestion(_Popup):
     def __init__(
         self, title="Question", message="Question", *, detail=None, default="yes"
     ):
-        if default not in ("yes", "no"):
-            default = "yes"
         super().__init__(
             title=title,
             message=message,
             detail=detail,
             icon="question",
             type="yesno",
-            default=default,
+            default=default if default in ("yes", "no") else "yes",
         )
 
     def __dir__(self):

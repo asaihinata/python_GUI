@@ -1,7 +1,7 @@
 from tkinter import BooleanVar
 from tkinter.ttk import Checkbutton as ttkcheckbutton
 
-from sgg.models import (_do_func, _setDefaultValues2, _setDefaultValues3,
+from sgg.models import (_do_func, _setDefaultValues1, _setDefaultValues2,
                         _update_dict)
 
 __all__ = ("TCheckbutton",)
@@ -32,7 +32,7 @@ class TCheckbutton(ttkcheckbutton):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         groupname = self._default_dict["group"]
         if not isinstance(groupname, str):
             groupname = "default"
@@ -48,7 +48,7 @@ class TCheckbutton(ttkcheckbutton):
             command=lambda x=self._default_dict["command"]: _do_func(x),
             onvalue=True,
             offvalue=False,
-            **_setDefaultValues3(self._default_dict, {"variable", "command", "group"}),
+            **_setDefaultValues2(self._default_dict, {"variable", "command", "group"}),
         )
         if groupname in self._group_setting:
             self._group_setting[groupname].append(self)
@@ -64,7 +64,7 @@ class TCheckbutton(ttkcheckbutton):
         self._default_dict = _update_dict(self._default_dict, cnf | kw)
         return super().configure(
             command=lambda x=self._default_dict["command"]: _do_func(x),
-            **_setDefaultValues3(self._default_dict, {"variable", "command", "group"}),
+            **_setDefaultValues2(self._default_dict, {"variable", "command", "group"}),
         )
 
     config = configure

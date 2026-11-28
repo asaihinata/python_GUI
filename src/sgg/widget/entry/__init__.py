@@ -1,7 +1,7 @@
 from tkinter import Entry as tkentry
 from tkinter import Variable
 
-from sgg.models import _setDefaultValues2, _setDefaultValues3
+from sgg.models import _setDefaultValues1, _setDefaultValues2
 
 __all__ = ("Entry",)
 
@@ -53,12 +53,12 @@ class Entry(tkentry):
         return cls
 
     def __init__(self, master=None, cnf={}, **kw):
-        self._default_dict = _setDefaultValues2(self._default_dict, cnf, **kw)
+        self._default_dict = _setDefaultValues1(self._default_dict, cnf, **kw)
         self._variable = Variable(value=self._default_dict["value"])
         super().__init__(
             master,
             textvariable=self._variable,
-            **_setDefaultValues3(self._default_dict, {"value", "textvariable"}),
+            **_setDefaultValues2(self._default_dict, {"value", "textvariable"}),
         )
 
     def set(self, value):
