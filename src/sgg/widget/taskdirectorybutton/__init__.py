@@ -1,13 +1,13 @@
 from tkinter.ttk import Button as ttkbutton
 
-from sgg._widget.askbtn import _Ask_Path_Btn
+from sgg._widget.askbtn import _Ask_Directory_Btn
 from sgg.dialog.opendirectory import AskDirectoryname
 from sgg.models import _delete_keys, _setDefaultValues2
 
 __all__ = ("TAskDirectoryButton",)
 
 
-class TAskDirectoryButton(ttkbutton, _Ask_Path_Btn):
+class TAskDirectoryButton(ttkbutton, _Ask_Directory_Btn):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):

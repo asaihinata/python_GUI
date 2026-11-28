@@ -1,13 +1,13 @@
 from tkinter.ttk import Button as ttkbutton
 
-from sgg._widget.askbtn import _Ask_Path_Btn
+from sgg._widget.askbtn import _Ask_File_Btn
 from sgg.dialog.openfile import AskOpenFilename
 from sgg.models import _delete_keys, _setDefaultValues2
 
 __all__ = ("TAskFileButton",)
 
 
-class TAskFileButton(ttkbutton, _Ask_Path_Btn):
+class TAskFileButton(ttkbutton, _Ask_File_Btn):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):

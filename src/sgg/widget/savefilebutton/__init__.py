@@ -1,13 +1,13 @@
 from tkinter import Button as tkbutton
 
-from sgg._widget.askbtn import _Ask_Path_Btn
+from sgg._widget.askbtn import _Ask_File_Btn
 from sgg.dialog.saveasfile import AskSaveAsFilename
 from sgg.models import _delete_keys, _setDefaultValues2
 
 __all__ = ("SaveFileButton",)
 
 
-class SaveFileButton(tkbutton, _Ask_Path_Btn):
+class SaveFileButton(tkbutton, _Ask_File_Btn):
     _default_dict = {}
 
     def __new__(cls, *args, **kw):
